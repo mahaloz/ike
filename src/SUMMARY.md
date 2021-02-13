@@ -12,6 +12,9 @@
     - [Containers](./2_operating_systems/containers.md)
   - [Linux OS](./2_operating_systems/linux_os.md)
 
-- [Programming Languages](./3_programming_languages/introduction.md)
+- [Programming Languages](./3_programming_languages/programming_languages.md)
+  - [Introduction](./3_programming_languages/introduction.md)
+  - [C](./3_programming_languages/c.md)
+  - [Python](./3_programming_languages/python.md)
 - [Computer Organization](./4_computer_organization/introduction.md)
 - [Processes and Debugging](./5_processes/indroduction.md)
