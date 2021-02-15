@@ -3,7 +3,7 @@
 - [Introduction](./1_introduction/introduction.md)
   - [Background](./1_introduction/background.md)
   - [Inspiration](./1_introduction/inspiration.md)
-  - [The Author](./1_introduction/author.md)
+  - [Overview & Schedule](./1_overview.md)
 
 - [Operating Systems](./2_operating_systems/operating_systems.md)
   - [Introduction](./2_operating_systems/introduction.md)
