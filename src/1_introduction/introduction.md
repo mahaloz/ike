@@ -10,16 +10,9 @@ Through this `Introduction` section, you will find meta-data about the handbook,
 and what I hope to accomplish with it as well as the target audience. 
 
 ## About
-
-I, [Zion Leonahenahe Basque](https://zionbasque.com), initially wrote this for [pwndevils](https://pwndevils.com/)
-recruits because often we got people who lacked the skills to start pwn.college, but had the drive. These were
-often Freshman or Sophomore's in college who had not yet taken upper-level computer science classes. I had a 
-special perspective on this because I've been on the pwndevils leadership for a few years, enough to learn
-what often held these underclassmen back and then construct personal plans for each student. I wrote this as
-an attempt to make a more general workplan to get to a starting level in hacking. After writing
-more of this though, I tried to target those who had not even gotten to college yet. I hope you enjoy it. If you
-find any spelling errors or have suggestions, feel free to PR me on [github](https://github.com/mahaloz/ike).
+As [captain](https://zionbasque.com) of the pwndevils(https://pwndevils.com), I have seen a common trend with regards to incoming club recruits. They tend to be driven Freshman or Sophomores who have yet to take the necessary classwork or gain the necessary experience to easily transition into the pwn.college infrastructure. While I currently occupy a leadership position in pwndevils and Shellphish, I was once in the same position as many of our struggling recruits. Ideally, this perspective should allow me to offer the necessary resources when getting started in ones “hacking” career, and I would hope that the following material helps those occupying an even earlier academic background. If you find any spelling errors or suggestions, feel free to PR me on [github](https://github.com/mahaloz/ike)
 
 ## Contributors
 
+- [Zion Leonahenahe Basque](https://zionbasque.com): main author 
 - Scott Weston: editor
