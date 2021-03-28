@@ -7,7 +7,7 @@ skills, or setups done quickly. This handbook acts as duct tape for all those tu
 
 As seen in the table of contents on the left, we go through 5 major
 - Operating Systems
-  - ASU Equiv: CSE330. Overviews what makes something an operating system, how we can 
+  - ASU Equiv: CSE330,365. Overviews what makes something an operating system, how we can 
     virtualize them, and how we use them in hacking. Includes a set up for containers
     and VMs.
 - Programming Languages

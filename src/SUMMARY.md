@@ -11,6 +11,9 @@
     - [Virtual Machines](./2_operating_systems/virtual_machines.md)
     - [Containers](./2_operating_systems/containers.md)
   - [Linux OS](./2_operating_systems/linux_os.md)
+    - [The Terminal](./2_operating_systems/terminal.md)
+    - [Permissions](./2_operating_systems/permissions.md)
+    - [Hacker Practice](./2_operating_systems/hacker_practice.md)
 
 - [Programming Languages](./3_programming_languages/programming_languages.md)
   - [Introduction](./3_programming_languages/introduction.md)
