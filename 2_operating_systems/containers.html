@@ -175,15 +175,17 @@ far as technicals go, Dockers diagram is a good comparison:</p>
 <p><strong>Container:</strong>
 <img src="./container.png" alt="" /></p>
 <p>In simple terms, a VM is much more heavy since we need to initialize an entirely new kernel for each VM we make.
-In a container, we share the already existent kernel, and using some techinical tricks, we create isolated sections
+In a container, we share the already existent kernel and, using some technical tricks, create isolated sections
 of the kernel that we then use to create containers (which act as VMs). </p>
-<p>TL;DR: contaier light, VM heavy.</p>
+<p>TL;DR: container light, VM heavy.</p>
 <h3><a class="header" href="#why-use-a-container" id="why-use-a-container">Why use a container?</a></h3>
-<p>You be asking yourself, &quot;why use a container?&quot; We already are in a VM, so as far as affecting our host machine, we are
+<p>You may be asking yourself, &quot;why use a container?&quot; We already are in a VM, so as far as affecting our host machine goes, we are
 already in the clear. Containers become the most useful when trying to run applications that have dependencies that
-we might not have access to in our current version of the VM. For instance, wanting to run an <code>Ubuntu 18.04</code> applicaiton
+we might not have access to in our current version of the VM. For instance, wanting to run an <code>Ubuntu 18.04</code> application
 while in <code>Ubuntu 20.04</code>. You can either pray to the computer gods and hope your dependences still work in the new version,
-or you can use a docker container that creates an <code>Ubuntu 18.04</code> environment in it to run. The latter is easier. </p>
+or you can use a docker container that creates an <code>Ubuntu 18.04</code> environment in it to run. The latter is easier. In addition,
+containers are not persistent, meaning that when you are done running the container, everything you created inside of it is
+destroyed. </p>
 <h2><a class="header" href="#docker-the-modern-container" id="docker-the-modern-container">Docker: the modern container</a></h2>
 <p>Now that you know what a container is, it's time we set you up to be able to use containers. There are many implementations
 of containers, but the one we will use is <a href="https://www.docker.com/why-docker">Docker</a>. Docker is very mainstream and 
@@ -198,7 +200,7 @@ wordpress hosting software with a database all with this simple command in a ter
 <h2><a class="header" href="#setting-up-docker" id="setting-up-docker">Setting up docker</a></h2>
 <p>We will now install <code>Docker</code> on your <code>Ubuntu VM</code>, so from now on all instructions are pertaining to being inside
 you VM. First login to the VM, then open up the terminal. You can do this by either searching applications or 
-simple right clicking the desktop and clicking <code>&quot;Open terminal&quot;</code>. This is where the fun begins. Pro-tip,
+simple right-clicking the desktop and clicking <code>&quot;Open terminal&quot;</code>. This is where the fun begins. Pro-tip,
 you can click the copy button in the top left of the code snippets to copy and paste to your terminal.</p>
 <p>It's alright if you don't understand all the commands in this section, we will cover using the terminal later.</p>
 <p>First, we need to update the list of installable applications. Run:</p>
@@ -256,7 +258,7 @@ For more examples and ideas, visit:
  https://docs.docker.com/get-started/
 </code></pre>
 <h3><a class="header" href="#having-some-fun" id="having-some-fun">Having some fun</a></h3>
-<p>To make things a littler more interesting, let's actually launch an older Ubuntu version <strong>inside</strong> your
+<p>To make things a little more interesting, let's launch an older Ubuntu version <strong>inside</strong> your
 current Ubuntu version. Virtualception. Let's first see what version we are on in our machine:</p>
 <pre><code class="language-bash">grep '^VERSION' /etc/os-release
 </code></pre>
@@ -281,7 +283,7 @@ Once it's done, you should see a waiting prompt that looks like:</p>
 VERSION_ID=&quot;16.04&quot;
 VERSION_CODENAME=xenial
 </code></pre>
-<p>Pretty cool right? We are inside a virtual machine in a virtual machine (techically a container, but you get the point).
+<p>Pretty cool right? We are inside a virtual machine in a virtual machine (technically a container, but you get the point).
 Now type:</p>
 <pre><code class="language-bash">exit
 </code></pre>
