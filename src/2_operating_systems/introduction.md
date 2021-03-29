@@ -69,8 +69,8 @@ exists a space for kernel things called the **kernel space**.
 
 So you launch Minecraft, and load into your favorite world. You are in the user space. But now,
 you move your mouse so that your view in Minecraft rotates -- you have now brefily entered 
-kernel space. Why? Because hardware caused something called an `interrupt`, which is the 
-god analogy equivalent of praying for got to bless you power for a brief time. 
+kernel space. Why? Because hardware caused something called an `interrupt`, which in the 
+god analogy is equivalent to praying to god for god for a brief blessing of power.
 
 When you move your mouse this is what happens:
 1. The software that drives the mouse detects a movement
@@ -80,6 +80,8 @@ When you move your mouse this is what happens:
 5. The mouse move is handled in Minecraft. 
 
 You can visualize it like this:
+
+![](./minecraft.jpeg)
 
 ### TL;DR
 
