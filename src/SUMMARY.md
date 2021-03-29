@@ -15,9 +15,12 @@
     - [Permissions](./2_operating_systems/permissions.md)
     - [Hacker Practice](./2_operating_systems/hacker_practice.md)
 
-- [Computer Organization](./3_computer_organization/introduction.md)
+- [Computer Organization](./3_computer_organization/computer_org.md)
   - [Introduction](./3_computer_organization/introduction.md)
-  - [C-Pointers Review](./3_computer_organization/pointers.md)
+    - [Math & Counting](./3_computer_organization/math_and_counting.md)
+  - [Memory](./3_computer_organization/memory.md)
+    - [Programs in Memory](./3_computer_organization/programs_in_mem.md)
+    - [Addressing](./3_computer_organization/addressing.md)
   - [Assembly](./3_computer_organization/assembly.md)
   - [Executable Types](./3_computer_organization/executable.md)
 
