@@ -170,14 +170,12 @@ to be created and destroyed without affecting each other. </p>
 <p>To get more specific, read what Docker has to say on what a Container is: <a href="https://www.docker.com/resources/what-container">here</a>.
 Now you may be wondering, how does this differ from a VM? As an end-user, there is no difference. But as 
 far as technicals go, Dockers diagram is a good comparison:</p>
-<p><strong>VM:</strong>
-<img src="./vm.png" alt="" /></p>
-<p><strong>Container:</strong>
-<img src="./container.png" alt="" /></p>
+<p><strong>VMs vs Containers</strong>
+<img src="./ms_container_v_vm.png" alt="" /></p>
 <p>In simple terms, a VM is much more heavy since we need to initialize an entirely new kernel for each VM we make.
 In a container, we share the already existent kernel and, using some technical tricks, create isolated sections
 of the kernel that we then use to create containers (which act as VMs). </p>
-<p>TL;DR: container light, VM heavy.</p>
+<p><strong>TL;DR</strong>: container light, VM heavy.</p>
 <h3><a class="header" href="#why-use-a-container" id="why-use-a-container">Why use a container?</a></h3>
 <p>You may be asking yourself, &quot;why use a container?&quot; We already are in a VM, so as far as affecting our host machine goes, we are
 already in the clear. Containers become the most useful when trying to run applications that have dependencies that

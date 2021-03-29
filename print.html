@@ -303,12 +303,12 @@ and for the basis of these tutorials, the up-to-date kernel of Ubuntu is better.
 <p>Before going straight into using an operating system, it's nice to mention that there is a component of
 your computer that makes everything run―it's called the <strong>kernel</strong>. In a typical introduction to 
 operating systems you would likely be introduced to this idea in-depth, but I will only briefly 
-talk about it. If you are very interested, you should read <a href="2_operating_systems/XXXXXXXXXXXXX">this</a> book after completing this handbook,
+talk about it. If you are very interested, you should read <a href="https://www.amazon.com/Understanding-Linux-Kernel-Third-Daniel/dp/0596005652">this</a> book after completing this handbook,
 as the content assumes you are already a systems hacker.</p>
 <p>The kernel is the lowest running software that is always running when the computer is on. It's a fundamental
 part of the operating system that runs on your computer. If you imagined the computer as a stack of 
 software and hardware, the kernel would be the line that divides the two:</p>
-<p><img src="2_operating_systems/XXXXXXXXXXXX" alt="picture of computer stack" /></p>
+<p><img src="2_operating_systems/./computer_stack.jpeg" alt="picture of computer stack" /></p>
 <p>The kernel is responsible for:</p>
 <ul>
 <li>making sure programs have somewhere to run (talked about later)</li>
@@ -380,14 +380,12 @@ to be created and destroyed without affecting each other. </p>
 <p>To get more specific, read what Docker has to say on what a Container is: <a href="https://www.docker.com/resources/what-container">here</a>.
 Now you may be wondering, how does this differ from a VM? As an end-user, there is no difference. But as 
 far as technicals go, Dockers diagram is a good comparison:</p>
-<p><strong>VM:</strong>
-<img src="2_operating_systems/./vm.png" alt="" /></p>
-<p><strong>Container:</strong>
-<img src="2_operating_systems/./container.png" alt="" /></p>
+<p><strong>VMs vs Containers</strong>
+<img src="2_operating_systems/./ms_container_v_vm.png" alt="" /></p>
 <p>In simple terms, a VM is much more heavy since we need to initialize an entirely new kernel for each VM we make.
 In a container, we share the already existent kernel and, using some technical tricks, create isolated sections
 of the kernel that we then use to create containers (which act as VMs). </p>
-<p>TL;DR: container light, VM heavy.</p>
+<p><strong>TL;DR</strong>: container light, VM heavy.</p>
 <h3><a class="header" href="#why-use-a-container" id="why-use-a-container">Why use a container?</a></h3>
 <p>You may be asking yourself, &quot;why use a container?&quot; We already are in a VM, so as far as affecting our host machine goes, we are
 already in the clear. Containers become the most useful when trying to run applications that have dependencies that
@@ -629,8 +627,8 @@ head over to the next section! </p>
 ourselves for a deeper dive into how the computer works using compiled languages.
 Even if you have written C or Python before, I recommend glancing over the sections. </p>
 <h1><a class="header" href="#introduction-2" id="introduction-2">Introduction</a></h1>
-<p>If you are a blossoming computer scientist it is likely you have heard about the language
-<a href="https://www.python.org/about/">Python</a>. With the knowledge of a single language, many 
+<p>If you are a blossoming computer scientist, it is likely you have heard about the language
+<a href="https://www.python.org/about/">Python</a>. With the knowledge of a single language, you think 
 realize that there must be many different languages to talk to a computer with. What may
 come as something interesting is that there are distinct groups of languages we call
 <a href="https://en.wikipedia.org/wiki/Programming_paradigm">programming paradigms</a>. There are 
@@ -639,7 +637,7 @@ your coding career, so we will only focus on <a href="https://en.wikipedia.org/w
 <h2><a class="header" href="#imperative-programming" id="imperative-programming">Imperative Programming</a></h2>
 <p>Imperative programming is what many refer to as normal programming. You think in variables
 like in math. A simple example is when you want to compute the speed of something. 
-You are an advanced enough mammal that you can create a formula (series of symbols) for
+You are an advanced enough mammal that you can create a formula (a series of symbols) for
 this idea:</p>
 <pre><code>speed = distance / time
 </code></pre>
@@ -664,20 +662,20 @@ it's optional. Now let's talk about the division in imperative languages </p>
 <h2><a class="header" href="#compiled-languages" id="compiled-languages">Compiled Languages</a></h2>
 <p>It's likely you've also heard of the language <a href="https://en.wikipedia.org/wiki/C_(programming_language)">C</a>.
 You must be wondering, how is <code>C</code> any different from <code>Python</code>? Why is Python more popular now? Which should
-I use? These are all valid questions. Let's start by showing you what <code>C</code>, then compare it to Python later.</p>
+I use? These are all valid questions. Let's start by showing you what <code>C</code> is, then compare it to Python later.</p>
 <p><code>C</code> is a compiled language. This means the process of compilation must be done on the language after you write
 it. According to <a href="https://www.computerhope.com/jargon/c/compilat.htm">ComputerHope</a>:</p>
 <blockquote>
 <p><strong>Compilation</strong> is the process the computer takes to convert a high-level programming language into a machine language that the computer can understand. The software which performs this conversion is called a compiler.</p>
 </blockquote>
 <p>In many ways, this makes sense. You can't just say English things to the computer. It needs to be translated
-into something the computer understand, i.e., <code>100101011110101...</code> -- binary. You may think this is stupid,
-since you already need to convert your high level ideas into a specific language, then that language gets
-translated again. The only reason this current way is more efficient is because it's easier to write
-<code>C</code> than it is to write <code>binary</code> or <code>assembly</code> (discussed more later). </p>
+into something the computer understands, i.e., <code>100101011110101...</code>—binary. You may think this is stupid,
+since you already need to convert your high-level ideas into a specific language, then that language gets
+translated again. The only reason this current way is more efficient is that it's easier to write
+<code>C</code> than it is to write <code>binary</code>. </p>
 <p>This means that our code can only work (run) on a computer after it has been compiled into a program. 
 Assuming we can convert our high-level idea into C-code, our workflow now looks like this:</p>
-<p><img src="3_programming_languages/XXXXXX" alt="c_workflow" /></p>
+<p><img src="3_programming_languages/./c_workflow.jpeg" alt="c_workflow" /></p>
 <p><code>C Code</code> -&gt; <code>&lt;compiler&gt;</code> -&gt; <code>Binary Code</code> </p>
 <h3><a class="header" href="#diy-c" id="diy-c">DIY C</a></h3>
 <p>Let's quickly do a simple example, though you are not sure how to code yet. Take the written code
@@ -698,7 +696,7 @@ int main()
 example.c: C source, ASCII text
 </code></pre>
 <p>It's an <a href="https://en.wikipedia.org/wiki/ASCII">ASCII</a> text file that the OS identified as a C source file. 
-If you are not familiar with ASCII, it's simply a way to encode numbers as letters and vice versa. 
+If you are not familiar with ASCII, it's a way to encode numbers as letters and vice versa. 
 For example <code>65</code> translate to <code>A</code> and the other way around as well. For now, know that this is just a file
 full of readable text.</p>
 <p>Now lets <strong>compile</strong> it! <a href="https://gcc.gnu.org">gcc</a> is the GNU (another name for Linux) C Compiler. Let's use it:</p>
@@ -712,7 +710,7 @@ example  example.c
 <pre><code class="language-bash">▶ file example
 example: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 3.2.0, BuildID[sha1]=aeac59bbc04b9845665af0406044181d241f31f6, not stripped
 </code></pre>
-<p>Wo. That is a lot of information. For now, let's just talk about the first segment of text: 
+<p>Wo. That is a lot of information. For now, let's talk about the first segment of text: 
 <code>example: ELF 64-bit LSB shared object</code>. This means <code>example</code> is a 64-bit ELF. What is an ELF?
 Not a magical creature, but an executable program! Anything that is an <code>ELF</code> is a compiled
 program that is ready and in computer language. Let's run it!</p>
@@ -736,22 +734,22 @@ the most used. Here are some of the most popular:</p>
 <h2><a class="header" href="#interpreted-languages" id="interpreted-languages">Interpreted Languages</a></h2>
 <p>Unlike <code>C</code>, Python is not compiled (or at least not on the surface). Python is interpreted line-by-line.
 This is really nice when you are working fast, because when you compile if there is one mistake in your
-code, the entire program will not compile -- which means you now have nothing but a C file. In Python,
+code, the entire program will not compile—which means you now have nothing but a C file. In Python,
 if the code never executes to that section of the code, then it does not care. In addition, you can
 execute entire lines of code independently. This is what makes an interpreted language different from 
 a compiled one.</p>
-<p>With interpreted languages, the language is fed into an interpreter which then executes the code.
-So similar to compiled languages, we have a middle man that does some kind of translation -- except 
+<p>With interpreted languages, the language is fed into an interpreter, which then executes the code.
+So similarly to compiled languages, we have a middle man that does some kind of translation; except 
 now it's on a line-by-line basis. Let's look at it closer, on the DIY scale.</p>
 <h3><a class="header" href="#diy-python" id="diy-python">DIY Python</a></h3>
-<p>Like last time but this in a file: </p>
+<p>Like last time put this in a file: </p>
 <pre><code class="language-bash">vim example.py
 </code></pre>
 <pre><code class="language-python">#!/usr/bin/env python3
 print(&quot;Hello World, from Python!&quot;)
 </code></pre>
 <p>As you can probably tell already, Python is much more concise. This is usually true when comparing
-a interpreted language to a compiled one. Now let's see what the type of this file is:</p>
+an interpreted language to a compiled one. Now let's see what the type of this file is:</p>
 <pre><code class="language-bash">▶ file example.py
 example.py: Python script, ASCII text executable
 </code></pre>
@@ -765,11 +763,11 @@ Hello World, from Python!
 </code></pre>
 <p>Now, you must be wondering, how the hell did we just run a file full of readable text? 
 Based on what we just learned, that should be impossible. It should have to go through some
-sort of middle man that converts the code into a machine language. Well some magic happened 
+sort of middle-man that converts the code into a machine language. Well some magic happened 
 that we did not see:</p>
 <pre><code class="language-python">#!/usr/bin/env python3
 </code></pre>
-<p>That first line we wrote told the shell to execute this file using <code>python3</code> command. 
+<p>That first line we wrote told the shell to execute this file using the <code>python3</code> command. 
 This is equivalent to running the program like this:</p>
 <pre><code class="language-bash">▶ python3 example.py
 Hello World, from Python!
@@ -781,8 +779,8 @@ Note: <code>python3</code> is a symbolic link for <code>python3.6</code></p>
 </code></pre>
 <p>Yup, it's an <code>ELF</code>. This means that the interpreter is indeed a compiled program written in 
 a compiled language (C++ in this case). Things make sense again. Since we know the 
-interpretter is magical, let's take this one step further. We can actually execute
-the interpretter without any initial code:</p>
+interpreter is magical; let's take this one step further. We can actually execute
+the interpreter without any initial code:</p>
 <pre><code class="language-bash">▶ python3
 Python 3.6.9 (default, Oct  8 2020, 12:12:24)
 [GCC 8.4.0] on linux
@@ -798,17 +796,17 @@ wow so cool
 &gt;&gt;&gt; print(4 + 5)
 9
 </code></pre>
-<p>Pretty cool right? It executes things line by line and can even use variable you define.
+<p>Pretty cool right? It executes things line by line and can even use variables you define.
 As you can see, all interpreted languages are built on compiled languages. At the end 
-of the day, the computer only understands machine language -- remember this. </p>
-<p>Here are some popular interpretted languages:</p>
+of the day, the computer only understands machine language—remember this. </p>
+<p>Here are some popular interpreted languages:</p>
 <ul>
 <li><a href="https://www.python.org/about/">Python</a></li>
 <li><a href="https://www.javascript.com/">Java Script</a></li>
 <li><a href="https://www.ruby-lang.org/en/">Ruby</a></li>
 <li><a href="https://www.gnu.org/software/bash/manual/html_node/What-is-Bash_003f.html">Bash</a> </li>
 </ul>
-<p>Yes, the shell you have been using is indeed a interpreted language. </p>
+<p>Yes, the shell you have been using is indeed an interpreted language. </p>
 <h2><a class="header" href="#speed-comparison" id="speed-comparison">Speed Comparison</a></h2>
 <p>The last thing to mention is that because of the nature of executing a program line-by-line,
 compiled languages are often <strong>much</strong> faster than interpreted languages. For instance,
@@ -843,7 +841,7 @@ main()
 <pre><code class="language-bash">chmod +x test.py
 </code></pre>
 <p>Now we have two versions, <code>test.py</code> and <code>test</code> -- a compiled vs interpreted race.
-Both of these programs simply run the action <code>&quot;increment temp&quot;</code> <strong>1 billion times</strong>.
+Both of these programs run the action <code>&quot;increment temp&quot;</code> <strong>1 billion times</strong>.
 For the C program, this is nothing, but for python... well. Let's time it:</p>
 <pre><code class="language-bash">▶ time ./test
 ./test  2.28s user 0.00s system 99% cpu 2.285 total
