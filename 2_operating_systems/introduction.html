@@ -217,8 +217,8 @@ user space is the virtual space of your computer where normal programs run. As e
 exists a space for kernel things called the <strong>kernel space</strong>.</p>
 <p>So you launch Minecraft, and load into your favorite world. You are in the user space. But now,
 you move your mouse so that your view in Minecraft rotates -- you have now brefily entered 
-kernel space. Why? Because hardware caused something called an <code>interrupt</code>, which is the 
-god analogy equivalent of praying for got to bless you power for a brief time. </p>
+kernel space. Why? Because hardware caused something called an <code>interrupt</code>, which in the 
+god analogy is equivalent to praying to god for god for a brief blessing of power.</p>
 <p>When you move your mouse this is what happens:</p>
 <ol>
 <li>The software that drives the mouse detects a movement</li>
@@ -228,6 +228,7 @@ god analogy equivalent of praying for got to bless you power for a brief time. <
 <li>The mouse move is handled in Minecraft. </li>
 </ol>
 <p>You can visualize it like this:</p>
+<p><img src="./minecraft.jpeg" alt="" /></p>
 <h3><a class="header" href="#tldr" id="tldr">TL;DR</a></h3>
 <p>The gist here is that there is a <strong>super privileged</strong> software running on every computer called
 the kernel. The kernel controls everything at the lowest level, and compromising it means you
