@@ -164,6 +164,89 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#addressing" id="addressing">Addressing</a></h1>
+<p>In the last section about <a href="./programs_in_mem.html">programs in memory</a> we talked about loading Minecraft into memory (RAM). It was briefly mentioned that:</p>
+<blockquote>
+<p>When you click buttons in the Minecraft game, it simply transitions to different locations in memory where those button's code exists.</p>
+</blockquote>
+<p>The way it transitions to different locations in memory is through addressing. Like real life, addressing helps us find the places things live, in-memory for this case. In real life, someone would give you a unique string, their address, where you could find them in real life. Something like <code>411 North Central Ave, Phoenix, AZ</code>. In memory, we follow these same rules, but to a more simplified manner. </p>
+<h2><a class="header" href="#linear-addresses" id="linear-addresses">Linear Addresses</a></h2>
+<p>The simplified manner is that memory has a very specific set of rules:</p>
+<ol>
+<li>Each address is unique</li>
+<li>Each address is a number</li>
+</ol>
+<p>The number starts at zero and continues to whatever the <code>bit</code> count of the computer is. This fact should now help you realize what it means to have a <code>64bit</code> computer vs a <code>32bit</code> computer. In the old days, everything was <code>32bit</code>, but now everything is <code>64bit</code>. If you find some old applications, you may notice the option to download either—since programs made in 32bit are cross-compatible for 64bit. </p>
+<p>Anyway, we will assume you are on a 64bit computer. That means the starting address, or the smallest address, is <code>0x0000000000000000</code> and the largest address is <code>0xFFFFFFFFFFFFFFFF</code>. You will notice this is an 8 byte range (also 64bit). Here is how you can visualize the memory in your computer:</p>
+<pre><code>*----*----*----*----* 0x0000000000000000
+|                   |
+|-------------------|
+|                   |
+|-------------------|
+|                   |
+|-------------------|
+|                   |
+|         .         |
+|         .         |
+|         .         | 
+|                   |
+|-------------------| 
+|                   |
+*----*----*----*----* 0xFFFFFFFFFFFFFFFF
+</code></pre>
+<p>At each address is an 8 byte slot for data. This means we could store 8 bytes nearly 2**(64) times. That is wayyyyyyyyy more RAM than you have in your computer, but it is nice to know that our current architecture could support even a huge amount of RAM. </p>
+<h2><a class="header" href="#reading--writing-data" id="reading--writing-data">Reading &amp; Writing Data</a></h2>
+<p>To simplify things, lets define two functions:</p>
+<pre><code class="language-python">read(address) -&gt; outputs 8 bytes of data
+write(address, content) -&gt; writes 8 bytes of data to address
+execute(data) -&gt; executes the 8 bytes it's given
+</code></pre>
+<p>You can consider that when Minecraft launches the OS know where the beginning and end of Minecraft is. It records it with <strong>labels</strong>:</p>
+<pre><code>minecraft_start = 0x0000000040000000
+minecraft_end = 0x0000000050000000
+</code></pre>
+<p>Minecraft will of course take up a large portion of space:</p>
+<pre><code>*----*----*----*----* 0x0000000000000000
+|                   |
+|                   |
+|                   |
+|-------------------| 0x0000000040000000
+|                   |
+|                   |
+|     MINECRAFT     |
+|                   |
+|                   |
+|-------------------| 0x0000000050000000
+|                   |
+*----*----*----*----* 0xFFFFFFFFFFFFFFFF
+</code></pre>
+<p>Notice that Minecraft neither starts at the beginning nor at the end of memory. Any program can be loaded at any random place in memory. In addition, other magical things happen to actually allow you to break up a program into multiple places, called <a href="https://whatis.techtarget.com/definition/virtual-address">Virtual Addressing</a>. For now, consider things to be linear and continous.</p>
+<p>The OS does not know the exact location of the Minecraft Quit Button code. Instead, it only knows an <strong>offset</strong> from <code>minecraft_start</code>. Something like:</p>
+<pre><code>mc_quit_btn_offset = 0x80
+</code></pre>
+<p>Note: assume there are the correct amount of 0's on the other side of values when they are small like <code>0x80</code>. This is all still 64bits</p>
+<p>Now to run the Minecraft Quit Button, the OS simply reads the offset, then executes it. </p>
+<pre><code class="language-python">code = read(minecraft_start + mc_quit_btn_offset)
+execute(code)
+</code></pre>
+<pre><code>*----*----*----*----* 0x0000000000000000
+|                   |
+|                   |
+|                   |
+|-------------------| 0x0000000040000000
+|                   | &lt;--------- mc_quit_btn_offset
+|                   |
+|     MINECRAFT     |
+|                   | 
+|                   |
+|-------------------| 0x0000000050000000
+|                   |
+*----*----*----*----* 0xFFFFFFFFFFFFFFFF
+</code></pre>
+<p>Other things happen, but for now understand that each thing is accessed as an offset. The same goes for writing over the contents of the map:</p>
+<pre><code class="language-python">write(minecraft_start + mc_map_offset)
+</code></pre>
+<h2><a class="header" href="#summary" id="summary">Summary</a></h2>
+<p>Things are laid-out in memory in a linear format. Each location in memory can be addressed by an address (usually referred to in hex). At each address you can store data and read data. All-in-all, we have a large place that we can read and write too using numbers as our address. We usually refer to locations as offsets of known labels.</p>
 
                     </main>
 
