@@ -1,7 +1,7 @@
 # Introduction 
 
-If you are a blossoming computer scientist it is likely you have heard about the language
-[Python](https://www.python.org/about/). With the knowledge of a single language, many 
+If you are a blossoming computer scientist, it is likely you have heard about the language
+[Python](https://www.python.org/about/). With the knowledge of a single language, you think 
 realize that there must be many different languages to talk to a computer with. What may
 come as something interesting is that there are distinct groups of languages we call
 [programming paradigms](https://en.wikipedia.org/wiki/Programming_paradigm). There are 
@@ -12,7 +12,7 @@ your coding career, so we will only focus on [Imperative Programming](https://en
 
 Imperative programming is what many refer to as normal programming. You think in variables
 like in math. A simple example is when you want to compute the speed of something. 
-You are an advanced enough mammal that you can create a formula (series of symbols) for
+You are an advanced enough mammal that you can create a formula (a series of symbols) for
 this idea:
 
 ```
@@ -47,7 +47,7 @@ Two exist:
 
 It's likely you've also heard of the language [C](https://en.wikipedia.org/wiki/C_(programming_language)).
 You must be wondering, how is `C` any different from `Python`? Why is Python more popular now? Which should
-I use? These are all valid questions. Let's start by showing you what `C`, then compare it to Python later.
+I use? These are all valid questions. Let's start by showing you what `C` is, then compare it to Python later.
 
 `C` is a compiled language. This means the process of compilation must be done on the language after you write
 it. According to [ComputerHope](https://www.computerhope.com/jargon/c/compilat.htm):
@@ -55,15 +55,15 @@ it. According to [ComputerHope](https://www.computerhope.com/jargon/c/compilat.h
 > **Compilation** is the process the computer takes to convert a high-level programming language into a machine language that the computer can understand. The software which performs this conversion is called a compiler.
 
 In many ways, this makes sense. You can't just say English things to the computer. It needs to be translated
-into something the computer understand, i.e., `100101011110101...` -- binary. You may think this is stupid,
-since you already need to convert your high level ideas into a specific language, then that language gets
-translated again. The only reason this current way is more efficient is because it's easier to write
-`C` than it is to write `binary` or `assembly` (discussed more later). 
+into something the computer understands, i.e., `100101011110101...`—binary. You may think this is stupid,
+since you already need to convert your high-level ideas into a specific language, then that language gets
+translated again. The only reason this current way is more efficient is that it's easier to write
+`C` than it is to write `binary`. 
 
 This means that our code can only work (run) on a computer after it has been compiled into a program. 
 Assuming we can convert our high-level idea into C-code, our workflow now looks like this:
 
-![c_workflow](XXXXXX)
+![c_workflow](./c_workflow.jpeg)
 
 `C Code` -> `<compiler>` -> `Binary Code` 
 
@@ -96,7 +96,7 @@ example.c: C source, ASCII text
 ```
 
 It's an [ASCII](https://en.wikipedia.org/wiki/ASCII) text file that the OS identified as a C source file. 
-If you are not familiar with ASCII, it's simply a way to encode numbers as letters and vice versa. 
+If you are not familiar with ASCII, it's a way to encode numbers as letters and vice versa. 
 For example `65` translate to `A` and the other way around as well. For now, know that this is just a file
 full of readable text.
 
@@ -120,7 +120,7 @@ Now what is the type of `example`? Let's check:
 example: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 3.2.0, BuildID[sha1]=aeac59bbc04b9845665af0406044181d241f31f6, not stripped
 ```
 
-Wo. That is a lot of information. For now, let's just talk about the first segment of text: 
+Wo. That is a lot of information. For now, let's talk about the first segment of text: 
 `example: ELF 64-bit LSB shared object`. This means `example` is a 64-bit ELF. What is an ELF?
 Not a magical creature, but an executable program! Anything that is an `ELF` is a compiled
 program that is ready and in computer language. Let's run it!
@@ -151,18 +151,17 @@ the most used. Here are some of the most popular:
 
 Unlike `C`, Python is not compiled (or at least not on the surface). Python is interpreted line-by-line.
 This is really nice when you are working fast, because when you compile if there is one mistake in your
-code, the entire program will not compile -- which means you now have nothing but a C file. In Python,
+code, the entire program will not compile—which means you now have nothing but a C file. In Python,
 if the code never executes to that section of the code, then it does not care. In addition, you can
 execute entire lines of code independently. This is what makes an interpreted language different from 
 a compiled one.
 
-With interpreted languages, the language is fed into an interpreter which then executes the code.
-So similar to compiled languages, we have a middle man that does some kind of translation -- except 
+With interpreted languages, the language is fed into an interpreter, which then executes the code.
+So similarly to compiled languages, we have a middle man that does some kind of translation; except 
 now it's on a line-by-line basis. Let's look at it closer, on the DIY scale.
 
 ### DIY Python
-
-Like last time but this in a file: 
+Like last time put this in a file: 
 
 ```bash
 vim example.py
@@ -174,7 +173,7 @@ print("Hello World, from Python!")
 ```
 
 As you can probably tell already, Python is much more concise. This is usually true when comparing
-a interpreted language to a compiled one. Now let's see what the type of this file is:
+an interpreted language to a compiled one. Now let's see what the type of this file is:
 
 ```bash
 ▶ file example.py
@@ -197,14 +196,14 @@ Hello World, from Python!
 
 Now, you must be wondering, how the hell did we just run a file full of readable text? 
 Based on what we just learned, that should be impossible. It should have to go through some
-sort of middle man that converts the code into a machine language. Well some magic happened 
+sort of middle-man that converts the code into a machine language. Well some magic happened 
 that we did not see:
 
 ```python
 #!/usr/bin/env python3
 ```
 
-That first line we wrote told the shell to execute this file using `python3` command. 
+That first line we wrote told the shell to execute this file using the `python3` command. 
 This is equivalent to running the program like this:
 
 ```bash
@@ -222,8 +221,8 @@ Note: `python3` is a symbolic link for `python3.6`
 
 Yup, it's an `ELF`. This means that the interpreter is indeed a compiled program written in 
 a compiled language (C++ in this case). Things make sense again. Since we know the 
-interpretter is magical, let's take this one step further. We can actually execute
-the interpretter without any initial code:
+interpreter is magical; let's take this one step further. We can actually execute
+the interpreter without any initial code:
 
 ```bash
 ▶ python3
@@ -245,17 +244,17 @@ wow so cool
 9
 ```
 
-Pretty cool right? It executes things line by line and can even use variable you define.
+Pretty cool right? It executes things line by line and can even use variables you define.
 As you can see, all interpreted languages are built on compiled languages. At the end 
-of the day, the computer only understands machine language -- remember this. 
+of the day, the computer only understands machine language—remember this. 
 
-Here are some popular interpretted languages:
+Here are some popular interpreted languages:
 - [Python](https://www.python.org/about/)
 - [Java Script](https://www.javascript.com/)
 - [Ruby](https://www.ruby-lang.org/en/)
 - [Bash](https://www.gnu.org/software/bash/manual/html_node/What-is-Bash_003f.html) 
 
-Yes, the shell you have been using is indeed a interpreted language. 
+Yes, the shell you have been using is indeed an interpreted language. 
 
 ## Speed Comparison
 
@@ -306,7 +305,7 @@ chmod +x test.py
 ```
 
 Now we have two versions, `test.py` and `test` -- a compiled vs interpreted race.
-Both of these programs simply run the action `"increment temp"` **1 billion times**.
+Both of these programs run the action `"increment temp"` **1 billion times**.
 For the C program, this is nothing, but for python... well. Let's time it:
 
 ```bash

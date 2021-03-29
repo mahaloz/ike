@@ -36,14 +36,14 @@ In the next sub-section, we get Ubuntu installed.
 Before going straight into using an operating system, it's nice to mention that there is a component of
 your computer that makes everything run―it's called the **kernel**. In a typical introduction to 
 operating systems you would likely be introduced to this idea in-depth, but I will only briefly 
-talk about it. If you are very interested, you should read [this](XXXXXXXXXXXXX) book after completing this handbook,
+talk about it. If you are very interested, you should read [this](https://www.amazon.com/Understanding-Linux-Kernel-Third-Daniel/dp/0596005652) book after completing this handbook,
 as the content assumes you are already a systems hacker.
 
 The kernel is the lowest running software that is always running when the computer is on. It's a fundamental
 part of the operating system that runs on your computer. If you imagined the computer as a stack of 
 software and hardware, the kernel would be the line that divides the two:
 
-![picture of computer stack](XXXXXXXXXXXX)
+![picture of computer stack](./computer_stack.jpeg)
 
 The kernel is responsible for:
 - making sure programs have somewhere to run (talked about later)

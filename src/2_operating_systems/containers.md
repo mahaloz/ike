@@ -9,17 +9,14 @@ To get more specific, read what Docker has to say on what a Container is: [here]
 Now you may be wondering, how does this differ from a VM? As an end-user, there is no difference. But as 
 far as technicals go, Dockers diagram is a good comparison:
 
-**VM:**
-![](./vm.png)
-
-**Container:**
-![](./container.png )
+**VMs vs Containers**
+![](./ms_container_v_vm.png)
 
 In simple terms, a VM is much more heavy since we need to initialize an entirely new kernel for each VM we make.
 In a container, we share the already existent kernel and, using some technical tricks, create isolated sections
 of the kernel that we then use to create containers (which act as VMs). 
 
-TL;DR: container light, VM heavy.
+**TL;DR**: container light, VM heavy.
 
 ### Why use a container?
 
