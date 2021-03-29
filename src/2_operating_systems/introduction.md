@@ -58,7 +58,7 @@ assume that this program is at a higher level of existence than a normal program
 higher level of **privilege** than a normal program, but it is also at a higher level of privilege than
 an admin. The kernel is the god of this computing world, none come before it. 
 
-Luckily, this god known as the kernel is benevolen and allows measly normal programs to use parts of
+Luckily, this god known as the kernel is benevolent and allows measly normal programs to use parts of
 it when needed. Let's take my favorite game [minecraft](https://minecraft.net) as an example.
 
 ### Minecraft as an example
@@ -68,7 +68,7 @@ user space is the virtual space of your computer where normal programs run. As e
 exists a space for kernel things called the **kernel space**.  
 
 So you launch Minecraft, and load into your favorite world. You are in the user space. But now,
-you move your mouse so that your view in Minecraft rotates -- you have now brefily entered 
+you move your mouse so that your view in Minecraft rotates -- you have now briefly entered 
 kernel space. Why? Because hardware caused something called an `interrupt`, which in the 
 god analogy is equivalent to praying to god for god for a brief blessing of power.
 
@@ -79,7 +79,7 @@ When you move your mouse this is what happens:
 4. The kernel interprets the exact movement then sends the info back to user space 
 5. The mouse move is handled in Minecraft. 
 
-You can visualize it like this:
+You can visualize it like this (prepare for 3rd grade drawings):
 
 ![](./minecraft.jpeg)
 

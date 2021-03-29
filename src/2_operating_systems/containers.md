@@ -7,7 +7,8 @@ to be created and destroyed without affecting each other.
 
 To get more specific, read what Docker has to say on what a Container is: [here](https://www.docker.com/resources/what-container).
 Now you may be wondering, how does this differ from a VM? As an end-user, there is no difference. But as 
-far as technicals go, Dockers diagram is a good comparison:
+far as technicals go, Microsoft's diagram is a good comparison:
+
 
 **VMs vs Containers**
 ![](./ms_container_v_vm.png)
