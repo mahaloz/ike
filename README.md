@@ -7,7 +7,7 @@ Welcome to `'Ike`! This handbook is intended to take those with 0 system hacking
 get some usage out of this handbook, I ask you to hmu with a star on the [github repo](https://github.com/mahaloz/ike), so I know people actually use 
 this, lol.
 
-The site with the full hosted book is at [ikr.mahaloz.re](https://ike.mahaloz.re), check it out.
+The site with the full hosted book is at [ike.mahaloz.re](https://ike.mahaloz.re), check it out.
 
 ## Contributing
 
