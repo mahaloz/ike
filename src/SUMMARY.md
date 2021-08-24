@@ -22,6 +22,11 @@
     - [Programs in Memory](./3_computer_organization/programs_in_mem.md)
     - [Addressing](./3_computer_organization/addressing.md)
   - [Assembly](./3_computer_organization/assembly.md)
+  	- [Registers](./3_computer_organization/registers.md)
+  	- [Instructions](./3_computer_organization/instructions.md)
+  	- [Memory](./3_computer_organization/asm_memory.md)
+  	- [Stack](./3_computer_organization/stack.md)
+  	- [Control Structures](./3_computer_organization/control_structures.md)
   - [Executable Types](./3_computer_organization/executable.md)
 
 - [Programming Languages](./4_programming_languages/programming_languages.md)
