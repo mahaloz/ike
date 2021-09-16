@@ -28,7 +28,7 @@
   	- [Memory](./3_computer_organization/asm_memory.md)
   	- [Stack](./3_computer_organization/stack.md)
   	- [Control Structures](./3_computer_organization/control_structures.md)
-  - [Executable Types](./3_computer_organization/executable.md)
+    - [Hacker Practice](./3_computer_organization/hacker_practice.md)
 
 - [Programming Languages](./4_programming_languages/programming_languages.md)
   - [Introduction](./4_programming_languages/introduction.md)
@@ -44,6 +44,7 @@
 
 - [Processes and Debugging](./5_processes/proc_and_debug.md)
   - [Introduction](./5_processes/introduction.md)
+  - [Executable Types](./5_processes/executable_types.md)
   - [Using GDB](./5_processes/gdb.md)
   - [Interacting with Python](./5_processes/interaction.md)
 
