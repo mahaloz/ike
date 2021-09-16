@@ -19,7 +19,7 @@ of this section.
 To get a better idea of what Linux is, read the first five sections of this 
 [article](https://www.linux.com/what-is-linux/). 
 
-...
+\* \* \*
 
 Now that you know what a distribution of Linux is, you can be informed that we will be using the mainstream, 
 Debian based distribution [Ubuntu](https://ubuntu.com/tutorials). If you have found your way here 

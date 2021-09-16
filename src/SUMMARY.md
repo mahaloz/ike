@@ -18,6 +18,7 @@
 - [Computer Organization](./3_computer_organization/computer_org.md)
   - [Introduction](./3_computer_organization/introduction.md)
     - [Math & Counting](./3_computer_organization/math_and_counting.md)
+    - [Bits & Logic](./3_computer_organization/bits_and_logic.md)
   - [Memory](./3_computer_organization/memory.md)
     - [Programs in Memory](./3_computer_organization/programs_in_mem.md)
     - [Addressing](./3_computer_organization/addressing.md)
