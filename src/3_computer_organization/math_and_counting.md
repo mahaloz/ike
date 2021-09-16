@@ -84,4 +84,4 @@ Remember that hex bytes can also scale just like we did earlier with bits. We ca
 
 Which represents the number `140737351860368` in decimal. Yup that value took 6 bytes to represent. Aka `6*8` bits.
 
-Now that we got that all sorted out, let's go back to the computerz.
+Now that we understand the fundamentals of bits, lets move on to using them in logic.
