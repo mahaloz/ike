@@ -53,7 +53,7 @@ For now, we just say that any of these registers can hold a number that is up to
 
 Each register can be accessed in different ways. Why must you always use all 64 bits of a register. Take this for example: say we want to set `rax` == `0xffffffffffffffff`, but we already know `rax` has `0xffffffff00000000`:
 
-```
+```c
 // we know rax = 0xffffffff00000000
 
 eax = eax | 0xffffffff 
@@ -77,7 +77,7 @@ MSB                  32        16    8   0
                                +----+----+
 ```
 
-MSB here stands for Most Significant Bit, or the high part we refered to earlier. As an example, you can access the first 8 bits of `rax` by reading from `al`. All registers have name access like this. See [this reference](https://wiki.cdot.senecacollege.ca/wiki/X86_64_Register_and_Instruction_Quick_Start) for more use cases. In most cases, you just change the first two letters to access different parts like shown above. 
+MSB here stands for Most Significant Bit, or the high part we referred to earlier. As an example, you can access the first 8 bits of `rax` by reading from `al`. All registers have name access like this. See [this reference](https://wiki.cdot.senecacollege.ca/wiki/X86_64_Register_and_Instruction_Quick_Start) for more use cases. In most cases, you just change the first two letters to access different parts like shown above. 
 
 ## Special Registers
 

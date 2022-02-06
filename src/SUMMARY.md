@@ -22,11 +22,11 @@
   - [Memory](./3_computer_organization/memory.md)
     - [Programs in Memory](./3_computer_organization/programs_in_mem.md)
     - [Addressing](./3_computer_organization/addressing.md)
+    - [Memory Segments](./3_computer_organization/memory_segments.md)
   - [Assembly](./3_computer_organization/assembly.md)
   	- [Registers](./3_computer_organization/registers.md)
   	- [Instructions](./3_computer_organization/instructions.md)
-  	- [Memory](./3_computer_organization/asm_memory.md)
-  	- [Stack](./3_computer_organization/stack.md)
+  	- [ASM Memory](./3_computer_organization/asm_memory.md)
   	- [Control Structures](./3_computer_organization/control_structures.md)
     - [Hacker Practice](./3_computer_organization/hacker_practice.md)
 
