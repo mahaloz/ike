@@ -171,11 +171,100 @@ In x86 you represent these types of things with conditional jumps.
 
 ### Jump Instructions
 
+All jump instructions start with a `j`, go figure. Normal jumps, called unconditional jumps look like this:
+```
+jmp 0xdeadbeef
+```
 
+Where you replace 0xdeadbeef with an address of some sort. This also works with registers, so `jmp [rax]` is a very valid thing too and introduces its own complexities. Conditional jumps start with a `j` and end with some mnemonic to signify what they are dependent on. As an example, you have _jump if less than or equal_:
+```
+jle 0xdeadbeef
+```
+
+`le` is dependent on something called the [flags register](https://en.wikipedia.org/wiki/FLAGS_register), which is altered based on instructions that cause comparisons and tests. The two most common comparisons are:
+```
+cmp r1, <r2 | C>
+test r1, r2
+```
+
+`cmp` will subtract `r2` from `r1` to tell the difference. `test` will `AND` the two to tell the difference. These differences are stored in the flags registers. The most common format of their use is like so:
+```
+cmp rax, rdx
+jle addr2
+addr1:
+mov rbx, 1
+jmp addr3
+addr2:
+mov rbx, 0
+addr3:
+mov rax, rbx
+``` 
+
+The use of the names like `addr1` here are labels. You can place labels anywhere in assembly and use them in jump instructions later. Thse labels will be converted into relative jumps at the time the code is assembled (right before running it).
+
+**RECAP**:
+- Unconditional Jump: `jmp address`
+- List of all conditional jumps: [here](http://unixwiz.net/techtips/x86-jumps.html)
+- Register flags: [here](https://riptutorial.com/x86/example/6976/flags-register)
+- cmp instruction: [here](https://www.aldeid.com/wiki/X86-assembly/Instructions/cmp)
+- test instruction [here](https://en.wikipedia.org/wiki/TEST_(x86_instruction))
 
 
 ### Call Instructions
 
-These instructions don't fit well in the last format so 
+Finally, we have the last subset of instructions and that's call related instructions. They are a sub-set of control flow altering instructions and they work very much like jumps. There are two instructions:
+1. [call](https://www.felixcloutier.com/x86/call)
+2. [ret](https://www.felixcloutier.com/x86/ret)
 
-You can find all instructions at the [felixcloutier site](https://www.felixcloutier.com/x86/).
+Call works like this:
+```
+call <r1 | C>
+```
+
+So you can call an address, label (like in the jumps), or a dereferenced register (`[rax]`). When you call something it actuall does two things:
+```
+call addr:
+1. decode instruction
+2. push (rip + current_instruction_size)
+3. jmp addr
+```
+
+You still don't know what the stack is, but know that its somewhere you can save stuff just like normal memory. If you push something on the stack, it is now saved on the stack until a corresponding pop. So, from this, we can extrapolate that a call instruction does a jump while saving the original next address on the stack. This save is for the corresponding instruction `ret`. The `ret` instruction takes optional args, but for now we will consider it takes nothing:
+```
+ret
+```
+
+The ret instruction does the following:
+```
+ret:
+1. pop rip
+```
+
+So it directly modifies `rip` by taking whatever is on top of the stack and putting it into `rip`. So, in normal code, you can make a region of code you can reuse many times, called a _function_:
+```c
+// args in rdi, output in rax
+make_even:
+mov rdx, rdi
+mov rax, 2 
+idiv 
+mov rax, rdx    
+cmp rax, 0 
+je make_even_done
+add rdi, 1
+make_even_ret:
+mov rax, rdi
+ret
+
+_start:
+mov rdi, 10
+call make_even
+mov rdi, rax
+...
+```
+
+This code above shows off the power of the `call`, `ret` combo, allowing you to return to execution after you do some action with registers and values. It also shows how to make a function, which we will cover more in [control-structures](./control_structures.md).
+
+
+## Conclusion 
+
+There are many instructions that make up the x86-64 architecture. It's actually one of the largest. You can find all instructions at the [felixcloutier site](https://www.felixcloutier.com/x86/), which I often use for references of hard-to-remember instructions. 
