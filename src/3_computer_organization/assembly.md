@@ -17,7 +17,22 @@ RISC and CISC are competitors and mostly differ in the side-effects their instru
 
 The assembly language we will be studying in this handbook is by no means the best assembly language to start with. Ideally, we would've started with a RISC architecture because they are easier to learn, but, the world had different ideas. 
 
-There is an extremely high probability that you are reading this text on an Intel x86_64 machine. Dell, Lenovo, Apple; they all run x86_64. The only exception is the recent Mac M1 processor, but for the most part, the worlds computers run on the Intel ISA. With that knowledge, we though it was most practical to teach you the most common architecture.
+There is an extremely high probability that you are reading this text on an Intel x86_64 machine. Dell, Lenovo, Apple; they all run x86_64. The only exception is the recent Mac M1 processor, but for the most part, the worlds computers run on the Intel ISA. With that knowledge, I though it was most practical to teach you the most common architecture.
 
-It's time we dive into x86_64, which we will shorthand to _x86_ from now.
-Continue onto the next section!
+## How to read the rest of this section
+
+It's time we dive into x86_64, which we will shorthand to _x86_ from now. All the subsections in this section should be read in an _overview_ manner. I wrote these modules to assist and act as a reference for the challenges associated with this section. 
+
+The challenges you will complete as part of this section is the EmbryoASM challenges hosted on pwn.college. Myself and @redgate wrote these challenges to teach you assembly rather then just test your skill. You will find the challenges on the [dojo](https://dojo.pwn.college/challenges/asm). Start them after reading the sections below. 
+
+
+## Quick Reference Links
+- Instructions
+    - [Encoding](https://defuse.ca/online-x86-assembler.htm)
+    - [Reference/Description](https://www.felixcloutier.com/x86/)
+
+- Syscalls
+    - [Calling Convention](https://chromium.googlesource.com/chromiumos/docs/+/master/constants/syscalls.md)
+
+- Challenges
+    - [EmbryoASM](https://dojo.pwn.college/challenges/asm)
