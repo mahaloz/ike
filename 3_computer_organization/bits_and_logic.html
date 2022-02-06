@@ -4,47 +4,27 @@
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>Bits &amp; Logic - &#x27;Ike</title>
-        
-        
-
-
         <!-- Custom HTML head -->
-        
-
-
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        
         <link rel="icon" href="../favicon.svg">
-        
-        
         <link rel="shortcut icon" href="../favicon.png">
-        
         <link rel="stylesheet" href="../css/variables.css">
         <link rel="stylesheet" href="../css/general.css">
         <link rel="stylesheet" href="../css/chrome.css">
-        
         <link rel="stylesheet" href="../css/print.css" media="print">
-        
-
         <!-- Fonts -->
         <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
-        
         <link rel="stylesheet" href="../fonts/fonts.css">
-        
-
         <!-- Highlight.js Stylesheets -->
         <link rel="stylesheet" href="../highlight.css">
         <link rel="stylesheet" href="../tomorrow-night.css">
         <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
-        
-
-        
     </head>
     <body>
         <!-- Provide site root to javascript -->
@@ -103,7 +83,6 @@
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                
                 <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky bordered">
                     <div class="left-buttons">
@@ -120,29 +99,23 @@
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                         </ul>
-                        
                         <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
                             <i class="fa fa-search"></i>
                         </button>
-                        
                     </div>
 
                     <h1 class="menu-title">&#x27;Ike</h1>
 
                     <div class="right-buttons">
-                        
                         <a href="../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
-                        
-                        
                     </div>
                 </div>
 
-                
                 <div id="search-wrapper" class="hidden">
                     <form id="searchbar-outer" class="searchbar-outer">
-                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
                     </form>
                     <div id="searchresults-outer" class="searchresults-outer hidden">
                         <div id="searchresults-header" class="searchresults-header"></div>
@@ -150,8 +123,6 @@
                         </ul>
                     </div>
                 </div>
-                
-
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
                 <script type="text/javascript">
                     document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
@@ -163,12 +134,12 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#bits--logic" id="bits--logic">Bits &amp; Logic</a></h1>
+                        <h1 id="bits--logic"><a class="header" href="#bits--logic">Bits &amp; Logic</a></h1>
 <p>Continuing our discussion on bits, let's talk more about how we can mess with the states system we described earlier. Before that, lets clarify some notation:</p>
-<h2><a class="header" href="#logic" id="logic">Logic</a></h2>
+<h2 id="logic"><a class="header" href="#logic">Logic</a></h2>
 <p>You've definitely heard the term often, but how deeply have you understood the fundamentals of it? You can find an elongated definition on Wikipedia for <a href="https://en.wikipedia.org/wiki/Mathematical_logic">Mathematical Logic</a>, but lets define it simply as conclusions and reasoning of truths.</p>
 <hr />
-<h3><a class="header" href="#notation" id="notation">Notation</a></h3>
+<h3 id="notation"><a class="header" href="#notation">Notation</a></h3>
 <ul>
 <li><code> x = y</code> means y is assigned to x, or, x is now what y is.</li>
 <li><code>x == y</code> is a statement about equivalence &quot;x is the same as y&quot;.</li>
@@ -194,7 +165,7 @@
 <li>XOR</li>
 </ul>
 <p>Let't talk about each one.</p>
-<h3><a class="header" href="#and" id="and">AND</a></h3>
+<h3 id="and"><a class="header" href="#and">AND</a></h3>
 <p><code>AND</code> works logically like how you use it in english. Its useful for understanding the truth of two things. As an example:</p>
 <pre><code>S: &quot;Today it's sunny&quot;
 R: &quot;Today it's rainy&quot;
@@ -216,7 +187,7 @@ R = False
 <tr><td>F</td><td>T</td><td>F</td></tr>
 </tbody></table>
 <p>As you can see, the output is only ever True if both X and Y are true. After all of this, it will be much easier to define the other operators.</p>
-<h3><a class="header" href="#or" id="or">OR</a></h3>
+<h3 id="or"><a class="header" href="#or">OR</a></h3>
 <p><code>OR</code> is very similar to <code>AND</code>. It takes two truth values and outputs <code>True</code> if just one of the two are <code>True</code>. Here is the truth table:</p>
 <table><thead><tr><th>X</th><th>Y</th><th>X OR Y</th></tr></thead><tbody>
 <tr><td>F</td><td>F</td><td>F</td></tr>
@@ -224,7 +195,7 @@ R = False
 <tr><td>T</td><td>T</td><td>T</td></tr>
 <tr><td>F</td><td>T</td><td>T</td></tr>
 </tbody></table>
-<h3><a class="header" href="#not" id="not">NOT</a></h3>
+<h3 id="not"><a class="header" href="#not">NOT</a></h3>
 <p><code>NOT</code> is special because it only takes a single truth value. All <code>NOT</code> does is reverse the truth of its argument. Here is the truth value:</p>
 <table><thead><tr><th>X</th><th>NOT X</th></tr></thead><tbody>
 <tr><td>F</td><td>T</td></tr>
@@ -241,7 +212,7 @@ R = False
 <pre><code>(NOT(X OR Y)) == (NOT(X) AND NOT(Y))
 </code></pre>
 <p>You can test that above by making your own truth table. Notice how you can distribute the <code>NOT</code> to each variable and the operator, which flipped it to <code>AND</code>. The same is true in the reverse. </p>
-<h3><a class="header" href="#xor" id="xor">XOR</a></h3>
+<h3 id="xor"><a class="header" href="#xor">XOR</a></h3>
 <p><code>XOR</code> takes two truth values like the others, but is less used in normal english. Its short for <code>Exclusive</code>, which means the output is only true when the inputs differ:</p>
 <table><thead><tr><th>X</th><th>Y</th><th>X XOR Y</th></tr></thead><tbody>
 <tr><td>F</td><td>F</td><td>F</td></tr>
@@ -251,9 +222,9 @@ R = False
 </tbody></table>
 <p>Notice how it is only True when things going in are different from each other? Its an interesting mechanic and will be used more later. </p>
 <p>Now that we have a high level understand of logic, we can now relate it </p>
-<h2><a class="header" href="#bit-logic" id="bit-logic">Bit Logic</a></h2>
+<h2 id="bit-logic"><a class="header" href="#bit-logic">Bit Logic</a></h2>
 <p>Logic with bits work exactly the same as logic in general. <code>True</code> is <code>1</code>; <code>False</code> is <code>0</code>. </p>
-<h3><a class="header" href="#notation-1" id="notation-1">Notation</a></h3>
+<h3 id="notation-1"><a class="header" href="#notation-1">Notation</a></h3>
 <p>Here is our new notation that is generally for bit logic:</p>
 <pre><code>AND: &amp;
 OR: |
@@ -261,7 +232,7 @@ NOT: !
 XOR: ^
 </code></pre>
 <p>All of them still work the same, but now if I want to say <code>x AND y</code> I would actually say <code>x &amp; y</code>.</p>
-<h3><a class="header" href="#multi-bit-logic-operations" id="multi-bit-logic-operations">Multi-Bit Logic Operations</a></h3>
+<h3 id="multi-bit-logic-operations"><a class="header" href="#multi-bit-logic-operations">Multi-Bit Logic Operations</a></h3>
 <p>Operations on variables with bits work even on the <strong>byte</strong> level:</p>
 <pre><code>x = 11110101    
 y = 00101101
@@ -282,7 +253,7 @@ y = 0xbabe (64 bits)
 (x ^ y) == 0x0000000000007040
 </code></pre>
 <p>The zeros are shown in the result just to clarify once again that we are in 64bits, but all the operations we have done before still work. Remember you can always compound logic statements on other logic statements (and store them in another variable if you).</p>
-<h3><a class="header" href="#logic-gates" id="logic-gates">Logic Gates</a></h3>
+<h3 id="logic-gates"><a class="header" href="#logic-gates">Logic Gates</a></h3>
 <p>All these bit operations are actually mechanics of real-world hardware that things run on. Since electricity is like a 1 or a 0, it makes sense that these logic gates are what we first implemented in hardware.</p>
 <p>Circuit Engineers annotate these gates like shown <a href="https://en.wikipedia.org/wiki/Logic_gate#Symbols">here</a>. Generally speaking, all things on computers first start with these fundamental logic gates that are implemented in hardware. </p>
 <p>Now that we understand how to truly utilize the power of bits and logic, we can move on to understand a computer at its lowest level. </p>
@@ -291,67 +262,38 @@ y = 0xbabe (64 bits)
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                        
                             <a rel="prev" href="../3_computer_organization/math_and_counting.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                        
-
-                        
                             <a rel="next" href="../3_computer_organization/memory.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
-                        
-
                         <div style="clear: both"></div>
                     </nav>
                 </div>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                
                     <a rel="prev" href="../3_computer_organization/math_and_counting.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                
-
-                
                     <a rel="next" href="../3_computer_organization/memory.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
-                
             </nav>
 
         </div>
 
-        
-
-        
-
-        
-
-        
         <script type="text/javascript">
             window.playground_copyable = true;
         </script>
-        
-
-        
-
-        
         <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
-        
-
         <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
         <script src="../book.js" type="text/javascript" charset="utf-8"></script>
 
         <!-- Custom JS scripts -->
-        
-
-        
-
     </body>
 </html>

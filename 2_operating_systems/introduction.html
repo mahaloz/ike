@@ -4,47 +4,27 @@
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>Introduction - &#x27;Ike</title>
-        
-        
-
-
         <!-- Custom HTML head -->
-        
-
-
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        
         <link rel="icon" href="../favicon.svg">
-        
-        
         <link rel="shortcut icon" href="../favicon.png">
-        
         <link rel="stylesheet" href="../css/variables.css">
         <link rel="stylesheet" href="../css/general.css">
         <link rel="stylesheet" href="../css/chrome.css">
-        
         <link rel="stylesheet" href="../css/print.css" media="print">
-        
-
         <!-- Fonts -->
         <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
-        
         <link rel="stylesheet" href="../fonts/fonts.css">
-        
-
         <!-- Highlight.js Stylesheets -->
         <link rel="stylesheet" href="../highlight.css">
         <link rel="stylesheet" href="../tomorrow-night.css">
         <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
-        
-
-        
     </head>
     <body>
         <!-- Provide site root to javascript -->
@@ -103,7 +83,6 @@
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                
                 <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky bordered">
                     <div class="left-buttons">
@@ -120,29 +99,23 @@
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                         </ul>
-                        
                         <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
                             <i class="fa fa-search"></i>
                         </button>
-                        
                     </div>
 
                     <h1 class="menu-title">&#x27;Ike</h1>
 
                     <div class="right-buttons">
-                        
                         <a href="../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
-                        
-                        
                     </div>
                 </div>
 
-                
                 <div id="search-wrapper" class="hidden">
                     <form id="searchbar-outer" class="searchbar-outer">
-                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
                     </form>
                     <div id="searchresults-outer" class="searchresults-outer hidden">
                         <div id="searchresults-header" class="searchresults-header"></div>
@@ -150,8 +123,6 @@
                         </ul>
                     </div>
                 </div>
-                
-
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
                 <script type="text/javascript">
                     document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
@@ -163,8 +134,8 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#introduction" id="introduction">Introduction</a></h1>
-<h2><a class="header" href="#background" id="background">Background</a></h2>
+                        <h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
+<h2 id="background"><a class="header" href="#background">Background</a></h2>
 <p>To start your journey into binary reversing and exploitation, you first need to understand the platform
 on which you reverse and exploit. As you are likely aware, you are currently on an operating system (OS):
 likely Windows or MacOS. Generally, people know the difference between these OS, but
@@ -176,7 +147,7 @@ which means it is also an OS that is easy to develop on and learn (relative
 to the other ones). Right now it might not be clear what you would be developing that is related
 to the OS or how it is useful, but it will hopefully be more clear at the end 
 of this section.</p>
-<h2><a class="header" href="#linux" id="linux">Linux</a></h2>
+<h2 id="linux"><a class="header" href="#linux">Linux</a></h2>
 <p>To get a better idea of what Linux is, read the first five sections of this 
 <a href="https://www.linux.com/what-is-linux/">article</a>. </p>
 <p>* * *</p>
@@ -187,7 +158,7 @@ similarly Debian based distribution. I'll make the argument that it will be easi
 and for the basis of these tutorials, the up-to-date kernel of Ubuntu is better.</p>
 <p>TL;DR: We will use Ubuntu, almost none of the tools on Kali are needed for this.</p>
 <p>In the next sub-section, we get Ubuntu installed.</p>
-<h2><a class="header" href="#the-kernel" id="the-kernel">The Kernel</a></h2>
+<h2 id="the-kernel"><a class="header" href="#the-kernel">The Kernel</a></h2>
 <p>Before going straight into using an operating system, it's nice to mention that there is a component of
 your computer that makes everything run―it's called the <strong>kernel</strong>. In a typical introduction to 
 operating systems you would likely be introduced to this idea in-depth, but I will only briefly 
@@ -211,7 +182,7 @@ higher level of <strong>privilege</strong> than a normal program, but it is also
 an admin. The kernel is the god of this computing world, none come before it. </p>
 <p>Luckily, this god known as the kernel is benevolent and allows measly normal programs to use parts of
 it when needed. Let's take my favorite game <a href="https://minecraft.net">minecraft</a> as an example.</p>
-<h3><a class="header" href="#minecraft-as-an-example" id="minecraft-as-an-example">Minecraft as an example</a></h3>
+<h3 id="minecraft-as-an-example"><a class="header" href="#minecraft-as-an-example">Minecraft as an example</a></h3>
 <p>When you use a normal program, like Minecraft, you are running the program in <strong>user space</strong>. The
 user space is the virtual space of your computer where normal programs run. As expected, there 
 exists a space for kernel things called the <strong>kernel space</strong>.</p>
@@ -229,7 +200,7 @@ god analogy is equivalent to praying to god for god for a brief blessing of powe
 </ol>
 <p>You can visualize it like this (prepare for 3rd grade drawings):</p>
 <p><img src="./minecraft.jpeg" alt="" /></p>
-<h3><a class="header" href="#tldr" id="tldr">TL;DR</a></h3>
+<h3 id="tldr"><a class="header" href="#tldr">TL;DR</a></h3>
 <p>The gist here is that there is a <strong>super privileged</strong> software running on every computer called
 the kernel. The kernel controls everything at the lowest level, and compromising it means you
 compromised everything above it―any software running on the computer. In our next section
@@ -239,67 +210,38 @@ on virtualization, it's helpful to know this thing called the kernel exists. </p
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                        
                             <a rel="prev" href="../2_operating_systems/operating_systems.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                        
-
-                        
                             <a rel="next" href="../2_operating_systems/virtualization.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
-                        
-
                         <div style="clear: both"></div>
                     </nav>
                 </div>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                
                     <a rel="prev" href="../2_operating_systems/operating_systems.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                
-
-                
                     <a rel="next" href="../2_operating_systems/virtualization.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
-                
             </nav>
 
         </div>
 
-        
-
-        
-
-        
-
-        
         <script type="text/javascript">
             window.playground_copyable = true;
         </script>
-        
-
-        
-
-        
         <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
-        
-
         <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
         <script src="../book.js" type="text/javascript" charset="utf-8"></script>
 
         <!-- Custom JS scripts -->
-        
-
-        
-
     </body>
 </html>

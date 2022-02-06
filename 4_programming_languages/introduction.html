@@ -4,47 +4,27 @@
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>Introduction - &#x27;Ike</title>
-        
-        
-
-
         <!-- Custom HTML head -->
-        
-
-
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        
         <link rel="icon" href="../favicon.svg">
-        
-        
         <link rel="shortcut icon" href="../favicon.png">
-        
         <link rel="stylesheet" href="../css/variables.css">
         <link rel="stylesheet" href="../css/general.css">
         <link rel="stylesheet" href="../css/chrome.css">
-        
         <link rel="stylesheet" href="../css/print.css" media="print">
-        
-
         <!-- Fonts -->
         <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
-        
         <link rel="stylesheet" href="../fonts/fonts.css">
-        
-
         <!-- Highlight.js Stylesheets -->
         <link rel="stylesheet" href="../highlight.css">
         <link rel="stylesheet" href="../tomorrow-night.css">
         <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
-        
-
-        
     </head>
     <body>
         <!-- Provide site root to javascript -->
@@ -103,7 +83,6 @@
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                
                 <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky bordered">
                     <div class="left-buttons">
@@ -120,29 +99,23 @@
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                         </ul>
-                        
                         <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
                             <i class="fa fa-search"></i>
                         </button>
-                        
                     </div>
 
                     <h1 class="menu-title">&#x27;Ike</h1>
 
                     <div class="right-buttons">
-                        
                         <a href="../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
-                        
-                        
                     </div>
                 </div>
 
-                
                 <div id="search-wrapper" class="hidden">
                     <form id="searchbar-outer" class="searchbar-outer">
-                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
                     </form>
                     <div id="searchresults-outer" class="searchresults-outer hidden">
                         <div id="searchresults-header" class="searchresults-header"></div>
@@ -150,8 +123,6 @@
                         </ul>
                     </div>
                 </div>
-                
-
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
                 <script type="text/javascript">
                     document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
@@ -163,7 +134,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#introduction" id="introduction">Introduction</a></h1>
+                        <h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
 <p>If you are a blossoming computer scientist, it is likely you have heard about the language
 <a href="https://www.python.org/about/">Python</a>. With the knowledge of a single language, you think 
 realize that there must be many different languages to talk to a computer with. What may
@@ -171,7 +142,7 @@ come as something interesting is that there are distinct groups of languages we 
 <a href="https://en.wikipedia.org/wiki/Programming_paradigm">programming paradigms</a>. There are 
 distinct programming paradigms, but many are too difficult to understand this early in 
 your coding career, so we will only focus on <a href="https://en.wikipedia.org/wiki/Imperative_programming">Imperative Programming</a>.</p>
-<h2><a class="header" href="#imperative-programming" id="imperative-programming">Imperative Programming</a></h2>
+<h2 id="imperative-programming"><a class="header" href="#imperative-programming">Imperative Programming</a></h2>
 <p>Imperative programming is what many refer to as normal programming. You think in variables
 like in math. A simple example is when you want to compute the speed of something. 
 You are an advanced enough mammal that you can create a formula (a series of symbols) for
@@ -196,7 +167,7 @@ it's optional. Now let's talk about the division in imperative languages </p>
 <li>Compiled Languages</li>
 <li>Interpreted Languages </li>
 </ul>
-<h2><a class="header" href="#compiled-languages" id="compiled-languages">Compiled Languages</a></h2>
+<h2 id="compiled-languages"><a class="header" href="#compiled-languages">Compiled Languages</a></h2>
 <p>It's likely you've also heard of the language <a href="https://en.wikipedia.org/wiki/C_(programming_language)">C</a>.
 You must be wondering, how is <code>C</code> any different from <code>Python</code>? Why is Python more popular now? Which should
 I use? These are all valid questions. Let's start by showing you what <code>C</code> is, then compare it to Python later.</p>
@@ -214,7 +185,7 @@ translated again. The only reason this current way is more efficient is that it'
 Assuming we can convert our high-level idea into C-code, our workflow now looks like this:</p>
 <p><img src="./c_workflow.jpeg" alt="c_workflow" /></p>
 <p><code>C Code</code> -&gt; <code>&lt;compiler&gt;</code> -&gt; <code>Binary Code</code> </p>
-<h3><a class="header" href="#diy-c" id="diy-c">DIY C</a></h3>
+<h3 id="diy-c"><a class="header" href="#diy-c">DIY C</a></h3>
 <p>Let's quickly do a simple example, though you are not sure how to code yet. Take the written code
 below and write it into a file with vim: </p>
 <pre><code class="language-bash">vim example.c
@@ -268,7 +239,7 @@ the most used. Here are some of the most popular:</p>
 <li><a href="https://golang.org/">Go</a></li>
 <li><a href="https://developer.apple.com/swift/">Swift</a></li>
 </ul>
-<h2><a class="header" href="#interpreted-languages" id="interpreted-languages">Interpreted Languages</a></h2>
+<h2 id="interpreted-languages"><a class="header" href="#interpreted-languages">Interpreted Languages</a></h2>
 <p>Unlike <code>C</code>, Python is not compiled (or at least not on the surface). Python is interpreted line-by-line.
 This is really nice when you are working fast, because when you compile if there is one mistake in your
 code, the entire program will not compile—which means you now have nothing but a C file. In Python,
@@ -278,7 +249,7 @@ a compiled one.</p>
 <p>With interpreted languages, the language is fed into an interpreter, which then executes the code.
 So similarly to compiled languages, we have a middle man that does some kind of translation; except 
 now it's on a line-by-line basis. Let's look at it closer, on the DIY scale.</p>
-<h3><a class="header" href="#diy-python" id="diy-python">DIY Python</a></h3>
+<h3 id="diy-python"><a class="header" href="#diy-python">DIY Python</a></h3>
 <p>Like last time put this in a file: </p>
 <pre><code class="language-bash">vim example.py
 </code></pre>
@@ -344,7 +315,7 @@ of the day, the computer only understands machine language—remember this. </p>
 <li><a href="https://www.gnu.org/software/bash/manual/html_node/What-is-Bash_003f.html">Bash</a> </li>
 </ul>
 <p>Yes, the shell you have been using is indeed an interpreted language. </p>
-<h2><a class="header" href="#speed-comparison" id="speed-comparison">Speed Comparison</a></h2>
+<h2 id="speed-comparison"><a class="header" href="#speed-comparison">Speed Comparison</a></h2>
 <p>The last thing to mention is that because of the nature of executing a program line-by-line,
 compiled languages are often <strong>much</strong> faster than interpreted languages. For instance,
 let's compare two programs that do the exact same thing in two languages.</p>
@@ -396,67 +367,38 @@ faster</strong>. You can see how this gets bad on a larger scale, but I digress.
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                        
                             <a rel="prev" href="../4_programming_languages/programming_languages.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                        
-
-                        
                             <a rel="next" href="../4_programming_languages/c.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
-                        
-
                         <div style="clear: both"></div>
                     </nav>
                 </div>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                
                     <a rel="prev" href="../4_programming_languages/programming_languages.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                
-
-                
                     <a rel="next" href="../4_programming_languages/c.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
-                
             </nav>
 
         </div>
 
-        
-
-        
-
-        
-
-        
         <script type="text/javascript">
             window.playground_copyable = true;
         </script>
-        
-
-        
-
-        
         <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
-        
-
         <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
         <script src="../book.js" type="text/javascript" charset="utf-8"></script>
 
         <!-- Custom JS scripts -->
-        
-
-        
-
     </body>
 </html>

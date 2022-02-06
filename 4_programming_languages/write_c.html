@@ -4,47 +4,27 @@
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>Writing Code - &#x27;Ike</title>
-        
-        
-
-
         <!-- Custom HTML head -->
-        
-
-
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        
         <link rel="icon" href="../favicon.svg">
-        
-        
         <link rel="shortcut icon" href="../favicon.png">
-        
         <link rel="stylesheet" href="../css/variables.css">
         <link rel="stylesheet" href="../css/general.css">
         <link rel="stylesheet" href="../css/chrome.css">
-        
         <link rel="stylesheet" href="../css/print.css" media="print">
-        
-
         <!-- Fonts -->
         <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
-        
         <link rel="stylesheet" href="../fonts/fonts.css">
-        
-
         <!-- Highlight.js Stylesheets -->
         <link rel="stylesheet" href="../highlight.css">
         <link rel="stylesheet" href="../tomorrow-night.css">
         <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
-        
-
-        
     </head>
     <body>
         <!-- Provide site root to javascript -->
@@ -103,7 +83,6 @@
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                
                 <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky bordered">
                     <div class="left-buttons">
@@ -120,29 +99,23 @@
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                         </ul>
-                        
                         <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
                             <i class="fa fa-search"></i>
                         </button>
-                        
                     </div>
 
                     <h1 class="menu-title">&#x27;Ike</h1>
 
                     <div class="right-buttons">
-                        
                         <a href="../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
-                        
-                        
                     </div>
                 </div>
 
-                
                 <div id="search-wrapper" class="hidden">
                     <form id="searchbar-outer" class="searchbar-outer">
-                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
                     </form>
                     <div id="searchresults-outer" class="searchresults-outer hidden">
                         <div id="searchresults-header" class="searchresults-header"></div>
@@ -150,8 +123,6 @@
                         </ul>
                     </div>
                 </div>
-                
-
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
                 <script type="text/javascript">
                     document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
@@ -163,7 +134,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#writing-code" id="writing-code">Writing Code</a></h1>
+                        <h1 id="writing-code"><a class="header" href="#writing-code">Writing Code</a></h1>
 <p>Considering you have done the <a href="../2_operating_systems/terminal.html">Terminal</a> section 
 in the Operating Systems chapter, you already know about vim: the universal 
 terminal based text editor. I stand by this notion that <code>vim</code> is the supreme editor
@@ -171,7 +142,7 @@ when it comes to it's awesome key-bindings, but vim lacks features that other
 editors have made normal. For this very reason, you need to use plugins 
 with vim to make it actually usable. In this section, I show you how to edit
 C code faster and better.</p>
-<h2><a class="header" href="#using-plugins-with-vim" id="using-plugins-with-vim">Using plugins with Vim</a></h2>
+<h2 id="using-plugins-with-vim"><a class="header" href="#using-plugins-with-vim">Using plugins with Vim</a></h2>
 <p>Get <code>Vundle</code> installed so we can add plugins. Go to their repo <a href="https://github.com/VundleVim/Vundle.vim#quick-start">here</a>
 After you have it installed, you will have a default looking <code>.vimrc</code> that should look like this:</p>
 <pre><code class="language-vim">set nocompatible              &quot; be iMproved, required
@@ -238,7 +209,7 @@ a thing. Follow their <a href="https://github.com/ycm-core/YouCompleteMe#linux-6
 <p>After that is all in, feel free to explore what the hell you just installed ;). 
 For one, you now have autocompleting, a directory view, and a nice lightline. 
 Check it all out. </p>
-<h2><a class="header" href="#using-vim-in-another-editor" id="using-vim-in-another-editor">Using Vim in another Editor</a></h2>
+<h2 id="using-vim-in-another-editor"><a class="header" href="#using-vim-in-another-editor">Using Vim in another Editor</a></h2>
 <p>Sometimes I don't like to use the command line to do my editing of code. Maybe you feel
 the same. When I don't want to use the terminal (usually for bigger or longer-lasting
 projects), I use <a href="https://code.visualstudio.com/download">VS Code</a>. 
@@ -251,7 +222,7 @@ into your VS Code once you have it installed and setup. </p>
 is that you edit files on a remote machine with ssh in VSCode. It's super seamless 
 and makes it feel like you are just editing a local file. 
 <a href="https://code.visualstudio.com/docs/remote/ssh">Check it out</a>.</p>
-<h2><a class="header" href="#using-a-multiplexer-tmux" id="using-a-multiplexer-tmux">Using a multiplexer (tmux)</a></h2>
+<h2 id="using-a-multiplexer-tmux"><a class="header" href="#using-a-multiplexer-tmux">Using a multiplexer (tmux)</a></h2>
 <p>Lastly, you are going to want to use some sort of multiplexer when you are editing
 code. It helps so you don't need to switch between tabs and such. My setup often
 looks like this:</p>
@@ -332,67 +303,38 @@ it will exit out of the <code>tmux</code> session. Feel free to rebind everythin
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                        
                             <a rel="prev" href="../4_programming_languages/c.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                        
-
-                        
                             <a rel="next" href="../4_programming_languages/compilation.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
-                        
-
                         <div style="clear: both"></div>
                     </nav>
                 </div>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                
                     <a rel="prev" href="../4_programming_languages/c.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                
-
-                
                     <a rel="next" href="../4_programming_languages/compilation.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
-                
             </nav>
 
         </div>
 
-        
-
-        
-
-        
-
-        
         <script type="text/javascript">
             window.playground_copyable = true;
         </script>
-        
-
-        
-
-        
         <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
-        
-
         <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
         <script src="../book.js" type="text/javascript" charset="utf-8"></script>
 
         <!-- Custom JS scripts -->
-        
-
-        
-
     </body>
 </html>
