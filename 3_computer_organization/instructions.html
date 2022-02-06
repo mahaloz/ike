@@ -257,9 +257,81 @@ else:
 </code></pre>
 <p>In x86 you represent these types of things with conditional jumps. </p>
 <h3 id="jump-instructions"><a class="header" href="#jump-instructions">Jump Instructions</a></h3>
+<p>All jump instructions start with a <code>j</code>, go figure. Normal jumps, called unconditional jumps look like this:</p>
+<pre><code>jmp 0xdeadbeef
+</code></pre>
+<p>Where you replace 0xdeadbeef with an address of some sort. This also works with registers, so <code>jmp [rax]</code> is a very valid thing too and introduces its own complexities. Conditional jumps start with a <code>j</code> and end with some mnemonic to signify what they are dependent on. As an example, you have <em>jump if less than or equal</em>:</p>
+<pre><code>jle 0xdeadbeef
+</code></pre>
+<p><code>le</code> is dependent on something called the <a href="https://en.wikipedia.org/wiki/FLAGS_register">flags register</a>, which is altered based on instructions that cause comparisons and tests. The two most common comparisons are:</p>
+<pre><code>cmp r1, &lt;r2 | C&gt;
+test r1, r2
+</code></pre>
+<p><code>cmp</code> will subtract <code>r2</code> from <code>r1</code> to tell the difference. <code>test</code> will <code>AND</code> the two to tell the difference. These differences are stored in the flags registers. The most common format of their use is like so:</p>
+<pre><code>cmp rax, rdx
+jle addr2
+addr1:
+mov rbx, 1
+jmp addr3
+addr2:
+mov rbx, 0
+addr3:
+mov rax, rbx
+</code></pre>
+<p>The use of the names like <code>addr1</code> here are labels. You can place labels anywhere in assembly and use them in jump instructions later. Thse labels will be converted into relative jumps at the time the code is assembled (right before running it).</p>
+<p><strong>RECAP</strong>:</p>
+<ul>
+<li>Unconditional Jump: <code>jmp address</code></li>
+<li>List of all conditional jumps: <a href="http://unixwiz.net/techtips/x86-jumps.html">here</a></li>
+<li>Register flags: <a href="https://riptutorial.com/x86/example/6976/flags-register">here</a></li>
+<li>cmp instruction: <a href="https://www.aldeid.com/wiki/X86-assembly/Instructions/cmp">here</a></li>
+<li>test instruction <a href="https://en.wikipedia.org/wiki/TEST_(x86_instruction)">here</a></li>
+</ul>
 <h3 id="call-instructions"><a class="header" href="#call-instructions">Call Instructions</a></h3>
-<p>These instructions don't fit well in the last format so </p>
-<p>You can find all instructions at the <a href="https://www.felixcloutier.com/x86/">felixcloutier site</a>.</p>
+<p>Finally, we have the last subset of instructions and that's call related instructions. They are a sub-set of control flow altering instructions and they work very much like jumps. There are two instructions:</p>
+<ol>
+<li><a href="https://www.felixcloutier.com/x86/call">call</a></li>
+<li><a href="https://www.felixcloutier.com/x86/ret">ret</a></li>
+</ol>
+<p>Call works like this:</p>
+<pre><code>call &lt;r1 | C&gt;
+</code></pre>
+<p>So you can call an address, label (like in the jumps), or a dereferenced register (<code>[rax]</code>). When you call something it actuall does two things:</p>
+<pre><code>call addr:
+1. decode instruction
+2. push (rip + current_instruction_size)
+3. jmp addr
+</code></pre>
+<p>You still don't know what the stack is, but know that its somewhere you can save stuff just like normal memory. If you push something on the stack, it is now saved on the stack until a corresponding pop. So, from this, we can extrapolate that a call instruction does a jump while saving the original next address on the stack. This save is for the corresponding instruction <code>ret</code>. The <code>ret</code> instruction takes optional args, but for now we will consider it takes nothing:</p>
+<pre><code>ret
+</code></pre>
+<p>The ret instruction does the following:</p>
+<pre><code>ret:
+1. pop rip
+</code></pre>
+<p>So it directly modifies <code>rip</code> by taking whatever is on top of the stack and putting it into <code>rip</code>. So, in normal code, you can make a region of code you can reuse many times, called a <em>function</em>:</p>
+<pre><code class="language-c">// args in rdi, output in rax
+make_even:
+mov rdx, rdi
+mov rax, 2 
+idiv 
+mov rax, rdx    
+cmp rax, 0 
+je make_even_done
+add rdi, 1
+make_even_ret:
+mov rax, rdi
+ret
+
+_start:
+mov rdi, 10
+call make_even
+mov rdi, rax
+...
+</code></pre>
+<p>This code above shows off the power of the <code>call</code>, <code>ret</code> combo, allowing you to return to execution after you do some action with registers and values. It also shows how to make a function, which we will cover more in <a href="./control_structures.html">control-structures</a>.</p>
+<h2 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h2>
+<p>There are many instructions that make up the x86-64 architecture. It's actually one of the largest. You can find all instructions at the <a href="https://www.felixcloutier.com/x86/">felixcloutier site</a>, which I often use for references of hard-to-remember instructions. </p>
 
                     </main>
 
