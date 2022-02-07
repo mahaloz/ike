@@ -62,27 +62,167 @@ call sum4
 Cool right? No we can easily reuse `sum4` as many times as we like. Just as a referesher, every function ends with a `ret` so that you can reliably use `call` on it as in the example above. 
 
 ### Functions and the Stack
-todo
+It's important to know that functions often use stacks to save arguments right at the beginning of the function. This is called the [function prolouge](https://en.wikipedia.org/wiki/Function_prologue_and_epilogue). The reason we save things on the stack is because we might need to reuse the original argument registers:
+
+```c
+// takes 3 args
+my_func:
+call some_other_func 
+ret
+```
+
+The way to fix this is by saving things on the stack:
+
+```c
+//takes 3 args
+my_func:
+push rdi
+push rsi
+push rdx
+call some_other_func
+pop rdx
+pop rsi
+pop rdi
+ret
+```
+
+This is very easy to do with pops and pushes, but is often not exactly correct. In real function, you will see use of `rbp` as well. Here is a snippet of code we used in the [instructions](./instructions.md) section:
+
+```c
+000000000000112d <main>:
+112d:       push   rbp
+112e:       mov    rbp,rsp
+1131:       mov    [rbp-0x8], 0x0
+1138:       mov    [rbp-0x4], 0x4
+113f:       mov    eax, [rbp-0x4]
+1142:       add    eax, 0x5
+1145:       mov    [rbp-0x8], eax
+1148:       mov    eax, [rbp-0x8]
+114b:       imul   eax, [rbp-0x4]
+114f:       mov    [rbp-0x8], eax
+```
+
+This code is a very accurate representation of what you will see in the real world. We use the special register rbp to save the original place the stack was at the start of the function. `bp` in rbp stands for Base Pointer. Its the base pointer of the stack, or where it was before calling this function. 
+
+To explain the above code more:
+1. the current base pointer is saved (to be popped at the end by a leave; ret;)
+2. the stack pointer becomes the base pointer
+3. the base pointer is used as if it was the sp
+
+This allows us to modify the sp as we like, then when the function is done, it gets fixed up. This idea will be expanded more in the EmbryoASM challenges.
+
 
 ## Conditionals
-todo
+Conditionals run the world. Below you will find the most common structures translated into assembly, originally shown in python like code.
 ### if statements
-todo
+High-level:
+```python
+if x > 0:
+    y = 1
+else:
+    y = 0
+```
+
+ASM:
+```c
+// rdi = x; rax = y
+cmp rdi, 0
+jle else_label
+mov rbx, 1
+jmp end_label
+
+else_label:
+mov rbx, 0
+
+end_label:
+mov rax, rbx
+```
 
 ### else-if statements 
-todo
+```python
+if x == 0:
+    y = 1
+elif x < 0:
+    y = -1
+else
+    y = 0
+```
 
-### switch statements
-todo
+ASM:
+```c
+// rdi = x; rax = y
+cmp rdi, 0
+je if_label
+jl else_if_label
+mov rbx, 0
+jmp end_label
+
+if_label:
+mov rbx, 1
+jmp end_label
+
+else_if_label:
+mov rbx, -1
+
+end_label:
+mov rax, rbx
+```
 
 ## Loops
-todo
+Loops allow you to do something many times. Like: "walk forward 18 times" actually translates to "walk forward"*18. 
+Here are two types of loops you can use:
+
+### For-loop
+When you know how many times you want to iterate, like the example above, you use a for-loop:
+High-Level:
+```python 
+for i=0...18:
+    walk_forward() 
+``` 
+
+ASM:
+```c
+mov rcx, 0
+loop_head:
+cmp rcx, 18
+jge loop_end
+call walk_forward
+jmp loop_head 
+loop_end:
+// any code after loop
+mov rax, 0
+```
+
+
 ### while loop
-todo
-### do-while loop
-todo
-### for loop
-todo
+When you don't know how many times you want to iterate, or your stopping condition is something special, you use a while loop:
+
+High-Level:
+```python
+x = 80
+y = 0
+while x != 0:
+    x = x - 2
+    y += 1
+```
+
+ASM:
+```c
+// rdi = x, rax = y
+mov rdi, 80
+mov rbx, 0
+
+loop_head:
+cmp rdi, 0
+je loop_end
+sub rdi, 2
+add rbx, 1
+jmp loop_head
+
+loop_end:
+mov rax, rbx
+//any code after loop 
+```
 
 ## Conclusion
-todo
+With the general knowledge of these structures, you should be ready to start making some simple programs in x86.
