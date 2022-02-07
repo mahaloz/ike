@@ -179,25 +179,140 @@ call sum4
 </code></pre>
 <p>Cool right? No we can easily reuse <code>sum4</code> as many times as we like. Just as a referesher, every function ends with a <code>ret</code> so that you can reliably use <code>call</code> on it as in the example above. </p>
 <h3 id="functions-and-the-stack"><a class="header" href="#functions-and-the-stack">Functions and the Stack</a></h3>
-<p>todo</p>
+<p>It's important to know that functions often use stacks to save arguments right at the beginning of the function. This is called the <a href="https://en.wikipedia.org/wiki/Function_prologue_and_epilogue">function prolouge</a>. The reason we save things on the stack is because we might need to reuse the original argument registers:</p>
+<pre><code class="language-c">// takes 3 args
+my_func:
+call some_other_func 
+ret
+</code></pre>
+<p>The way to fix this is by saving things on the stack:</p>
+<pre><code class="language-c">//takes 3 args
+my_func:
+push rdi
+push rsi
+push rdx
+call some_other_func
+pop rdx
+pop rsi
+pop rdi
+ret
+</code></pre>
+<p>This is very easy to do with pops and pushes, but is often not exactly correct. In real function, you will see use of <code>rbp</code> as well. Here is a snippet of code we used in the <a href="./instructions.html">instructions</a> section:</p>
+<pre><code class="language-c">000000000000112d &lt;main&gt;:
+112d:       push   rbp
+112e:       mov    rbp,rsp
+1131:       mov    [rbp-0x8], 0x0
+1138:       mov    [rbp-0x4], 0x4
+113f:       mov    eax, [rbp-0x4]
+1142:       add    eax, 0x5
+1145:       mov    [rbp-0x8], eax
+1148:       mov    eax, [rbp-0x8]
+114b:       imul   eax, [rbp-0x4]
+114f:       mov    [rbp-0x8], eax
+</code></pre>
+<p>This code is a very accurate representation of what you will see in the real world. We use the special register rbp to save the original place the stack was at the start of the function. <code>bp</code> in rbp stands for Base Pointer. Its the base pointer of the stack, or where it was before calling this function. </p>
+<p>To explain the above code more:</p>
+<ol>
+<li>the current base pointer is saved (to be popped at the end by a leave; ret;)</li>
+<li>the stack pointer becomes the base pointer</li>
+<li>the base pointer is used as if it was the sp</li>
+</ol>
+<p>This allows us to modify the sp as we like, then when the function is done, it gets fixed up. This idea will be expanded more in the EmbryoASM challenges.</p>
 <h2 id="conditionals"><a class="header" href="#conditionals">Conditionals</a></h2>
-<p>todo</p>
+<p>Conditionals run the world. Below you will find the most common structures translated into assembly, originally shown in python like code.</p>
 <h3 id="if-statements"><a class="header" href="#if-statements">if statements</a></h3>
-<p>todo</p>
+<p>High-level:</p>
+<pre><code class="language-python">if x &gt; 0:
+    y = 1
+else:
+    y = 0
+</code></pre>
+<p>ASM:</p>
+<pre><code class="language-c">// rdi = x; rax = y
+cmp rdi, 0
+jle else_label
+mov rbx, 1
+jmp end_label
+
+else_label:
+mov rbx, 0
+
+end_label:
+mov rax, rbx
+</code></pre>
 <h3 id="else-if-statements"><a class="header" href="#else-if-statements">else-if statements</a></h3>
-<p>todo</p>
-<h3 id="switch-statements"><a class="header" href="#switch-statements">switch statements</a></h3>
-<p>todo</p>
+<pre><code class="language-python">if x == 0:
+    y = 1
+elif x &lt; 0:
+    y = -1
+else
+    y = 0
+</code></pre>
+<p>ASM:</p>
+<pre><code class="language-c">// rdi = x; rax = y
+cmp rdi, 0
+je if_label
+jl else_if_label
+mov rbx, 0
+jmp end_label
+
+if_label:
+mov rbx, 1
+jmp end_label
+
+else_if_label:
+mov rbx, -1
+
+end_label:
+mov rax, rbx
+</code></pre>
 <h2 id="loops"><a class="header" href="#loops">Loops</a></h2>
-<p>todo</p>
+<p>Loops allow you to do something many times. Like: &quot;walk forward 18 times&quot; actually translates to &quot;walk forward&quot;*18. 
+Here are two types of loops you can use:</p>
+<h3 id="for-loop"><a class="header" href="#for-loop">For-loop</a></h3>
+<p>When you know how many times you want to iterate, like the example above, you use a for-loop:
+High-Level:</p>
+<pre><code class="language-python">for i=0...18:
+    walk_forward() 
+</code></pre>
+<p>ASM:</p>
+<pre><code class="language-c">mov rcx, 0
+loop_head:
+cmp rcx, 18
+jge loop_end
+call walk_forward
+jmp loop_head 
+loop_end:
+// any code after loop
+mov rax, 0
+</code></pre>
 <h3 id="while-loop"><a class="header" href="#while-loop">while loop</a></h3>
-<p>todo</p>
-<h3 id="do-while-loop"><a class="header" href="#do-while-loop">do-while loop</a></h3>
-<p>todo</p>
-<h3 id="for-loop"><a class="header" href="#for-loop">for loop</a></h3>
-<p>todo</p>
+<p>When you don't know how many times you want to iterate, or your stopping condition is something special, you use a while loop:</p>
+<p>High-Level:</p>
+<pre><code class="language-python">x = 80
+y = 0
+while x != 0:
+    x = x - 2
+    y += 1
+</code></pre>
+<p>ASM:</p>
+<pre><code class="language-c">// rdi = x, rax = y
+mov rdi, 80
+mov rbx, 0
+
+loop_head:
+cmp rdi, 0
+je loop_end
+sub rdi, 2
+add rbx, 1
+jmp loop_head
+
+loop_end:
+mov rax, rbx
+//any code after loop 
+</code></pre>
 <h2 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h2>
-<p>todo</p>
+<p>With the general knowledge of these structures, you should be ready to start making some simple programs in x86.</p>
 
                     </main>
 

@@ -1333,7 +1333,7 @@ mov rdi, rax
 <p>You've already learned about <a href="3_computer_organization/./memory.html">memory</a>, how you can access it with addresses, and how programs often live in memory with other memory segments like the Heap and Stack. Surprise, surprise, the programs we can write with instructions live in memory as well. With our new knowledge of instructions, you can use this memory to store things that may be very large or of an unknown length. </p>
 <h2 id="memory-and-lists"><a class="header" href="#memory-and-lists">Memory and Lists</a></h2>
 <p>Using instructions like <code>mov</code> you can access the data at some memory location. Say another part of the program provided you the memory address to a writeable place in memory. You could write to it like so:</p>
-<pre><code class="language-c">// rax = memoery addr
+<pre><code class="language-c">// rax = memory addr
 
 mov [rax], 0x1337
 </code></pre>
@@ -1348,7 +1348,7 @@ mov [rax+4], 0x4
 mov [rax+8], 0x8
 mov [rax+0xc], 0x10
 </code></pre>
-<p>In this example, we assumed that the number will be at a max of 4 bytes large. This is important, and changes the way we could get the memory back. Say we now wanted to use the data we stored in memory. We would now need to use 4 byte versions of our registers to assure we get the right number (since its only 4 bytes, not 8):</p>
+<p>In this example, we assumed that the number will be at a max of 4 bytes large. This is important and changes the way we could get the memory back. Say we now wanted to use the data we stored in memory. We would now need to use 4 byte versions of our registers to assure we get the right number (since its only 4 bytes, not 8):</p>
 <pre><code class="language-c">// my_list is a label to data with numbers of size 4 bytes
 mov rax, my_list
 mov edi, [rax]
@@ -1358,7 +1358,7 @@ mov ecx, [rax+0xc]
 </code></pre>
 <h2 id="stack-1"><a class="header" href="#stack-1">Stack</a></h2>
 <p>You may remember from the <a href="3_computer_organization/./memory_segments.html">memory-segments</a> section that we have two special writeable locations in memory: the Stack and the Heap. For the purpose of simplicity, we don't go over how to access and use the Heap in this module since it requires using more complicated instructions. For now, we can just use writeable program memory as we would the Heap since we can consider the case where all we get is an address to a writeable location.</p>
-<p>The Stack is very similar to normal writeable locations. It has addresses and it can be directly derferenced like a normal address. The Stack is special though because it works like a literal stack (think stacking pancakes), and it has a dedicated register (<code>rsp</code>), to tell you where the top of the stack currently is. </p>
+<p>The Stack is very similar to normal writeable locations. It has addresses and it can be directly dereferenced like a normal address. The Stack is special though because it works like a literal stack (think stacking pancakes), and it has a dedicated register (<code>rsp</code>), to tell you where the top of the stack currently is. </p>
 <h3 id="working-with-the-pancake-stack"><a class="header" href="#working-with-the-pancake-stack">Working with the Pancake Stack</a></h3>
 <p>Say your mom places 3 pancakes on your plate: pancake 1, 2, and 3. </p>
 <pre><code>Pancake Stack:
@@ -1391,7 +1391,7 @@ mov ecx, [rax+0xc]
   #######################
 |=========================|
 </code></pre>
-<p>Now, the top of the stack is <code>pancake 2</code>. We would say the <code>pancake stack pointer</code> is pointing at the location where the second pancake is located now. It was originally poiting at the location of pancake 1, but we poped the stack. </p>
+<p>Now, the top of the stack is <code>pancake 2</code>. We would say the <code>pancake stack pointer</code> is pointing at the location where the second pancake is located now. It was originally pointing at the location of pancake 1, but we poped the stack. </p>
 <p>So you <code>pop mouth</code> another pancake:</p>
 <pre><code>Pancake Stack:
 
@@ -1466,25 +1466,140 @@ call sum4
 </code></pre>
 <p>Cool right? No we can easily reuse <code>sum4</code> as many times as we like. Just as a referesher, every function ends with a <code>ret</code> so that you can reliably use <code>call</code> on it as in the example above. </p>
 <h3 id="functions-and-the-stack"><a class="header" href="#functions-and-the-stack">Functions and the Stack</a></h3>
-<p>todo</p>
+<p>It's important to know that functions often use stacks to save arguments right at the beginning of the function. This is called the <a href="https://en.wikipedia.org/wiki/Function_prologue_and_epilogue">function prolouge</a>. The reason we save things on the stack is because we might need to reuse the original argument registers:</p>
+<pre><code class="language-c">// takes 3 args
+my_func:
+call some_other_func 
+ret
+</code></pre>
+<p>The way to fix this is by saving things on the stack:</p>
+<pre><code class="language-c">//takes 3 args
+my_func:
+push rdi
+push rsi
+push rdx
+call some_other_func
+pop rdx
+pop rsi
+pop rdi
+ret
+</code></pre>
+<p>This is very easy to do with pops and pushes, but is often not exactly correct. In real function, you will see use of <code>rbp</code> as well. Here is a snippet of code we used in the <a href="3_computer_organization/./instructions.html">instructions</a> section:</p>
+<pre><code class="language-c">000000000000112d &lt;main&gt;:
+112d:       push   rbp
+112e:       mov    rbp,rsp
+1131:       mov    [rbp-0x8], 0x0
+1138:       mov    [rbp-0x4], 0x4
+113f:       mov    eax, [rbp-0x4]
+1142:       add    eax, 0x5
+1145:       mov    [rbp-0x8], eax
+1148:       mov    eax, [rbp-0x8]
+114b:       imul   eax, [rbp-0x4]
+114f:       mov    [rbp-0x8], eax
+</code></pre>
+<p>This code is a very accurate representation of what you will see in the real world. We use the special register rbp to save the original place the stack was at the start of the function. <code>bp</code> in rbp stands for Base Pointer. Its the base pointer of the stack, or where it was before calling this function. </p>
+<p>To explain the above code more:</p>
+<ol>
+<li>the current base pointer is saved (to be popped at the end by a leave; ret;)</li>
+<li>the stack pointer becomes the base pointer</li>
+<li>the base pointer is used as if it was the sp</li>
+</ol>
+<p>This allows us to modify the sp as we like, then when the function is done, it gets fixed up. This idea will be expanded more in the EmbryoASM challenges.</p>
 <h2 id="conditionals"><a class="header" href="#conditionals">Conditionals</a></h2>
-<p>todo</p>
+<p>Conditionals run the world. Below you will find the most common structures translated into assembly, originally shown in python like code.</p>
 <h3 id="if-statements"><a class="header" href="#if-statements">if statements</a></h3>
-<p>todo</p>
+<p>High-level:</p>
+<pre><code class="language-python">if x &gt; 0:
+    y = 1
+else:
+    y = 0
+</code></pre>
+<p>ASM:</p>
+<pre><code class="language-c">// rdi = x; rax = y
+cmp rdi, 0
+jle else_label
+mov rbx, 1
+jmp end_label
+
+else_label:
+mov rbx, 0
+
+end_label:
+mov rax, rbx
+</code></pre>
 <h3 id="else-if-statements"><a class="header" href="#else-if-statements">else-if statements</a></h3>
-<p>todo</p>
-<h3 id="switch-statements"><a class="header" href="#switch-statements">switch statements</a></h3>
-<p>todo</p>
+<pre><code class="language-python">if x == 0:
+    y = 1
+elif x &lt; 0:
+    y = -1
+else
+    y = 0
+</code></pre>
+<p>ASM:</p>
+<pre><code class="language-c">// rdi = x; rax = y
+cmp rdi, 0
+je if_label
+jl else_if_label
+mov rbx, 0
+jmp end_label
+
+if_label:
+mov rbx, 1
+jmp end_label
+
+else_if_label:
+mov rbx, -1
+
+end_label:
+mov rax, rbx
+</code></pre>
 <h2 id="loops"><a class="header" href="#loops">Loops</a></h2>
-<p>todo</p>
+<p>Loops allow you to do something many times. Like: &quot;walk forward 18 times&quot; actually translates to &quot;walk forward&quot;*18. 
+Here are two types of loops you can use:</p>
+<h3 id="for-loop"><a class="header" href="#for-loop">For-loop</a></h3>
+<p>When you know how many times you want to iterate, like the example above, you use a for-loop:
+High-Level:</p>
+<pre><code class="language-python">for i=0...18:
+    walk_forward() 
+</code></pre>
+<p>ASM:</p>
+<pre><code class="language-c">mov rcx, 0
+loop_head:
+cmp rcx, 18
+jge loop_end
+call walk_forward
+jmp loop_head 
+loop_end:
+// any code after loop
+mov rax, 0
+</code></pre>
 <h3 id="while-loop"><a class="header" href="#while-loop">while loop</a></h3>
-<p>todo</p>
-<h3 id="do-while-loop"><a class="header" href="#do-while-loop">do-while loop</a></h3>
-<p>todo</p>
-<h3 id="for-loop"><a class="header" href="#for-loop">for loop</a></h3>
-<p>todo</p>
+<p>When you don't know how many times you want to iterate, or your stopping condition is something special, you use a while loop:</p>
+<p>High-Level:</p>
+<pre><code class="language-python">x = 80
+y = 0
+while x != 0:
+    x = x - 2
+    y += 1
+</code></pre>
+<p>ASM:</p>
+<pre><code class="language-c">// rdi = x, rax = y
+mov rdi, 80
+mov rbx, 0
+
+loop_head:
+cmp rdi, 0
+je loop_end
+sub rdi, 2
+add rbx, 1
+jmp loop_head
+
+loop_end:
+mov rax, rbx
+//any code after loop 
+</code></pre>
 <h2 id="conclusion-2"><a class="header" href="#conclusion-2">Conclusion</a></h2>
-<p>todo</p>
+<p>With the general knowledge of these structures, you should be ready to start making some simple programs in x86.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="hacker-practice-1"><a class="header" href="#hacker-practice-1">Hacker Practice</a></h1>
 <h2 id="embryoasm"><a class="header" href="#embryoasm">EmbryoASM</a></h2>
 <p>For <code>'ike</code> we developed a module to teach and test x86 with the intention of serving it to people who have never programmed before. The hacker practice for this chapter will involve you solving all the challenged on <code>EmbryoASM</code>, which will cover every subsection of Assembly in this chapter as well as test your knowledge of logic, memory, and how an architecture works. </p>
@@ -1926,8 +2041,193 @@ bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel &qu
 It will automatically copy it while in a <code>tmux</code> session. If you destroy every pane,
 it will exit out of the <code>tmux</code> session. Feel free to rebind everything. </p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="compilation--execution"><a class="header" href="#compilation--execution">Compilation &amp; Execution</a></h1>
+<h2 id="introduction-9"><a class="header" href="#introduction-9">Introduction</a></h2>
+<p>As you know, compilation is the conversion of your high-level C code into assembly and then into machine code that the computer can understand. Lucky for you, nearly every Linux machine comes with the most popular compiler <code>gcc</code>. I did say the <em>most</em> popular compiler though, there are actually <a href="https://clang.llvm.org/">a few that people use</a>. For simplicity, we will only refer to gcc as our compiler. </p>
+<p>Let's compile a simple program:</p>
+<pre><code>int main()
+{
+    for(int i; i &lt; 10000; i++) {
+        puts(&quot;hello world&quot;);
+    }
+}
+</code></pre>
+<blockquote>
+<p>Recall: you can place text in a file using &quot;vim filename&quot;</p>
+</blockquote>
+<pre><code class="language-bash">$ cat ex.c
+int main()
+{
+    for(int i; i &lt; 10000; i++) {
+        puts(&quot;hello world&quot;);
+    }
+}
+</code></pre>
+<p>Compile it by passing its name to gcc:</p>
+<pre><code>gcc ex.c
+</code></pre>
+<p>Now you will have a file named <code>a.out</code> in the same directory. You can execute it by running <code>./a.out</code>.</p>
+<pre><code class="language-bash">$ ./a.out
+hello world
+hello world
+hello world 
+[truncated]
+hello world
+</code></pre>
+<p>Yay you can compile and execute now! Let's talk about common compiler flags.</p>
+<h2 id="common-compiler-flags"><a class="header" href="#common-compiler-flags">Common Compiler Flags</a></h2>
+<h3 id="change-output-name"><a class="header" href="#change-output-name">Change output name</a></h3>
+<p>First up is <code>-o</code>:</p>
+<pre><code>gcc ex.c -o ex
+</code></pre>
+<p>This outputs a file named <code>ex</code>. Yes <code>-o</code> lets you choose the output file name.</p>
+<h3 id="change-optimizations"><a class="header" href="#change-optimizations">Change optimizations</a></h3>
+<p>Next is <code>-ON</code>, where <code>N</code> is some number between [1, 3]. The <code>-O</code> option lets you choose the optimization level of the code, which you should read more about <a href="https://developer.arm.com/documentation/den0013/d/Optimizing-Code-to-Run-on-ARM-Processors/Compiler-optimizations/GCC-optimization-options">from arm docs</a>. </p>
+<p>Let's do a quick test. Often when you need code faster, you want to use a higher level of optimization. <code>-O3</code> is considered to be dangerous since it can more easily introduce bugs into your code, so instead we use <code>-O2</code>. Lets see the difference.</p>
+<pre><code>gcc ex.c -o ex2 -O2
+</code></pre>
+<p>You'll notice the program takes about the same time to run as the original. This is because the code is so small and simple. If you want to see larger results, compile larger binaries like <a href="https://github.com/coreutils/coreutils">coreutils binaries</a>. Speaking of coreutils binaries, your system usually has coreutils compiled with <code>-O2</code>. As an example, <code>ls</code> is a coreutils binary compiled with <code>-O2</code>. </p>
+<h3 id="change-linking"><a class="header" href="#change-linking">Change linking</a></h3>
+<p>We talked about speed, but what about protability? </p>
+<blockquote>
+<p>Recall: in the <a href="4_programming_languages/../3_computer_organization/memory_segments.html">computer organizatio memory-segment section</a> we talked about a program being mapped into memory with multiple other programs, one such program was libc. This is because when we compiled the binary it was linked. </p>
+</blockquote>
+<p>When compiling a binary, gcc automatically <a href="https://medium.com/@dkwok94/the-linking-process-exposed-static-vs-dynamic-libraries-977e92139b5f">links</a> the binary, which means it maps code from other programs into it's process memory space when running. As an example run this commnad:</p>
+<pre><code class="language-bash">ldd ./ex
+</code></pre>
+<p>This will show something like:</p>
+<pre><code class="language-bash">	linux-vdso.so.1 (0x00007ffc0f3d5000)
+	libc.so.6 =&gt; /lib/x86_64-linux-gnu/libc.so.6 (0x00007f5b46d4c000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007f5b46f59000)
+</code></pre>
+<p>All those programs will be mapped into memory when this program runs. This makes sense, since I did not right the <code>puts</code> function shown in our code. That <code>puts</code> is from <code>libc</code> which is shown above.</p>
+<p>So what happens if you give a friend this binary and they dont have libc on their system? Or, what if they don't have the same version? Well then they can't run your binary. Luckily, there is a way to include ALL the external code you use in one binary. This is called <a href="https://kb.iu.edu/d/akqn">static</a> linking. Let's try it:</p>
+<pre><code class="language-bash">gcc ex.c -o ex_static -static
+</code></pre>
+<p>This binary runs just like the other binary, but now when we check it with ldd:</p>
+<pre><code class="language-bash">$ ldd
+	not a dynamic executable
+</code></pre>
+<p>Yup it's not dynamic, so no other programs are mapped. So what is the tradeoff? Run this command to see something:</p>
+<pre><code class="language-bash">ls -lah ex*
+</code></pre>
+<p>You will see something like, but with your user:</p>
+<pre><code class="language-bash">-rwxrwxr-x 1 parallels parallels  17K Feb  7 10:00 ex
+-rwxrwxr-x 1 parallels parallels  17K Feb  7 09:48 ex2
+-rw-rw-r-- 1 parallels parallels   83 Feb  7 09:57 ex.c
+-rwxrwxr-x 1 parallels parallels 852K Feb  7 09:57 ex_static
+</code></pre>
+<p>Notice, <code>ex_static</code> is <code>852K</code>! That is 50x bigger than <code>ex</code>, for a program so small. What if this program was already big? Well then it would be even huger. This is of course because all the code of the external programs like libc are now in this program. </p>
+<p>If you want, you can also prove to yourself that nothing is mapped into memory when you run the binary with the program below (read the warning below): </p>
+<pre><code>while true; do ./ex_static fake_arg &amp; cat /proc/&quot;$!&quot;/maps &gt;&gt; mymaps; done
+</code></pre>
+<p>Warning: you will need to <code>Ctr+C</code> (kill) this after 10 seconds yourself, since it is a little hard to collect the maps of a short-lived process. The output will be in the mymaps file.</p>
+<h3 id="debug-options"><a class="header" href="#debug-options">Debug options</a></h3>
+<p>If you compile with the <code>-g</code> flag, you include symbols in the binary. For now, just know this means it makes it both bigger, slower, but easier to debug with a debugger. We will cove this more in <a href="4_programming_languages/./debugging_c.html">debugging-c</a>.</p>
+<h3 id="developer-options"><a class="header" href="#developer-options">Developer options</a></h3>
+<p>The last thing we would like to mention is that if you see a <code>-f</code> at the beginning of an option, like <code>-fno-pie</code>, that means the binary is being compiled with a special developer option. These options often do dangerous or interesting things. Like the command above <code>-fno-pie</code> turns off an important security mechanic of the program you are compiling. It can also be used if you need to remove specific optimizations from compiling. For most people, you will not need to touch this. If you see it being used for a program you are examining, recall this paragraph about wacky things happening with <code>-f</code>.</p>
+<h2 id="makefiles"><a class="header" href="#makefiles">Makefiles</a></h2>
+<p>We should also mention that nearly every large source base uses something called a <code>Makefile</code>, which, when used with the <code>make</code> command compiles the binary (and can do other things). You can consider a Makefile as a series of shell commands. Let's make a simple one for compiling our binary with optimization 2 and static linking:</p>
+<pre><code class="language-Makefile">all:
+    gcc ex.c -o ex_final -O2 -static
+</code></pre>
+<p>The file you put this in MUST be named <code>Makefile</code>. Now that you have make the Makefile, run it by running <code>make</code>. This will compile the binary <code>ex_final</code>. For more useage, see this <a href="https://www.cs.colby.edu/maxwell/courses/tutorials/maketutor/">tutorial</a>.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="debugging"><a class="header" href="#debugging">Debugging</a></h1>
+<h2 id="introduction-10"><a class="header" href="#introduction-10">Introduction</a></h2>
+<p>A debugger is a tool you use to understand and run analysis on a binary. It allows you to step through instructions and view memory as it is running. Just like <code>gcc</code>, there exist a debugger called <code>gdb</code>. The <code>g</code> in all of these names stands for <a href="https://www.gnu.org/home.en.html">GNU</a>. </p>
+<h2 id="debugging-programs-you-wrote"><a class="header" href="#debugging-programs-you-wrote">Debugging Programs You Wrote</a></h2>
+<p>When you have the source for a program, debugging it is very easy. You compile the binary we used in the last secion again with <code>-g</code> flag which makes it have symbols and be in a ready form for <code>gdb</code>.</p>
+<pre><code>gcc ex.c -o ex -g
+</code></pre>
+<p>Now run the binary with</p>
+<pre><code>gdb ./ex
+</code></pre>
+<p>You will now see a bunch of text ending in:</p>
+<pre><code>Reading symbols from ./ex...
+(gdb)
+</code></pre>
+<p>You are in the <code>gdb</code> prompt now. To exit you can type <code>exit</code> and hit enter. For now we will stay and run a few commands. </p>
+<p>Since symbols exist, you can just break at any line in the source you like. Breaking is the stopping of code at a certain condition. When you set a breakpoint you tell the debugger to stop the program at a certain symbol or address. Run:</p>
+<pre><code>b main:1
+r
+</code></pre>
+<p>We said <code>break at line 1 in the main function and run</code>. Type <code>l</code> and now you will see where you are:</p>
+<pre><code>(gdb) l
+1	int main()
+2	{
+3	    for(int i; i &lt; 10000; i++) {
+4	        puts(&quot;hello world&quot;);
+5	    }
+6	}
+</code></pre>
+<p>Very cool. Now if we enter the command <code>n</code> (next) twice, we will be inside the loop. We can print the value of <code>i</code> at each iteration:</p>
+<pre><code>(gdb) n
+3	    for(int i; i &lt; 10000; i++) {
+(gdb) n
+4	        puts(&quot;hello world&quot;);
+(gdb) p i
+$1 = 0
+</code></pre>
+<p>We can even change the value of <code>i</code>:</p>
+<pre><code>(gdb) set variable i=10000
+(gdb) n
+hello world
+3	    for(int i; i &lt; 10000; i++) {
+(gdb)
+6	}
+</code></pre>
+<p>Now we leave the loop since we set <code>i</code>. </p>
+<p>This was all possible because <code>-g</code> mapped every symbol that we see in the source to a corresponding address, stack variable, and region in the programs memory. You can find more tutorials on debugging programs you wrote <a href="https://cs.baylor.edu/%7Edonahoo/tools/gdb/tutorial.html">here</a>. This is often where other manuals about debugging in gdb will stop... but not use. A real systems hacker needs to know how to debug programs they did not write and don't have the source too. </p>
+<h2 id="debugging-programs-you-did-not-write"><a class="header" href="#debugging-programs-you-did-not-write">Debugging Programs You Did Not Write</a></h2>
+<p>Let's beging by making this realistic. In the real world, programs are compiled with <code>-O2</code> and the no <code>-g</code>. Then to make matters worse, they run a speical command on the binary called <code>strip</code>. The <code>strip</code> command is like the opposite of <code>-g</code>. It removes symbols to make the binary smaller and a little faster. Importantly, it removes the names of functions. Lets compile a binary and strip it:</p>
+<pre><code class="language-bash">gcc ex.c -o ex_real -O2
+strip ex_real
+</code></pre>
+<p>Now run the program in gdb and try to break at main:</p>
+<pre><code>(gdb) b main
+Function &quot;main&quot; not defined.
+</code></pre>
+<p>Yeah... there is no symbols. So how the hell do we stop at the start of the program now? Normally this means we have to look at the entry point address of the binary and then break at that specific address then <code>s</code> (step) our way to main. Luckily, us hackers have come a long way and we have made upgrades to gdb to make debugging binaries easier. Instead of telling you to use vanilla gdb, lets use a slightly enhanced version you can run on most systems. </p>
+<p>A few gdb extensions exist, but my favorite is <a href="https://github.com/hugsy/gef">GEF</a> (GDB Enhanced Features). Let's quickly install it and run this binary again.</p>
+<pre><code>bash -c &quot;$(wget http://gef.blah.cat/sh -O -)&quot;
+</code></pre>
+<p>Now run gdb on the the binary <code>ex_real</code> again and run the command <code>entry-break</code>:</p>
+<pre><code>gef➤  entry-break
+Stopped due to shared library event (no libraries added or removed)
+[*] PIC binary detected, retrieving text base address
+[+] Breaking at entry-point: 0x5555555550a0
+...
+</code></pre>
+<p>This will now make you screen have a bunch of info on it that you may recognize from the assembly section of this handbook. 
+You should also be noticing by now that we can't see the source code anymore. You can't see the source if the symbols are not mapped in the binary, and we have no way or retrieving it. From now on, we will have to use two commands:</p>
+<ul>
+<li><code>si</code>: Step Instruction, steps an instruction (steps into a call)</li>
+<li><code>ni</code>: Next Instruction, to step over instructions (skips stepping into a call)</li>
+</ul>
+<p>Now run:</p>
+<pre><code>si 10
+</code></pre>
+<p>This will step 10 instructions. You should now see something like:</p>
+<pre><code>call   QWORD PTR [rip+0x2f12]        # 0x555555557fe0
+</code></pre>
+<p>This call is the function <code>_libc_start_main</code>, which initializes the <code>main</code> function we know and love. It's always found in the entry of the program and it's first argument in the function address of <code>main</code>. Let's get that address and break at it.</p>
+<blockquote>
+<p>Recall: the first argument in System V 64 bit is <code>rdi</code></p>
+</blockquote>
+<pre><code>gef➤  p $rdi
+$1 = 0x555555555060
+gef➤  b *$rdi
+Breakpoint 1 at 0x555555555060
+</code></pre>
+<p>Now if we use continue we go to main:</p>
+<pre><code>c
+</code></pre>
+<p>Use <code>ni</code> until you see an instruction like</p>
+<pre><code>call   0x555555555050 &lt;puts@plt&gt;
+</code></pre>
+<p>It's the <code>puts</code> in the loop. You should also recognize the structure of this assembly as being a loop with the <code>cmp    ebx, 0x2710</code> being right after the <code>puts</code> if you hit <code>ni</code>. Yes <code>i</code> is now the register <code>ebx</code>. Debugging a binary is much harder. But it is not impossible. We will go indepth on this concept in <a href="4_programming_languages/../5_processes/gdb.html">processes and debugging</a> section and with the <a href="https://dojo.pwn.college/challenges/gdb">EmbryoGDB</a> challenges from pwn.college. </p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="python"><a class="header" href="#python">Python</a></h1>
+<h2 id="learning-to-use-python"><a class="header" href="#learning-to-use-python">Learning to use Python</a></h2>
+<p>Just like the <a href="4_programming_languages/./c.html">C</a> section, you will need to at least know the general syntax of Python. Knowing this language really helps with hacking fast.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="writing-code-1"><a class="header" href="#writing-code-1">Writing Code</a></h1>
 <p>Writing code in Python is <em>very</em> similar to writing code in 
 any other language, but has the subtle difference of being able
@@ -1975,9 +2275,14 @@ Out[3]: [4, 3, 2, 1]
 </code></pre>
 <p>Yup, we can directly execute the function inside our file. It makes for good writing.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="interpretation--execution"><a class="header" href="#interpretation--execution">Interpretation &amp; Execution</a></h1>
+<p>This section has yet to be expanded on. For now, you can run programs with <code>python3 program_name</code>.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="debugging-1"><a class="header" href="#debugging-1">Debugging</a></h1>
+<p>This section has yet to be expanded on. For now you can do this:</p>
+<p><code>import ipdb; ipdb.set_trace()</code> in your Python file wherever you want to break like when you use gdb. This will open up a <code>ipdb</code> interface that is exactly like gdb. </p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="processes-and-debugging"><a class="header" href="#processes-and-debugging">Processes and Debugging</a></h1>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="introduction-9"><a class="header" href="#introduction-9">Introduction</a></h1>
+<p>This section has yet to be completed. For now just go straight to the challenge in pwn.college.</p>
+<p>First you will want to do the <a href="https://dojo.pwn.college/challenges/interaction">interaction</a> module, then go on to the <a href="https://dojo.pwn.college/challenges/gdb">debugging</a> module.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="introduction-11"><a class="header" href="#introduction-11">Introduction</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="executable-types"><a class="header" href="#executable-types">Executable Types</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="using-gdb"><a class="header" href="#using-gdb">Using GDB</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="interacting-with-python"><a class="header" href="#interacting-with-python">Interacting with Python</a></h1>

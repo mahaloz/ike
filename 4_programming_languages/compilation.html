@@ -135,6 +135,96 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="compilation--execution"><a class="header" href="#compilation--execution">Compilation &amp; Execution</a></h1>
+<h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
+<p>As you know, compilation is the conversion of your high-level C code into assembly and then into machine code that the computer can understand. Lucky for you, nearly every Linux machine comes with the most popular compiler <code>gcc</code>. I did say the <em>most</em> popular compiler though, there are actually <a href="https://clang.llvm.org/">a few that people use</a>. For simplicity, we will only refer to gcc as our compiler. </p>
+<p>Let's compile a simple program:</p>
+<pre><code>int main()
+{
+    for(int i; i &lt; 10000; i++) {
+        puts(&quot;hello world&quot;);
+    }
+}
+</code></pre>
+<blockquote>
+<p>Recall: you can place text in a file using &quot;vim filename&quot;</p>
+</blockquote>
+<pre><code class="language-bash">$ cat ex.c
+int main()
+{
+    for(int i; i &lt; 10000; i++) {
+        puts(&quot;hello world&quot;);
+    }
+}
+</code></pre>
+<p>Compile it by passing its name to gcc:</p>
+<pre><code>gcc ex.c
+</code></pre>
+<p>Now you will have a file named <code>a.out</code> in the same directory. You can execute it by running <code>./a.out</code>.</p>
+<pre><code class="language-bash">$ ./a.out
+hello world
+hello world
+hello world 
+[truncated]
+hello world
+</code></pre>
+<p>Yay you can compile and execute now! Let's talk about common compiler flags.</p>
+<h2 id="common-compiler-flags"><a class="header" href="#common-compiler-flags">Common Compiler Flags</a></h2>
+<h3 id="change-output-name"><a class="header" href="#change-output-name">Change output name</a></h3>
+<p>First up is <code>-o</code>:</p>
+<pre><code>gcc ex.c -o ex
+</code></pre>
+<p>This outputs a file named <code>ex</code>. Yes <code>-o</code> lets you choose the output file name.</p>
+<h3 id="change-optimizations"><a class="header" href="#change-optimizations">Change optimizations</a></h3>
+<p>Next is <code>-ON</code>, where <code>N</code> is some number between [1, 3]. The <code>-O</code> option lets you choose the optimization level of the code, which you should read more about <a href="https://developer.arm.com/documentation/den0013/d/Optimizing-Code-to-Run-on-ARM-Processors/Compiler-optimizations/GCC-optimization-options">from arm docs</a>. </p>
+<p>Let's do a quick test. Often when you need code faster, you want to use a higher level of optimization. <code>-O3</code> is considered to be dangerous since it can more easily introduce bugs into your code, so instead we use <code>-O2</code>. Lets see the difference.</p>
+<pre><code>gcc ex.c -o ex2 -O2
+</code></pre>
+<p>You'll notice the program takes about the same time to run as the original. This is because the code is so small and simple. If you want to see larger results, compile larger binaries like <a href="https://github.com/coreutils/coreutils">coreutils binaries</a>. Speaking of coreutils binaries, your system usually has coreutils compiled with <code>-O2</code>. As an example, <code>ls</code> is a coreutils binary compiled with <code>-O2</code>. </p>
+<h3 id="change-linking"><a class="header" href="#change-linking">Change linking</a></h3>
+<p>We talked about speed, but what about protability? </p>
+<blockquote>
+<p>Recall: in the <a href="../3_computer_organization/memory_segments.html">computer organizatio memory-segment section</a> we talked about a program being mapped into memory with multiple other programs, one such program was libc. This is because when we compiled the binary it was linked. </p>
+</blockquote>
+<p>When compiling a binary, gcc automatically <a href="https://medium.com/@dkwok94/the-linking-process-exposed-static-vs-dynamic-libraries-977e92139b5f">links</a> the binary, which means it maps code from other programs into it's process memory space when running. As an example run this commnad:</p>
+<pre><code class="language-bash">ldd ./ex
+</code></pre>
+<p>This will show something like:</p>
+<pre><code class="language-bash">	linux-vdso.so.1 (0x00007ffc0f3d5000)
+	libc.so.6 =&gt; /lib/x86_64-linux-gnu/libc.so.6 (0x00007f5b46d4c000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007f5b46f59000)
+</code></pre>
+<p>All those programs will be mapped into memory when this program runs. This makes sense, since I did not right the <code>puts</code> function shown in our code. That <code>puts</code> is from <code>libc</code> which is shown above.</p>
+<p>So what happens if you give a friend this binary and they dont have libc on their system? Or, what if they don't have the same version? Well then they can't run your binary. Luckily, there is a way to include ALL the external code you use in one binary. This is called <a href="https://kb.iu.edu/d/akqn">static</a> linking. Let's try it:</p>
+<pre><code class="language-bash">gcc ex.c -o ex_static -static
+</code></pre>
+<p>This binary runs just like the other binary, but now when we check it with ldd:</p>
+<pre><code class="language-bash">$ ldd
+	not a dynamic executable
+</code></pre>
+<p>Yup it's not dynamic, so no other programs are mapped. So what is the tradeoff? Run this command to see something:</p>
+<pre><code class="language-bash">ls -lah ex*
+</code></pre>
+<p>You will see something like, but with your user:</p>
+<pre><code class="language-bash">-rwxrwxr-x 1 parallels parallels  17K Feb  7 10:00 ex
+-rwxrwxr-x 1 parallels parallels  17K Feb  7 09:48 ex2
+-rw-rw-r-- 1 parallels parallels   83 Feb  7 09:57 ex.c
+-rwxrwxr-x 1 parallels parallels 852K Feb  7 09:57 ex_static
+</code></pre>
+<p>Notice, <code>ex_static</code> is <code>852K</code>! That is 50x bigger than <code>ex</code>, for a program so small. What if this program was already big? Well then it would be even huger. This is of course because all the code of the external programs like libc are now in this program. </p>
+<p>If you want, you can also prove to yourself that nothing is mapped into memory when you run the binary with the program below (read the warning below): </p>
+<pre><code>while true; do ./ex_static fake_arg &amp; cat /proc/&quot;$!&quot;/maps &gt;&gt; mymaps; done
+</code></pre>
+<p>Warning: you will need to <code>Ctr+C</code> (kill) this after 10 seconds yourself, since it is a little hard to collect the maps of a short-lived process. The output will be in the mymaps file.</p>
+<h3 id="debug-options"><a class="header" href="#debug-options">Debug options</a></h3>
+<p>If you compile with the <code>-g</code> flag, you include symbols in the binary. For now, just know this means it makes it both bigger, slower, but easier to debug with a debugger. We will cove this more in <a href="./debugging_c.html">debugging-c</a>.</p>
+<h3 id="developer-options"><a class="header" href="#developer-options">Developer options</a></h3>
+<p>The last thing we would like to mention is that if you see a <code>-f</code> at the beginning of an option, like <code>-fno-pie</code>, that means the binary is being compiled with a special developer option. These options often do dangerous or interesting things. Like the command above <code>-fno-pie</code> turns off an important security mechanic of the program you are compiling. It can also be used if you need to remove specific optimizations from compiling. For most people, you will not need to touch this. If you see it being used for a program you are examining, recall this paragraph about wacky things happening with <code>-f</code>.</p>
+<h2 id="makefiles"><a class="header" href="#makefiles">Makefiles</a></h2>
+<p>We should also mention that nearly every large source base uses something called a <code>Makefile</code>, which, when used with the <code>make</code> command compiles the binary (and can do other things). You can consider a Makefile as a series of shell commands. Let's make a simple one for compiling our binary with optimization 2 and static linking:</p>
+<pre><code class="language-Makefile">all:
+    gcc ex.c -o ex_final -O2 -static
+</code></pre>
+<p>The file you put this in MUST be named <code>Makefile</code>. Now that you have make the Makefile, run it by running <code>make</code>. This will compile the binary <code>ex_final</code>. For more useage, see this <a href="https://www.cs.colby.edu/maxwell/courses/tutorials/maketutor/">tutorial</a>.</p>
 
                     </main>
 

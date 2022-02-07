@@ -139,7 +139,7 @@
 <p>You've already learned about <a href="./memory.html">memory</a>, how you can access it with addresses, and how programs often live in memory with other memory segments like the Heap and Stack. Surprise, surprise, the programs we can write with instructions live in memory as well. With our new knowledge of instructions, you can use this memory to store things that may be very large or of an unknown length. </p>
 <h2 id="memory-and-lists"><a class="header" href="#memory-and-lists">Memory and Lists</a></h2>
 <p>Using instructions like <code>mov</code> you can access the data at some memory location. Say another part of the program provided you the memory address to a writeable place in memory. You could write to it like so:</p>
-<pre><code class="language-c">// rax = memoery addr
+<pre><code class="language-c">// rax = memory addr
 
 mov [rax], 0x1337
 </code></pre>
@@ -154,7 +154,7 @@ mov [rax+4], 0x4
 mov [rax+8], 0x8
 mov [rax+0xc], 0x10
 </code></pre>
-<p>In this example, we assumed that the number will be at a max of 4 bytes large. This is important, and changes the way we could get the memory back. Say we now wanted to use the data we stored in memory. We would now need to use 4 byte versions of our registers to assure we get the right number (since its only 4 bytes, not 8):</p>
+<p>In this example, we assumed that the number will be at a max of 4 bytes large. This is important and changes the way we could get the memory back. Say we now wanted to use the data we stored in memory. We would now need to use 4 byte versions of our registers to assure we get the right number (since its only 4 bytes, not 8):</p>
 <pre><code class="language-c">// my_list is a label to data with numbers of size 4 bytes
 mov rax, my_list
 mov edi, [rax]
@@ -164,7 +164,7 @@ mov ecx, [rax+0xc]
 </code></pre>
 <h2 id="stack"><a class="header" href="#stack">Stack</a></h2>
 <p>You may remember from the <a href="./memory_segments.html">memory-segments</a> section that we have two special writeable locations in memory: the Stack and the Heap. For the purpose of simplicity, we don't go over how to access and use the Heap in this module since it requires using more complicated instructions. For now, we can just use writeable program memory as we would the Heap since we can consider the case where all we get is an address to a writeable location.</p>
-<p>The Stack is very similar to normal writeable locations. It has addresses and it can be directly derferenced like a normal address. The Stack is special though because it works like a literal stack (think stacking pancakes), and it has a dedicated register (<code>rsp</code>), to tell you where the top of the stack currently is. </p>
+<p>The Stack is very similar to normal writeable locations. It has addresses and it can be directly dereferenced like a normal address. The Stack is special though because it works like a literal stack (think stacking pancakes), and it has a dedicated register (<code>rsp</code>), to tell you where the top of the stack currently is. </p>
 <h3 id="working-with-the-pancake-stack"><a class="header" href="#working-with-the-pancake-stack">Working with the Pancake Stack</a></h3>
 <p>Say your mom places 3 pancakes on your plate: pancake 1, 2, and 3. </p>
 <pre><code>Pancake Stack:
@@ -197,7 +197,7 @@ mov ecx, [rax+0xc]
   #######################
 |=========================|
 </code></pre>
-<p>Now, the top of the stack is <code>pancake 2</code>. We would say the <code>pancake stack pointer</code> is pointing at the location where the second pancake is located now. It was originally poiting at the location of pancake 1, but we poped the stack. </p>
+<p>Now, the top of the stack is <code>pancake 2</code>. We would say the <code>pancake stack pointer</code> is pointing at the location where the second pancake is located now. It was originally pointing at the location of pancake 1, but we poped the stack. </p>
 <p>So you <code>pop mouth</code> another pancake:</p>
 <pre><code>Pancake Stack:
 
