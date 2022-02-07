@@ -6,7 +6,7 @@ You've already learned about [memory](./memory.md), how you can access it with a
 ## Memory and Lists
 Using instructions like `mov` you can access the data at some memory location. Say another part of the program provided you the memory address to a writeable place in memory. You could write to it like so:
 ```c
-// rax = memoery addr
+// rax = memory addr
 
 mov [rax], 0x1337
 ```
@@ -26,7 +26,7 @@ mov [rax+8], 0x8
 mov [rax+0xc], 0x10
 ```
 
-In this example, we assumed that the number will be at a max of 4 bytes large. This is important, and changes the way we could get the memory back. Say we now wanted to use the data we stored in memory. We would now need to use 4 byte versions of our registers to assure we get the right number (since its only 4 bytes, not 8):
+In this example, we assumed that the number will be at a max of 4 bytes large. This is important and changes the way we could get the memory back. Say we now wanted to use the data we stored in memory. We would now need to use 4 byte versions of our registers to assure we get the right number (since its only 4 bytes, not 8):
 ```c
 // my_list is a label to data with numbers of size 4 bytes
 mov rax, my_list
@@ -39,7 +39,7 @@ mov ecx, [rax+0xc]
 ## Stack 
 You may remember from the [memory-segments](./memory_segments.md) section that we have two special writeable locations in memory: the Stack and the Heap. For the purpose of simplicity, we don't go over how to access and use the Heap in this module since it requires using more complicated instructions. For now, we can just use writeable program memory as we would the Heap since we can consider the case where all we get is an address to a writeable location.
 
-The Stack is very similar to normal writeable locations. It has addresses and it can be directly derferenced like a normal address. The Stack is special though because it works like a literal stack (think stacking pancakes), and it has a dedicated register (`rsp`), to tell you where the top of the stack currently is. 
+The Stack is very similar to normal writeable locations. It has addresses and it can be directly dereferenced like a normal address. The Stack is special though because it works like a literal stack (think stacking pancakes), and it has a dedicated register (`rsp`), to tell you where the top of the stack currently is. 
 
 ### Working with the Pancake Stack
 Say your mom places 3 pancakes on your plate: pancake 1, 2, and 3. 
@@ -79,7 +79,7 @@ Pancake Stack:
 |=========================|
 ```
 
-Now, the top of the stack is `pancake 2`. We would say the `pancake stack pointer` is pointing at the location where the second pancake is located now. It was originally poiting at the location of pancake 1, but we poped the stack. 
+Now, the top of the stack is `pancake 2`. We would say the `pancake stack pointer` is pointing at the location where the second pancake is located now. It was originally pointing at the location of pancake 1, but we poped the stack. 
 
 So you `pop mouth` another pancake:
 ```
