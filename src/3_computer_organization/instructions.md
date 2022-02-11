@@ -3,7 +3,7 @@
 ## Introduction
 So you've learned where to store numbers in assembly, [registers](./registers.md). Your next logical question would be: **how** do I store values in those registers? Good question. You store them using _instructions_. 
 
-Instructions are _atmoic_ pieces of logic that run in order on the CPU. That sounds complicated, so let's break it down. Here is an example of something we want to do:
+Instructions are _atomic_ pieces of logic that run in order on the CPU. That sounds complicated, so let's break it down. Here is an example of something we want to do:
 
 ```c
 x = 10 
@@ -17,13 +17,13 @@ mov rax, 10
 
 > It's important to note that this format of x86 is in the flavor of Intel. There are two flavors: [Intel and AT&T](https://imada.sdu.dk/~kslarsen/dm546/Material/IntelnATT.htm). For all the challenge, and this handbook, we will be using Intel format. 
 
-This instruction atomic because nothing can interupt it and it is the lowest level of logic on a computer. In a contrast we could show this operation:
+This instruction is atomic because nothing can interrupt it and it is the lowest level of logic on a computer. In contrast, we could show this operation:
 
 ```c
 x = x + 10
 ```
 
-The thing we are asking to do above is not atmoic. It is actually composed of 3 parts (normally):
+The thing we are asking to do above is not atomic. It is actually composed of 3 parts (normally):
 
 ```c
 mov rbx, rax     // make a temp for x
@@ -31,7 +31,7 @@ add rbx, 10      // add 10 to that temp
 mov rax, rbx     // move the temp back into x
 ```
 
-You will also notice that these intstructions execute one-after-another. They are linearly executed.
+You will also notice that these instructions execute one-after-another. They are linearly executed.
 
 ## Instruction Syntax
 
@@ -56,7 +56,7 @@ This means move the **the value at the address stored in rbx** to rax. Usually o
 
 ## Instruction Execution
 
-In the [registers](./registers.md) section we talked a little about special registers. Now its time to talk about the most important of those special registers: **rip** (aslo refered to as ip).
+In the [registers](./registers.md) section we talked a little about special registers. Now it's time to talk about the most important of those special registers: **rip** (also referred to as ip).
 
 IP in assembly land refers to the Instruction Pointer register. You can find an ip register in every architecture. This instruction is responsible for storing the address of the instruction we are supposed to be executing right now. Normally, when you have instructions that are a program they are laid out in memory. Here is how a typical memory layout full of instructions could look:
 
@@ -74,7 +74,7 @@ IP in assembly land refers to the Instruction Pointer register. You can find an 
 114f:       mov    [rbp-0x8], eax
 ```
 
-There are some important things to note here. First, you can dereference registers while adding or subtracting an offset to it like in `[rbp - 0x4]`. Second, the address each instruction is associated with is not singly incremental. Notice how the difference in address between some instructions is `7`, while others are only `1`. You may have guessed it, but the difference in addresses for each instruction is based on that instructions size.
+There are some important things to note here. First, you can dereference registers while adding or subtracting an offset to it like in `[rbp - 0x4]`. Second, the address each instruction is associated with is not singly incremental. Notice how the difference in address between some instructions is `7`, while others are only `1`. You may have guessed it, but the difference in addresses for each instruction is based on that instruction's size.
 
 Each instruction is composed of bytes that encode it. Here is the same code from above, but printed with its encoding:
 
@@ -94,7 +94,7 @@ Each instruction is composed of bytes that encode it. Here is the same code from
 
 There is a lot of different semantics to encoding instructions, such as their type and operation, but I won't be talking about how you can encode instructions by hand in this handbook. If you are interested, check [this out](https://wiki.osdev.org/X86-64_Instruction_Encoding#Opcode).
 
-If you are curious about how an instruction encodes into its bytes (or the other way around), use [this site](https://defuse.ca/online-x86-assembler.htm) to encode and decode x86 instructions as you like. I use it often for CTFs since its so easy to use.
+If you are curious about how an instruction encodes into its bytes (or the other way around), use [this site](https://defuse.ca/online-x86-assembler.htm) to encode and decode x86 instructions as you like. I use it often for CTFs since it's so easy to use.
 
 Now back to our earlier discussion, the instruction pointer. Execution of instructions follows the [fetch-and-execute](https://en.wikipedia.org/wiki/Instruction_cycle) cycle:
 1. Get the instruction at the address of the ip
@@ -105,7 +105,7 @@ Now back to our earlier discussion, the instruction pointer. Execution of instru
 
 So if in our previous example we are about to execute `mov [rbp-0x8], 0x0`, that means that `rip = 0x1131`. This also means that `[0x1131]` is the bytes of the instruction `mov [rbp-0x8], 0x0`.
 
-The last thing to know about `rip`, and `ip` in genral, is that you are not allowed to modify this register yourself. Obviously you just having instructions in memory modifies `rip`, but you are not allowed to do things like:
+The last thing to know about `rip`, and `ip` in general, is that you are not allowed to modify this register yourself. Obviously you just having instructions in memory modifies `rip`, but you are not allowed to do things like:
 ```
 mov rip, 0x1138
 ```
@@ -154,11 +154,11 @@ You don't know what the stack is yet, but we will get to it in the [asm-memory](
 
 ---
 
-There is actually one more set of instructions we need to cover, and thats _control flow operations_, or operations that change the execution of the program (alter ip). They are so important that they get their own header.
+There is actually one more set of instructions we need to cover, and that's _control flow operations_, or operations that change the execution of the program (alter ip). They are so important that they get their own header.
 
 ## Control Flow Instructions
 
-You understand how to do things linearlly, but thats boring. You don't always want to do things so linearly. You often want conditions! Something like:
+You understand how to do things linearly, but that's boring. You don't always want to do things so linearly. You often want conditions! Something like:
 
 ```python
 if(x is even):
