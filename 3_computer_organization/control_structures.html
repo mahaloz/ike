@@ -136,10 +136,10 @@
                     <main>
                         <h1 id="control-structures"><a class="header" href="#control-structures">Control Structures</a></h1>
 <h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
-<p>Control structures are a pattern of assembly code that create some kind of more abstract flow controlling thing. As an example, the <code>if</code> statement we used earlier is a control structure. Control structures are used to make our code do interesting and complext things like make decisions in a loop, conditional do stuff, and easily make code reusable and understandable. </p>
+<p>Control structures are patterns of assembly code that create some kind of more abstract flow controlling thing. As an example, the <code>if</code> statement we used earlier is a control structure. Control structures are used to make our code do interesting and complex things like make decisions in a loop, conditional do stuff, and easily make code reusable and understandable. </p>
 <p>The first up of these control structures is one that makes code easy to reuse: functions!</p>
 <h2 id="functions"><a class="header" href="#functions">Functions</a></h2>
-<p>A function is a peice of code that you can reuse more than once that can take some arguments and return some values. It's essentially just like a normal math funciton. Take for instance the classic <code>f</code> in math:</p>
+<p>A function is a piece of code that you can reuse more than once that can take some arguments and return some values. It's essentially just like a normal math function. Take for instance the classic <code>f</code> in math:</p>
 <pre><code>f(x) = y
 </code></pre>
 <p>In this function above, it takes <code>x</code> and outputs <code>y</code>. You may not know how it translates <code>x</code> -&gt; <code>y</code>, but you know you get <code>y</code> from inputting <code>x</code>. You can make the same type of functions in x86 and most assembly languages. Earlier in <a href="./instructions.html#call-instructions">call-instructions</a>, we actually provided you with a function. Here it is again:</p>
@@ -177,7 +177,7 @@ call sum4
 
 // some code after...
 </code></pre>
-<p>Cool right? No we can easily reuse <code>sum4</code> as many times as we like. Just as a referesher, every function ends with a <code>ret</code> so that you can reliably use <code>call</code> on it as in the example above. </p>
+<p>Cool right? Note we can easily reuse <code>sum4</code> as many times as we like. Just as a refresher, every function ends with a <code>ret</code> so that you can reliably use <code>call</code> on it as in the example above. </p>
 <h3 id="functions-and-the-stack"><a class="header" href="#functions-and-the-stack">Functions and the Stack</a></h3>
 <p>It's important to know that functions often use stacks to save arguments right at the beginning of the function. This is called the <a href="https://en.wikipedia.org/wiki/Function_prologue_and_epilogue">function prolouge</a>. The reason we save things on the stack is because we might need to reuse the original argument registers:</p>
 <pre><code class="language-c">// takes 3 args
@@ -210,7 +210,7 @@ ret
 114b:       imul   eax, [rbp-0x4]
 114f:       mov    [rbp-0x8], eax
 </code></pre>
-<p>This code is a very accurate representation of what you will see in the real world. We use the special register rbp to save the original place the stack was at the start of the function. <code>bp</code> in rbp stands for Base Pointer. Its the base pointer of the stack, or where it was before calling this function. </p>
+<p>This code is a very accurate representation of what you will see in the real world. We use the special register rbp to save the original place the stack was at the start of the function. <code>bp</code> in rbp stands for Base Pointer. It's the base pointer of the stack, or where it was before calling this function. </p>
 <p>To explain the above code more:</p>
 <ol>
 <li>the current base pointer is saved (to be popped at the end by a leave; ret;)</li>

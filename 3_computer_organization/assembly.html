@@ -135,22 +135,22 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="assembly"><a class="header" href="#assembly">Assembly</a></h1>
-<p>Following our talk on section on bits, we can now address the computer
+<p>Following our talk on the section on bits, we can now address the computer
 looking section of our chapter, <strong>Assembly</strong>.</p>
-<p>An assembly language, better referred to as an <a href="https://en.wikipedia.org/wiki/Instruction_set_architecture">ISA</a>, is the lowest level of instructions that run on a computer. These instructions, or operations on data, are predefined by the hardware you use! At the the lowest level, each instruction in a ISA is a combination of logic gates that you have already learned. Before continuing, watch this 15 minutes video on what an architecture is by Yan <a href="https://www.youtube.com/watch?v=9jc0eSnrzF4">here</a>.</p>
+<p>An assembly language, better referred to as an <a href="https://en.wikipedia.org/wiki/Instruction_set_architecture">ISA</a>, is the lowest level of instructions that run on a computer. These instructions, or operations on data, are predefined by the hardware you use! At the lowest level, each instruction in an ISA is a combination of logic gates that you have already learned. Before continuing, watch this 15 minutes video on what an architecture is by Yan <a href="https://www.youtube.com/watch?v=9jc0eSnrzF4">here</a>.</p>
 <p>* * *</p>
 <p>As far as ISA's go, there are two types:</p>
 <ul>
 <li><a href="https://en.wikipedia.org/wiki/Reduced_instruction_set_computer">RISC</a>: Reduced Instruction Set Computer</li>
 <li><a href="https://en.wikipedia.org/wiki/Complex_instruction_set_computer">CISC</a>: Complex Instruction Set Computer</li>
 </ul>
-<p>RISC and CISC are competitors and mostly differ in the side-effects their instructions have on memory. If you are interested in this difference, then you can read what <a href="https://cs.stanford.edu/people/eroberts/courses/soco/projects/risc/risccisc/">Stanford has to say on the matter</a>, but its not required. For this handbook we will be only using and referring to assembly for <a href="https://en.wikipedia.org/wiki/X86-64">Intel x86_64</a>.</p>
+<p>RISC and CISC are competitors and mostly differ in the side-effects their instructions have on memory. If you are interested in this difference, then you can read what <a href="https://cs.stanford.edu/people/eroberts/courses/soco/projects/risc/risccisc/">Stanford has to say on the matter</a>, but it's not required. For this handbook we will be only using and referring to assembly for <a href="https://en.wikipedia.org/wiki/X86-64">Intel x86_64</a>.</p>
 <h2 id="intel-x86_64-assembly"><a class="header" href="#intel-x86_64-assembly">Intel x86_64 Assembly</a></h2>
 <p>The assembly language we will be studying in this handbook is by no means the best assembly language to start with. Ideally, we would've started with a RISC architecture because they are easier to learn, but, the world had different ideas. </p>
-<p>There is an extremely high probability that you are reading this text on an Intel x86_64 machine. Dell, Lenovo, Apple; they all run x86_64. The only exception is the recent Mac M1 processor, but for the most part, the worlds computers run on the Intel ISA. With that knowledge, I though it was most practical to teach you the most common architecture.</p>
+<p>There is an extremely high probability that you are reading this text on an Intel x86_64 machine. Dell, Lenovo, Apple; they all run x86_64. The only exception is the recent Mac M1 processor, but for the most part, the world's computers run on the Intel ISA. With that knowledge, I though it was most practical to teach you the most common architecture.</p>
 <h2 id="how-to-read-the-rest-of-this-section"><a class="header" href="#how-to-read-the-rest-of-this-section">How to read the rest of this section</a></h2>
 <p>It's time we dive into x86_64, which we will shorthand to <em>x86</em> from now. All the subsections in this section should be read in an <em>overview</em> manner. I wrote these modules to assist and act as a reference for the challenges associated with this section. </p>
-<p>The challenges you will complete as part of this section is the EmbryoASM challenges hosted on pwn.college. Myself and @redgate wrote these challenges to teach you assembly rather then just test your skill. You will find the challenges on the <a href="https://dojo.pwn.college/challenges/asm">dojo</a>. Start them after reading the sections below. </p>
+<p>The challenges you will complete as part of this section are the EmbryoASM challenges hosted on pwn.college. Myself and @redgate wrote these challenges to teach you assembly rather than just test your skill. You will find the challenges on the <a href="https://dojo.pwn.college/challenges/asm">dojo</a>. Start them after reading the sections below. </p>
 <h2 id="quick-reference-links"><a class="header" href="#quick-reference-links">Quick Reference Links</a></h2>
 <ul>
 <li>

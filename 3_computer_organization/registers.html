@@ -136,20 +136,20 @@
                     <main>
                         <h1 id="registers"><a class="header" href="#registers">Registers</a></h1>
 <h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
-<p>Welcome to the land of x86. The first things you need to learn is where <em>things</em> are stored when you run instructions. What's in an instruction? What's a thing? Let's start with some simple math examples. </p>
+<p>Welcome to the land of x86. The first thing you need to learn is where <em>things</em> are stored when you run instructions. What's in an instruction? What's a thing? Let's start with some simple math examples. </p>
 <p>In math, you often have variables where you store things. Often, those things are numbers. </p>
 <pre><code>x = 10
 x = x + 4
 x = x / 2 
 x = x - 1
 </code></pre>
-<p>We can assign values, reasign values, and do general computation on them. The nice thing about math is that a variable has no size. When you think about assigning a value to <code>x</code>, you never wonder: will the value fit in x? As an example:</p>
+<p>We can assign values, reassign values, and do general computation on them. The nice thing about math is that a variable has no size. When you think about assigning a value to <code>x</code>, you never wonder: will the value fit in x? As an example:</p>
 <pre><code>x = 18446744073709551616
 </code></pre>
 <blockquote>
 <p>Note: From now on, 'x ** y' means x to the y power and 'x ^ y' means x <em>xored</em> with y. </p>
 </blockquote>
-<p>In the last section, we talked about bits and hex. This value is actually <code>0xffffffffffffffff + 1</code>. The number of bits it would take to represent this number would be <code>65</code> bits <code>(2 ** 64) + 1</code>. In computer science, when we say: &quot;what is the size of x&quot;, we are usually talking about the number of bits that value takes up. To make things easier to say in a short sentnce, we instead say the size in the number of bytes. </p>
+<p>In the last section, we talked about bits and hex. This value is actually <code>0xffffffffffffffff + 1</code>. The number of bits it would take to represent this number would be <code>65</code> bits <code>(2 ** 64) + 1</code>. In computer science, when we say: &quot;what is the size of x&quot;, we are usually talking about the number of bits that value takes up. To make things easier to say in a short sentence, we instead say the size in the number of bytes. </p>
 <blockquote>
 <p>Recall: 8 bits == 1 byte</p>
 </blockquote>

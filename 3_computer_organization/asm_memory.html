@@ -138,7 +138,7 @@
 <h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
 <p>You've already learned about <a href="./memory.html">memory</a>, how you can access it with addresses, and how programs often live in memory with other memory segments like the Heap and Stack. Surprise, surprise, the programs we can write with instructions live in memory as well. With our new knowledge of instructions, you can use this memory to store things that may be very large or of an unknown length. </p>
 <h2 id="memory-and-lists"><a class="header" href="#memory-and-lists">Memory and Lists</a></h2>
-<p>Using instructions like <code>mov</code> you can access the data at some memory location. Say another part of the program provided you the memory address to a writeable place in memory. You could write to it like so:</p>
+<p>Using instructions like <code>mov</code> you can access the data at some memory location. Say another part of the program provided you with the memory address to a writeable place in memory. You could write to it like so:</p>
 <pre><code class="language-c">// rax = memory addr
 
 mov [rax], 0x1337
@@ -182,7 +182,7 @@ mov ecx, [rax+0xc]
   #######################
 |=========================|
 </code></pre>
-<p>You can't just access pancake 3, that would destroy the stack (and make your mom mad). You need to access pancake 1 first, then 2, then 3. When you access the pacake on the top, we call it a <code>pop</code>. Yes you literally <code>pop</code> the pancake into your mouth. We represent that with the instruction:</p>
+<p>You can't just access pancake 3, that would destroy the stack (and make your mom mad). You need to access pancake 1 first, then 2, then 3. When you access the pancake on the top, we call it a <code>pop</code>. Yes, you literally <code>pop</code> the pancake into your mouth. We represent that with the instruction:</p>
 <pre><code class="language-c">pop mouth
 </code></pre>
 <p>Which results in the new pancake stack:</p>

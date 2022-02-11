@@ -139,7 +139,7 @@
 <p>In the last section, you learned that programs exist in memory. What you may not realize though is that we have segments, or divisions, of memory we a program is running. We call the addressing of these different memory segments a <a href="https://en.wikipedia.org/wiki/Memory_map">memory map</a>. Let's print the memory map of a process. Run the command below:</p>
 <pre><code class="language-bash">sleep 5 &amp; cat &quot;/proc/$!/maps&quot;
 </code></pre>
-<p>This will run the <code>sleep</code> command (which sleeps for 5 seconds), and while it is running use the <code>pmap</code> command to print out the memory map of the process (which is the running memory instance of sleep). If you end up not being able to run this line, install pmap with <code>sudo apt-get install pmap -y</code>. Here is what the result should look similar too on your system:</p>
+<p>This will run the <code>sleep</code> command (which sleeps for 5 seconds), and while it is running use the <code>pmap</code> command to print out the memory map of the process (which is the running memory instance of sleep). If you end up not being able to run this line, install pmap with <code>sudo apt-get install pmap -y</code>. Here is what the result should look similar to on your system:</p>
 <pre><code>[1] 243862
 55ce021ae000-55ce021b0000 r--p 00000000 08:05 3540380                    /usr/bin/sleep
 55ce021b0000-55ce021b4000 r-xp 00002000 08:05 3540380                    /usr/bin/sleep
@@ -166,11 +166,11 @@
 7ffd0bd83000-7ffd0bd84000 r-xp 00000000 00:00 0                          [vdso]
 ffffffffff600000-ffffffffff601000 --xp 00000000 00:00 0                  [vsyscall]
 </code></pre>
-<p>Its a lot of stuff, so let's break it down. The first column is the start address to end address of that memory region. The second column is the permissions. The fifth column is the size of that mapped data (as it stands right now). The sixth column is the name of that mapping, which is not required. </p>
+<p>It's a lot of stuff, so let's break it down. The first column is the start address to end address of that memory region. The second column is the permissions. The fifth column is the size of that mapped data (as it stands right now). The sixth column is the name of that mapping, which is not required. </p>
 <blockquote>
 <p>Note: it is common in computer science that if something does not have a name it is called &quot;anonymous.&quot; Sometimes that name will be shorted to just &quot;anon.&quot; </p>
 </blockquote>
-<p>I won't talk about the other columns because they arn't important for our example. </p>
+<p>I won't talk about the other columns because they aren't important for our example. </p>
 <h2 id="important-maps"><a class="header" href="#important-maps">Important Maps</a></h2>
 <p>Using the output from the command above, we can make a little reduced table of the output:</p>
 <table><thead><tr><th>Address Range</th><th>Permissions</th><th>Name</th></tr></thead><tbody>
@@ -191,7 +191,7 @@ ffffffffff600000-ffffffffff601000 --xp 00000000 00:00 0                  [vsysca
 <p>There are also more mappings in the program for other things, but you will notice that their permissions are all iterations of the maps we described above.</p>
 <h2 id="heap"><a class="header" href="#heap">Heap</a></h2>
 <p>The Heap is a section of memory in every process (the stuff mapped with the program) that is dedicated to being a large writeable space. You might be asking yourself: &quot;Why does this need to exist? Why can't we just write everything in the writeable section of the program?&quot; Let's continue to use Minecraft as our running example to answer this question. </p>
-<p>In Minecraft, as you roam around the world you may notice things coming in and out of view. The map, with all its AI and moving objects, is a large peice of data that is changing in memory all the time as you move. The amount that will be loaded in memory at any given time is compltley unknown. You could, for instance, walk into a peice of the map where you built a 10000 chicken prision. That many chickens would absolutley destroy the program's memory if it could not <em>expand</em>. You could also turn up or down the redner distance (the view distance), which would increase or decrease the amount of the map loaded at a given time.</p>
+<p>In Minecraft, as you roam around the world you may notice things coming in and out of view. The map, with all its AI and moving objects, is a large piece of data that is changing in memory all the time as you move. The amount that will be loaded in memory at any given time is completely unknown. You could, for instance, walk into a piece of the map where you built a 10000 chicken prison. That many chickens would absolutely destroy the program's memory if it could not <em>expand</em>. You could also turn up or down the render distance (the view distance), which would increase or decrease the amount of the map loaded at a given time.</p>
 <p><img src="./render_distance.png" alt="" /></p>
 <p>To make things easy, we made a section of memory that is both large and expandable: the Heap! We put large things in the Heap because the Heap can get bigger or smaller as we need it. As a side note, when you need more space in the heap, the range of the end mapping gets bigger (expands up).</p>
 <h2 id="stack"><a class="header" href="#stack">Stack</a></h2>
@@ -199,7 +199,7 @@ ffffffffff600000-ffffffffff601000 --xp 00000000 00:00 0                  [vsysca
 <p>So we have this faster less secure section of memory. We can't but everything there because it's insecure, but we can put small things that change often. In Minecraft, your username does not change <em>that frequently</em>, so it should not go here. When we say frequently, we mean a few dozen times in a second. </p>
 <p>Something that changes that frequently in Minecraft, but is pretty small, is the space in memory where we store the letters you type in the Multiplayer chat.</p>
 <p><img src="./minecraft_chat.png" alt="" /></p>
-<p>The chat constantly gets new letters that exist, then don't exist. For the chat history, we save that in the Heap. But for a single sentence you are about to send to the chat, we put in the Stack. It changes fast and needs that speed so players to get angry at their respective toasters. </p>
+<p>The chat constantly gets new letters that exist, then don't exist. For the chat history, we save that in the Heap. But for a single sentence you are about to send to the chat, we put in the Stack. It changes fast and needs that speed for players to get angry at their respective toasters. </p>
 <h2 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h2>
 <p>There is a pattern among the usage of these writeable sections in memory:</p>
 <table><thead><tr><th>Name</th><th>Data changes</th><th>Date is Large</th><th>Data changes Often</th></tr></thead><tbody>
@@ -207,7 +207,7 @@ ffffffffff600000-ffffffffff601000 --xp 00000000 00:00 0                  [vsysca
 <tr><td>Heap</td><td>X</td><td>X</td><td></td></tr>
 <tr><td>Stack</td><td>X</td><td></td><td>X</td></tr>
 </tbody></table>
-<p>You use a programs writeable space when its small and does not change much. Heap when its large. Stack when its small and rapidly changing. </p>
+<p>You use a program's writeable space when it's small and does not change much. Heap when it's large. Stack when it's small and rapidly changing. </p>
 <p>With everything you know now, this image of a processes memory should make sense:</p>
 <pre><code>*----*----*----*----*----* 0x0000000000000000
 |                        |
@@ -227,7 +227,7 @@ ffffffffff600000-ffffffffff601000 --xp 00000000 00:00 0                  [vsysca
 |         STACK          |
 *----*----*----*----*----| 0xFFFFFFFFFFFFFFFF
 </code></pre>
-<p>When <code>Minecraft</code> is running, it's program memory stays stationary. The Heap that it uses to store large changing things grows up (in addressing space) towards the Stack. The Stack that it uses to store small changing things grows down (in the addressing space) towards the Heap. All the other things you can see stored in memory in the initial maps we got are other programs that assist the main program while it runs. This can be things like external libraries (code others have written that you reuse).</p>
+<p>When <code>Minecraft</code> is running, its program memory stays stationary. The Heap that it uses to store large changing things grows up (in addressing space) towards the Stack. The Stack that it uses to store small changing things grows down (in the addressing space) towards the Heap. All the other things you can see stored in memory in the initial maps we got are other programs that assist the main program while it runs. This can be things like external libraries (code others have written that you reuse).</p>
 
                     </main>
 

@@ -615,11 +615,11 @@ interacts with programs. In this chapter, we learn how to write our own programs
 <div style="break-before: page; page-break-before: always;"></div><h1 id="introduction-2"><a class="header" href="#introduction-2">Introduction</a></h1>
 <p>To cover computer organization is to cover what it means to <em>be a computer</em>. The way we organize the hardware dictates how our computer works. The organization of hardware in a particular form is called a <a href="https://en.wikipedia.org/wiki/Computer_architecture">computer architecture</a>.</p>
 <h2 id="the-von-neumann-architecture"><a class="header" href="#the-von-neumann-architecture">The Von Neumann Architecture</a></h2>
-<p>The von Neumann architecture is by far the most famous and well-known abstract computer architecture in computer science. It's principal belief is that our computer is a &quot;pyramid&quot; of memory units that get faster but smaller as we go up the stack. You put things you need faster in the higher level memories, and things you need slower and in larger quantities in the lower level memories: </p>
+<p>The von Neumann architecture is by far the most famous and well-known abstract computer architecture in computer science. Its principal belief is that our computer is a &quot;pyramid&quot; of memory units that get faster but smaller as we go up the stack. You put things you need faster in the higher level memories, and things you need slower and in larger quantities in the lower level memories: </p>
 <p><img src="3_computer_organization/./mem_model_1.jpeg" alt="" /></p>
 <p>Abstractly, this is done because faster memory units are more expensive to make, and usually, we don't need faster memory for long. So what the hell is a faster memory unit? Let's revise the picture above:</p>
 <p><img src="3_computer_organization/./mem_model_2.jpeg" alt="" /></p>
-<p>Two commonly known memory units is your hard drive and your RAM. As you likely know, the RAM is much smaller than your hard drive, but somehow much more expensive. In a parallel fashion, your RAM is also much faster than your hard drive. From now on, let's refer to your RAM as <a href="https://www.computerhope.com/jargon/m/memory.htm">computer memory</a>. You probably have 8 Gigabytes of memory. Why is it so small? What is your computer memory actually used for? Why does it exist aside from your hard drive? The Von Neumann architecture dictates that it exists to put things we need more frequently or faster in. The special thing about your computer memory, though, is that it is volatile—meaning anything put in it is deleted when your computer restarts. </p>
+<p>Two commonly known memory units are your hard drive and your RAM. As you likely know, the RAM is much smaller than your hard drive, but somehow much more expensive. In a parallel fashion, your RAM is also much faster than your hard drive. From now on, let's refer to your RAM as <a href="https://www.computerhope.com/jargon/m/memory.htm">computer memory</a>. You probably have 8 Gigabytes of memory. Why is it so small? What is your computer memory actually used for? Why does it exist aside from your hard drive? The Von Neumann architecture dictates that it exists to put things we need more frequently or faster in. The special thing about your computer memory, though, is that it is volatile—meaning anything put in it is deleted when your computer restarts. </p>
 <p>Often the things we need in memory are programs, because we want those to run as fast as possible. Before we talk about putting programs in memory, we need to briefly talk about how we count in computers (yes, strange idea). Move on to the next reading.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="math--counting"><a class="header" href="#math--counting">Math &amp; Counting</a></h1>
 <h2 id="bits"><a class="header" href="#bits">Bits</a></h2>
@@ -900,7 +900,7 @@ minecraft_end = 0x0000000050000000
 |                   |
 *----*----*----*----* 0xFFFFFFFFFFFFFFFF
 </code></pre>
-<p>Notice that Minecraft neither starts at the beginning nor at the end of memory. Any program can be loaded at any random place in memory. In addition, other magical things happen to actually allow you to break up a program into multiple places, called <a href="https://whatis.techtarget.com/definition/virtual-address">Virtual Addressing</a>. For now, consider things to be linear and continous.</p>
+<p>Notice that Minecraft neither starts at the beginning nor at the end of memory. Any program can be loaded at any random place in memory. In addition, other magical things happen to actually allow you to break up a program into multiple places, called <a href="https://whatis.techtarget.com/definition/virtual-address">Virtual Addressing</a>. For now, consider things to be linear and continuous.</p>
 <p>The OS does not know the exact location of the Minecraft Quit Button code. Instead, it only knows an <strong>offset</strong> from <code>minecraft_start</code>. Something like:</p>
 <pre><code>mc_quit_btn_offset = 0x80
 </code></pre>
@@ -933,7 +933,7 @@ execute(code)
 <p>In the last section, you learned that programs exist in memory. What you may not realize though is that we have segments, or divisions, of memory we a program is running. We call the addressing of these different memory segments a <a href="https://en.wikipedia.org/wiki/Memory_map">memory map</a>. Let's print the memory map of a process. Run the command below:</p>
 <pre><code class="language-bash">sleep 5 &amp; cat &quot;/proc/$!/maps&quot;
 </code></pre>
-<p>This will run the <code>sleep</code> command (which sleeps for 5 seconds), and while it is running use the <code>pmap</code> command to print out the memory map of the process (which is the running memory instance of sleep). If you end up not being able to run this line, install pmap with <code>sudo apt-get install pmap -y</code>. Here is what the result should look similar too on your system:</p>
+<p>This will run the <code>sleep</code> command (which sleeps for 5 seconds), and while it is running use the <code>pmap</code> command to print out the memory map of the process (which is the running memory instance of sleep). If you end up not being able to run this line, install pmap with <code>sudo apt-get install pmap -y</code>. Here is what the result should look similar to on your system:</p>
 <pre><code>[1] 243862
 55ce021ae000-55ce021b0000 r--p 00000000 08:05 3540380                    /usr/bin/sleep
 55ce021b0000-55ce021b4000 r-xp 00002000 08:05 3540380                    /usr/bin/sleep
@@ -960,11 +960,11 @@ execute(code)
 7ffd0bd83000-7ffd0bd84000 r-xp 00000000 00:00 0                          [vdso]
 ffffffffff600000-ffffffffff601000 --xp 00000000 00:00 0                  [vsyscall]
 </code></pre>
-<p>Its a lot of stuff, so let's break it down. The first column is the start address to end address of that memory region. The second column is the permissions. The fifth column is the size of that mapped data (as it stands right now). The sixth column is the name of that mapping, which is not required. </p>
+<p>It's a lot of stuff, so let's break it down. The first column is the start address to end address of that memory region. The second column is the permissions. The fifth column is the size of that mapped data (as it stands right now). The sixth column is the name of that mapping, which is not required. </p>
 <blockquote>
 <p>Note: it is common in computer science that if something does not have a name it is called &quot;anonymous.&quot; Sometimes that name will be shorted to just &quot;anon.&quot; </p>
 </blockquote>
-<p>I won't talk about the other columns because they arn't important for our example. </p>
+<p>I won't talk about the other columns because they aren't important for our example. </p>
 <h2 id="important-maps"><a class="header" href="#important-maps">Important Maps</a></h2>
 <p>Using the output from the command above, we can make a little reduced table of the output:</p>
 <table><thead><tr><th>Address Range</th><th>Permissions</th><th>Name</th></tr></thead><tbody>
@@ -985,7 +985,7 @@ ffffffffff600000-ffffffffff601000 --xp 00000000 00:00 0                  [vsysca
 <p>There are also more mappings in the program for other things, but you will notice that their permissions are all iterations of the maps we described above.</p>
 <h2 id="heap"><a class="header" href="#heap">Heap</a></h2>
 <p>The Heap is a section of memory in every process (the stuff mapped with the program) that is dedicated to being a large writeable space. You might be asking yourself: &quot;Why does this need to exist? Why can't we just write everything in the writeable section of the program?&quot; Let's continue to use Minecraft as our running example to answer this question. </p>
-<p>In Minecraft, as you roam around the world you may notice things coming in and out of view. The map, with all its AI and moving objects, is a large peice of data that is changing in memory all the time as you move. The amount that will be loaded in memory at any given time is compltley unknown. You could, for instance, walk into a peice of the map where you built a 10000 chicken prision. That many chickens would absolutley destroy the program's memory if it could not <em>expand</em>. You could also turn up or down the redner distance (the view distance), which would increase or decrease the amount of the map loaded at a given time.</p>
+<p>In Minecraft, as you roam around the world you may notice things coming in and out of view. The map, with all its AI and moving objects, is a large piece of data that is changing in memory all the time as you move. The amount that will be loaded in memory at any given time is completely unknown. You could, for instance, walk into a piece of the map where you built a 10000 chicken prison. That many chickens would absolutely destroy the program's memory if it could not <em>expand</em>. You could also turn up or down the render distance (the view distance), which would increase or decrease the amount of the map loaded at a given time.</p>
 <p><img src="3_computer_organization/./render_distance.png" alt="" /></p>
 <p>To make things easy, we made a section of memory that is both large and expandable: the Heap! We put large things in the Heap because the Heap can get bigger or smaller as we need it. As a side note, when you need more space in the heap, the range of the end mapping gets bigger (expands up).</p>
 <h2 id="stack"><a class="header" href="#stack">Stack</a></h2>
@@ -993,7 +993,7 @@ ffffffffff600000-ffffffffff601000 --xp 00000000 00:00 0                  [vsysca
 <p>So we have this faster less secure section of memory. We can't but everything there because it's insecure, but we can put small things that change often. In Minecraft, your username does not change <em>that frequently</em>, so it should not go here. When we say frequently, we mean a few dozen times in a second. </p>
 <p>Something that changes that frequently in Minecraft, but is pretty small, is the space in memory where we store the letters you type in the Multiplayer chat.</p>
 <p><img src="3_computer_organization/./minecraft_chat.png" alt="" /></p>
-<p>The chat constantly gets new letters that exist, then don't exist. For the chat history, we save that in the Heap. But for a single sentence you are about to send to the chat, we put in the Stack. It changes fast and needs that speed so players to get angry at their respective toasters. </p>
+<p>The chat constantly gets new letters that exist, then don't exist. For the chat history, we save that in the Heap. But for a single sentence you are about to send to the chat, we put in the Stack. It changes fast and needs that speed for players to get angry at their respective toasters. </p>
 <h2 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h2>
 <p>There is a pattern among the usage of these writeable sections in memory:</p>
 <table><thead><tr><th>Name</th><th>Data changes</th><th>Date is Large</th><th>Data changes Often</th></tr></thead><tbody>
@@ -1001,7 +1001,7 @@ ffffffffff600000-ffffffffff601000 --xp 00000000 00:00 0                  [vsysca
 <tr><td>Heap</td><td>X</td><td>X</td><td></td></tr>
 <tr><td>Stack</td><td>X</td><td></td><td>X</td></tr>
 </tbody></table>
-<p>You use a programs writeable space when its small and does not change much. Heap when its large. Stack when its small and rapidly changing. </p>
+<p>You use a program's writeable space when it's small and does not change much. Heap when it's large. Stack when it's small and rapidly changing. </p>
 <p>With everything you know now, this image of a processes memory should make sense:</p>
 <pre><code>*----*----*----*----*----* 0x0000000000000000
 |                        |
@@ -1021,24 +1021,24 @@ ffffffffff600000-ffffffffff601000 --xp 00000000 00:00 0                  [vsysca
 |         STACK          |
 *----*----*----*----*----| 0xFFFFFFFFFFFFFFFF
 </code></pre>
-<p>When <code>Minecraft</code> is running, it's program memory stays stationary. The Heap that it uses to store large changing things grows up (in addressing space) towards the Stack. The Stack that it uses to store small changing things grows down (in the addressing space) towards the Heap. All the other things you can see stored in memory in the initial maps we got are other programs that assist the main program while it runs. This can be things like external libraries (code others have written that you reuse).</p>
+<p>When <code>Minecraft</code> is running, its program memory stays stationary. The Heap that it uses to store large changing things grows up (in addressing space) towards the Stack. The Stack that it uses to store small changing things grows down (in the addressing space) towards the Heap. All the other things you can see stored in memory in the initial maps we got are other programs that assist the main program while it runs. This can be things like external libraries (code others have written that you reuse).</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="assembly"><a class="header" href="#assembly">Assembly</a></h1>
-<p>Following our talk on section on bits, we can now address the computer
+<p>Following our talk on the section on bits, we can now address the computer
 looking section of our chapter, <strong>Assembly</strong>.</p>
-<p>An assembly language, better referred to as an <a href="https://en.wikipedia.org/wiki/Instruction_set_architecture">ISA</a>, is the lowest level of instructions that run on a computer. These instructions, or operations on data, are predefined by the hardware you use! At the the lowest level, each instruction in a ISA is a combination of logic gates that you have already learned. Before continuing, watch this 15 minutes video on what an architecture is by Yan <a href="https://www.youtube.com/watch?v=9jc0eSnrzF4">here</a>.</p>
+<p>An assembly language, better referred to as an <a href="https://en.wikipedia.org/wiki/Instruction_set_architecture">ISA</a>, is the lowest level of instructions that run on a computer. These instructions, or operations on data, are predefined by the hardware you use! At the lowest level, each instruction in an ISA is a combination of logic gates that you have already learned. Before continuing, watch this 15 minutes video on what an architecture is by Yan <a href="https://www.youtube.com/watch?v=9jc0eSnrzF4">here</a>.</p>
 <p>* * *</p>
 <p>As far as ISA's go, there are two types:</p>
 <ul>
 <li><a href="https://en.wikipedia.org/wiki/Reduced_instruction_set_computer">RISC</a>: Reduced Instruction Set Computer</li>
 <li><a href="https://en.wikipedia.org/wiki/Complex_instruction_set_computer">CISC</a>: Complex Instruction Set Computer</li>
 </ul>
-<p>RISC and CISC are competitors and mostly differ in the side-effects their instructions have on memory. If you are interested in this difference, then you can read what <a href="https://cs.stanford.edu/people/eroberts/courses/soco/projects/risc/risccisc/">Stanford has to say on the matter</a>, but its not required. For this handbook we will be only using and referring to assembly for <a href="https://en.wikipedia.org/wiki/X86-64">Intel x86_64</a>.</p>
+<p>RISC and CISC are competitors and mostly differ in the side-effects their instructions have on memory. If you are interested in this difference, then you can read what <a href="https://cs.stanford.edu/people/eroberts/courses/soco/projects/risc/risccisc/">Stanford has to say on the matter</a>, but it's not required. For this handbook we will be only using and referring to assembly for <a href="https://en.wikipedia.org/wiki/X86-64">Intel x86_64</a>.</p>
 <h2 id="intel-x86_64-assembly"><a class="header" href="#intel-x86_64-assembly">Intel x86_64 Assembly</a></h2>
 <p>The assembly language we will be studying in this handbook is by no means the best assembly language to start with. Ideally, we would've started with a RISC architecture because they are easier to learn, but, the world had different ideas. </p>
-<p>There is an extremely high probability that you are reading this text on an Intel x86_64 machine. Dell, Lenovo, Apple; they all run x86_64. The only exception is the recent Mac M1 processor, but for the most part, the worlds computers run on the Intel ISA. With that knowledge, I though it was most practical to teach you the most common architecture.</p>
+<p>There is an extremely high probability that you are reading this text on an Intel x86_64 machine. Dell, Lenovo, Apple; they all run x86_64. The only exception is the recent Mac M1 processor, but for the most part, the world's computers run on the Intel ISA. With that knowledge, I though it was most practical to teach you the most common architecture.</p>
 <h2 id="how-to-read-the-rest-of-this-section"><a class="header" href="#how-to-read-the-rest-of-this-section">How to read the rest of this section</a></h2>
 <p>It's time we dive into x86_64, which we will shorthand to <em>x86</em> from now. All the subsections in this section should be read in an <em>overview</em> manner. I wrote these modules to assist and act as a reference for the challenges associated with this section. </p>
-<p>The challenges you will complete as part of this section is the EmbryoASM challenges hosted on pwn.college. Myself and @redgate wrote these challenges to teach you assembly rather then just test your skill. You will find the challenges on the <a href="https://dojo.pwn.college/challenges/asm">dojo</a>. Start them after reading the sections below. </p>
+<p>The challenges you will complete as part of this section are the EmbryoASM challenges hosted on pwn.college. Myself and @redgate wrote these challenges to teach you assembly rather than just test your skill. You will find the challenges on the <a href="https://dojo.pwn.college/challenges/asm">dojo</a>. Start them after reading the sections below. </p>
 <h2 id="quick-reference-links"><a class="header" href="#quick-reference-links">Quick Reference Links</a></h2>
 <ul>
 <li>
@@ -1063,20 +1063,20 @@ looking section of our chapter, <strong>Assembly</strong>.</p>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="registers"><a class="header" href="#registers">Registers</a></h1>
 <h2 id="introduction-4"><a class="header" href="#introduction-4">Introduction</a></h2>
-<p>Welcome to the land of x86. The first things you need to learn is where <em>things</em> are stored when you run instructions. What's in an instruction? What's a thing? Let's start with some simple math examples. </p>
+<p>Welcome to the land of x86. The first thing you need to learn is where <em>things</em> are stored when you run instructions. What's in an instruction? What's a thing? Let's start with some simple math examples. </p>
 <p>In math, you often have variables where you store things. Often, those things are numbers. </p>
 <pre><code>x = 10
 x = x + 4
 x = x / 2 
 x = x - 1
 </code></pre>
-<p>We can assign values, reasign values, and do general computation on them. The nice thing about math is that a variable has no size. When you think about assigning a value to <code>x</code>, you never wonder: will the value fit in x? As an example:</p>
+<p>We can assign values, reassign values, and do general computation on them. The nice thing about math is that a variable has no size. When you think about assigning a value to <code>x</code>, you never wonder: will the value fit in x? As an example:</p>
 <pre><code>x = 18446744073709551616
 </code></pre>
 <blockquote>
 <p>Note: From now on, 'x ** y' means x to the y power and 'x ^ y' means x <em>xored</em> with y. </p>
 </blockquote>
-<p>In the last section, we talked about bits and hex. This value is actually <code>0xffffffffffffffff + 1</code>. The number of bits it would take to represent this number would be <code>65</code> bits <code>(2 ** 64) + 1</code>. In computer science, when we say: &quot;what is the size of x&quot;, we are usually talking about the number of bits that value takes up. To make things easier to say in a short sentnce, we instead say the size in the number of bytes. </p>
+<p>In the last section, we talked about bits and hex. This value is actually <code>0xffffffffffffffff + 1</code>. The number of bits it would take to represent this number would be <code>65</code> bits <code>(2 ** 64) + 1</code>. In computer science, when we say: &quot;what is the size of x&quot;, we are usually talking about the number of bits that value takes up. To make things easier to say in a short sentence, we instead say the size in the number of bytes. </p>
 <blockquote>
 <p>Recall: 8 bits == 1 byte</p>
 </blockquote>
@@ -1133,7 +1133,7 @@ Here is an illustration of all the bits and how you can access them:</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="instructions"><a class="header" href="#instructions">Instructions</a></h1>
 <h2 id="introduction-5"><a class="header" href="#introduction-5">Introduction</a></h2>
 <p>So you've learned where to store numbers in assembly, <a href="3_computer_organization/./registers.html">registers</a>. Your next logical question would be: <strong>how</strong> do I store values in those registers? Good question. You store them using <em>instructions</em>. </p>
-<p>Instructions are <em>atmoic</em> pieces of logic that run in order on the CPU. That sounds complicated, so let's break it down. Here is an example of something we want to do:</p>
+<p>Instructions are <em>atomic</em> pieces of logic that run in order on the CPU. That sounds complicated, so let's break it down. Here is an example of something we want to do:</p>
 <pre><code class="language-c">x = 10 
 </code></pre>
 <p>In assembly, where <code>x is rax</code>, this translates to:</p>
@@ -1142,15 +1142,15 @@ Here is an illustration of all the bits and how you can access them:</p>
 <blockquote>
 <p>It's important to note that this format of x86 is in the flavor of Intel. There are two flavors: <a href="https://imada.sdu.dk/%7Ekslarsen/dm546/Material/IntelnATT.htm">Intel and AT&amp;T</a>. For all the challenge, and this handbook, we will be using Intel format. </p>
 </blockquote>
-<p>This instruction atomic because nothing can interupt it and it is the lowest level of logic on a computer. In a contrast we could show this operation:</p>
+<p>This instruction is atomic because nothing can interrupt it and it is the lowest level of logic on a computer. In contrast, we could show this operation:</p>
 <pre><code class="language-c">x = x + 10
 </code></pre>
-<p>The thing we are asking to do above is not atmoic. It is actually composed of 3 parts (normally):</p>
+<p>The thing we are asking to do above is not atomic. It is actually composed of 3 parts (normally):</p>
 <pre><code class="language-c">mov rbx, rax     // make a temp for x
 add rbx, 10      // add 10 to that temp
 mov rax, rbx     // move the temp back into x
 </code></pre>
-<p>You will also notice that these intstructions execute one-after-another. They are linearly executed.</p>
+<p>You will also notice that these instructions execute one-after-another. They are linearly executed.</p>
 <h2 id="instruction-syntax"><a class="header" href="#instruction-syntax">Instruction Syntax</a></h2>
 <p>This syntax may be confusing but most instructions follow the same format:</p>
 <pre><code>&lt;instruction_mnemonic&gt;  &lt;destination&gt;, &lt;source&gt;
@@ -1165,7 +1165,7 @@ mov rax, rbx     // move the temp back into x
 </code></pre>
 <p>This means move the <strong>the value at the address stored in rbx</strong> to rax. Usually other blogs and such will refer to this process as dereferencing rbx. </p>
 <h2 id="instruction-execution"><a class="header" href="#instruction-execution">Instruction Execution</a></h2>
-<p>In the <a href="3_computer_organization/./registers.html">registers</a> section we talked a little about special registers. Now its time to talk about the most important of those special registers: <strong>rip</strong> (aslo refered to as ip).</p>
+<p>In the <a href="3_computer_organization/./registers.html">registers</a> section we talked a little about special registers. Now it's time to talk about the most important of those special registers: <strong>rip</strong> (also referred to as ip).</p>
 <p>IP in assembly land refers to the Instruction Pointer register. You can find an ip register in every architecture. This instruction is responsible for storing the address of the instruction we are supposed to be executing right now. Normally, when you have instructions that are a program they are laid out in memory. Here is how a typical memory layout full of instructions could look:</p>
 <pre><code class="language-c">000000000000112d &lt;main&gt;:
 112d:       push   rbp
@@ -1179,7 +1179,7 @@ mov rax, rbx     // move the temp back into x
 114b:       imul   eax, [rbp-0x4]
 114f:       mov    [rbp-0x8], eax
 </code></pre>
-<p>There are some important things to note here. First, you can dereference registers while adding or subtracting an offset to it like in <code>[rbp - 0x4]</code>. Second, the address each instruction is associated with is not singly incremental. Notice how the difference in address between some instructions is <code>7</code>, while others are only <code>1</code>. You may have guessed it, but the difference in addresses for each instruction is based on that instructions size.</p>
+<p>There are some important things to note here. First, you can dereference registers while adding or subtracting an offset to it like in <code>[rbp - 0x4]</code>. Second, the address each instruction is associated with is not singly incremental. Notice how the difference in address between some instructions is <code>7</code>, while others are only <code>1</code>. You may have guessed it, but the difference in addresses for each instruction is based on that instruction's size.</p>
 <p>Each instruction is composed of bytes that encode it. Here is the same code from above, but printed with its encoding:</p>
 <pre><code class="language-c">000000000000112d &lt;main&gt;:
 112d:       55                      push   rbp
@@ -1194,7 +1194,7 @@ mov rax, rbx     // move the temp back into x
 114f:       89 45 f8                mov    [rbp-0x8], eax
 </code></pre>
 <p>There is a lot of different semantics to encoding instructions, such as their type and operation, but I won't be talking about how you can encode instructions by hand in this handbook. If you are interested, check <a href="https://wiki.osdev.org/X86-64_Instruction_Encoding#Opcode">this out</a>.</p>
-<p>If you are curious about how an instruction encodes into its bytes (or the other way around), use <a href="https://defuse.ca/online-x86-assembler.htm">this site</a> to encode and decode x86 instructions as you like. I use it often for CTFs since its so easy to use.</p>
+<p>If you are curious about how an instruction encodes into its bytes (or the other way around), use <a href="https://defuse.ca/online-x86-assembler.htm">this site</a> to encode and decode x86 instructions as you like. I use it often for CTFs since it's so easy to use.</p>
 <p>Now back to our earlier discussion, the instruction pointer. Execution of instructions follows the <a href="https://en.wikipedia.org/wiki/Instruction_cycle">fetch-and-execute</a> cycle:</p>
 <ol>
 <li>Get the instruction at the address of the ip</li>
@@ -1204,7 +1204,7 @@ mov rax, rbx     // move the temp back into x
 <li>Repeat </li>
 </ol>
 <p>So if in our previous example we are about to execute <code>mov [rbp-0x8], 0x0</code>, that means that <code>rip = 0x1131</code>. This also means that <code>[0x1131]</code> is the bytes of the instruction <code>mov [rbp-0x8], 0x0</code>.</p>
-<p>The last thing to know about <code>rip</code>, and <code>ip</code> in genral, is that you are not allowed to modify this register yourself. Obviously you just having instructions in memory modifies <code>rip</code>, but you are not allowed to do things like:</p>
+<p>The last thing to know about <code>rip</code>, and <code>ip</code> in general, is that you are not allowed to modify this register yourself. Obviously you just having instructions in memory modifies <code>rip</code>, but you are not allowed to do things like:</p>
 <pre><code>mov rip, 0x1138
 </code></pre>
 <p>That is an illegal instruction.</p>
@@ -1243,9 +1243,9 @@ mov rax, rbx     // move the temp back into x
 </tbody></table>
 <p>You don't know what the stack is yet, but we will get to it in the <a href="3_computer_organization/./asm_memory.html">asm-memory</a> section.</p>
 <hr />
-<p>There is actually one more set of instructions we need to cover, and thats <em>control flow operations</em>, or operations that change the execution of the program (alter ip). They are so important that they get their own header.</p>
+<p>There is actually one more set of instructions we need to cover, and that's <em>control flow operations</em>, or operations that change the execution of the program (alter ip). They are so important that they get their own header.</p>
 <h2 id="control-flow-instructions"><a class="header" href="#control-flow-instructions">Control Flow Instructions</a></h2>
-<p>You understand how to do things linearlly, but thats boring. You don't always want to do things so linearly. You often want conditions! Something like:</p>
+<p>You understand how to do things linearly, but that's boring. You don't always want to do things so linearly. You often want conditions! Something like:</p>
 <pre><code class="language-python">if(x is even):
     y = x + 1
 else:
@@ -1332,7 +1332,7 @@ mov rdi, rax
 <h2 id="introduction-6"><a class="header" href="#introduction-6">Introduction</a></h2>
 <p>You've already learned about <a href="3_computer_organization/./memory.html">memory</a>, how you can access it with addresses, and how programs often live in memory with other memory segments like the Heap and Stack. Surprise, surprise, the programs we can write with instructions live in memory as well. With our new knowledge of instructions, you can use this memory to store things that may be very large or of an unknown length. </p>
 <h2 id="memory-and-lists"><a class="header" href="#memory-and-lists">Memory and Lists</a></h2>
-<p>Using instructions like <code>mov</code> you can access the data at some memory location. Say another part of the program provided you the memory address to a writeable place in memory. You could write to it like so:</p>
+<p>Using instructions like <code>mov</code> you can access the data at some memory location. Say another part of the program provided you with the memory address to a writeable place in memory. You could write to it like so:</p>
 <pre><code class="language-c">// rax = memory addr
 
 mov [rax], 0x1337
@@ -1376,7 +1376,7 @@ mov ecx, [rax+0xc]
   #######################
 |=========================|
 </code></pre>
-<p>You can't just access pancake 3, that would destroy the stack (and make your mom mad). You need to access pancake 1 first, then 2, then 3. When you access the pacake on the top, we call it a <code>pop</code>. Yes you literally <code>pop</code> the pancake into your mouth. We represent that with the instruction:</p>
+<p>You can't just access pancake 3, that would destroy the stack (and make your mom mad). You need to access pancake 1 first, then 2, then 3. When you access the pancake on the top, we call it a <code>pop</code>. Yes, you literally <code>pop</code> the pancake into your mouth. We represent that with the instruction:</p>
 <pre><code class="language-c">pop mouth
 </code></pre>
 <p>Which results in the new pancake stack:</p>
@@ -1423,10 +1423,10 @@ mov ecx, [rax+0xc]
 </blockquote>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="control-structures"><a class="header" href="#control-structures">Control Structures</a></h1>
 <h2 id="introduction-7"><a class="header" href="#introduction-7">Introduction</a></h2>
-<p>Control structures are a pattern of assembly code that create some kind of more abstract flow controlling thing. As an example, the <code>if</code> statement we used earlier is a control structure. Control structures are used to make our code do interesting and complext things like make decisions in a loop, conditional do stuff, and easily make code reusable and understandable. </p>
+<p>Control structures are patterns of assembly code that create some kind of more abstract flow controlling thing. As an example, the <code>if</code> statement we used earlier is a control structure. Control structures are used to make our code do interesting and complex things like make decisions in a loop, conditional do stuff, and easily make code reusable and understandable. </p>
 <p>The first up of these control structures is one that makes code easy to reuse: functions!</p>
 <h2 id="functions"><a class="header" href="#functions">Functions</a></h2>
-<p>A function is a peice of code that you can reuse more than once that can take some arguments and return some values. It's essentially just like a normal math funciton. Take for instance the classic <code>f</code> in math:</p>
+<p>A function is a piece of code that you can reuse more than once that can take some arguments and return some values. It's essentially just like a normal math function. Take for instance the classic <code>f</code> in math:</p>
 <pre><code>f(x) = y
 </code></pre>
 <p>In this function above, it takes <code>x</code> and outputs <code>y</code>. You may not know how it translates <code>x</code> -&gt; <code>y</code>, but you know you get <code>y</code> from inputting <code>x</code>. You can make the same type of functions in x86 and most assembly languages. Earlier in <a href="3_computer_organization/./instructions.html#call-instructions">call-instructions</a>, we actually provided you with a function. Here it is again:</p>
@@ -1464,7 +1464,7 @@ call sum4
 
 // some code after...
 </code></pre>
-<p>Cool right? No we can easily reuse <code>sum4</code> as many times as we like. Just as a referesher, every function ends with a <code>ret</code> so that you can reliably use <code>call</code> on it as in the example above. </p>
+<p>Cool right? Note we can easily reuse <code>sum4</code> as many times as we like. Just as a refresher, every function ends with a <code>ret</code> so that you can reliably use <code>call</code> on it as in the example above. </p>
 <h3 id="functions-and-the-stack"><a class="header" href="#functions-and-the-stack">Functions and the Stack</a></h3>
 <p>It's important to know that functions often use stacks to save arguments right at the beginning of the function. This is called the <a href="https://en.wikipedia.org/wiki/Function_prologue_and_epilogue">function prolouge</a>. The reason we save things on the stack is because we might need to reuse the original argument registers:</p>
 <pre><code class="language-c">// takes 3 args
@@ -1497,7 +1497,7 @@ ret
 114b:       imul   eax, [rbp-0x4]
 114f:       mov    [rbp-0x8], eax
 </code></pre>
-<p>This code is a very accurate representation of what you will see in the real world. We use the special register rbp to save the original place the stack was at the start of the function. <code>bp</code> in rbp stands for Base Pointer. Its the base pointer of the stack, or where it was before calling this function. </p>
+<p>This code is a very accurate representation of what you will see in the real world. We use the special register rbp to save the original place the stack was at the start of the function. <code>bp</code> in rbp stands for Base Pointer. It's the base pointer of the stack, or where it was before calling this function. </p>
 <p>To explain the above code more:</p>
 <ol>
 <li>the current base pointer is saved (to be popped at the end by a leave; ret;)</li>
@@ -1602,12 +1602,12 @@ mov rax, rbx
 <p>With the general knowledge of these structures, you should be ready to start making some simple programs in x86.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="hacker-practice-1"><a class="header" href="#hacker-practice-1">Hacker Practice</a></h1>
 <h2 id="embryoasm"><a class="header" href="#embryoasm">EmbryoASM</a></h2>
-<p>For <code>'ike</code> we developed a module to teach and test x86 with the intention of serving it to people who have never programmed before. The hacker practice for this chapter will involve you solving all the challenged on <code>EmbryoASM</code>, which will cover every subsection of Assembly in this chapter as well as test your knowledge of logic, memory, and how an architecture works. </p>
+<p>For <code>'ike</code> we developed a module to teach and test x86 with the intention of serving it to people who have never programmed before. The hacker practice for this chapter will involve you solving all the challenges on <code>EmbryoASM</code>, which will cover every subsection of Assembly in this chapter and test your knowledge of logic, memory, and how an architecture works. </p>
 <p>For now, we have <code>EmbryoASM</code> deployed on <code>pwn.college</code> as the <code>Assembly Refresher</code> module. To play the levels, first register an account on <a href="https://dojo.pwn.college/register">dojo.pwn.college</a>. After that, skip all other modules and go right to <a href="https://dojo.pwn.college/challenges/asm">ASM</a>.</p>
 <h2 id="how-to-use-pwncollege"><a class="header" href="#how-to-use-pwncollege">How to use pwn.college</a></h2>
 <p>To play a level, first click the <code>start</code> button. Next, you have two options:</p>
 <ol>
-<li>You can play in browser by now clicking the <code>Workspace</code> tab which will open a VS code instance in your browser with a embedded terminal</li>
+<li>You can play in browser by now clicking the <code>Workspace</code> tab which will open a VS code instance in your browser with an embedded terminal</li>
 <li>(<strong>Recommended</strong>) You can <code>ssh</code> onto the box after hitting play. It will start a Docker container ready for you to connect at <code>dojo.pwn.college</code> as user <code>hacker</code></li>
 </ol>
 <p>To do option <code>2</code>, you must first upload an ssh key in the <a href="https://dojo.pwn.college/settings#key">settings</a> tab of your profile. You will use this same key to ssh onto the pwn.college instance. After that you can connect like so:</p>

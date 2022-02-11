@@ -137,7 +137,7 @@
                         <h1 id="instructions"><a class="header" href="#instructions">Instructions</a></h1>
 <h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
 <p>So you've learned where to store numbers in assembly, <a href="./registers.html">registers</a>. Your next logical question would be: <strong>how</strong> do I store values in those registers? Good question. You store them using <em>instructions</em>. </p>
-<p>Instructions are <em>atmoic</em> pieces of logic that run in order on the CPU. That sounds complicated, so let's break it down. Here is an example of something we want to do:</p>
+<p>Instructions are <em>atomic</em> pieces of logic that run in order on the CPU. That sounds complicated, so let's break it down. Here is an example of something we want to do:</p>
 <pre><code class="language-c">x = 10 
 </code></pre>
 <p>In assembly, where <code>x is rax</code>, this translates to:</p>
@@ -146,15 +146,15 @@
 <blockquote>
 <p>It's important to note that this format of x86 is in the flavor of Intel. There are two flavors: <a href="https://imada.sdu.dk/%7Ekslarsen/dm546/Material/IntelnATT.htm">Intel and AT&amp;T</a>. For all the challenge, and this handbook, we will be using Intel format. </p>
 </blockquote>
-<p>This instruction atomic because nothing can interupt it and it is the lowest level of logic on a computer. In a contrast we could show this operation:</p>
+<p>This instruction is atomic because nothing can interrupt it and it is the lowest level of logic on a computer. In contrast, we could show this operation:</p>
 <pre><code class="language-c">x = x + 10
 </code></pre>
-<p>The thing we are asking to do above is not atmoic. It is actually composed of 3 parts (normally):</p>
+<p>The thing we are asking to do above is not atomic. It is actually composed of 3 parts (normally):</p>
 <pre><code class="language-c">mov rbx, rax     // make a temp for x
 add rbx, 10      // add 10 to that temp
 mov rax, rbx     // move the temp back into x
 </code></pre>
-<p>You will also notice that these intstructions execute one-after-another. They are linearly executed.</p>
+<p>You will also notice that these instructions execute one-after-another. They are linearly executed.</p>
 <h2 id="instruction-syntax"><a class="header" href="#instruction-syntax">Instruction Syntax</a></h2>
 <p>This syntax may be confusing but most instructions follow the same format:</p>
 <pre><code>&lt;instruction_mnemonic&gt;  &lt;destination&gt;, &lt;source&gt;
@@ -169,7 +169,7 @@ mov rax, rbx     // move the temp back into x
 </code></pre>
 <p>This means move the <strong>the value at the address stored in rbx</strong> to rax. Usually other blogs and such will refer to this process as dereferencing rbx. </p>
 <h2 id="instruction-execution"><a class="header" href="#instruction-execution">Instruction Execution</a></h2>
-<p>In the <a href="./registers.html">registers</a> section we talked a little about special registers. Now its time to talk about the most important of those special registers: <strong>rip</strong> (aslo refered to as ip).</p>
+<p>In the <a href="./registers.html">registers</a> section we talked a little about special registers. Now it's time to talk about the most important of those special registers: <strong>rip</strong> (also referred to as ip).</p>
 <p>IP in assembly land refers to the Instruction Pointer register. You can find an ip register in every architecture. This instruction is responsible for storing the address of the instruction we are supposed to be executing right now. Normally, when you have instructions that are a program they are laid out in memory. Here is how a typical memory layout full of instructions could look:</p>
 <pre><code class="language-c">000000000000112d &lt;main&gt;:
 112d:       push   rbp
@@ -183,7 +183,7 @@ mov rax, rbx     // move the temp back into x
 114b:       imul   eax, [rbp-0x4]
 114f:       mov    [rbp-0x8], eax
 </code></pre>
-<p>There are some important things to note here. First, you can dereference registers while adding or subtracting an offset to it like in <code>[rbp - 0x4]</code>. Second, the address each instruction is associated with is not singly incremental. Notice how the difference in address between some instructions is <code>7</code>, while others are only <code>1</code>. You may have guessed it, but the difference in addresses for each instruction is based on that instructions size.</p>
+<p>There are some important things to note here. First, you can dereference registers while adding or subtracting an offset to it like in <code>[rbp - 0x4]</code>. Second, the address each instruction is associated with is not singly incremental. Notice how the difference in address between some instructions is <code>7</code>, while others are only <code>1</code>. You may have guessed it, but the difference in addresses for each instruction is based on that instruction's size.</p>
 <p>Each instruction is composed of bytes that encode it. Here is the same code from above, but printed with its encoding:</p>
 <pre><code class="language-c">000000000000112d &lt;main&gt;:
 112d:       55                      push   rbp
@@ -198,7 +198,7 @@ mov rax, rbx     // move the temp back into x
 114f:       89 45 f8                mov    [rbp-0x8], eax
 </code></pre>
 <p>There is a lot of different semantics to encoding instructions, such as their type and operation, but I won't be talking about how you can encode instructions by hand in this handbook. If you are interested, check <a href="https://wiki.osdev.org/X86-64_Instruction_Encoding#Opcode">this out</a>.</p>
-<p>If you are curious about how an instruction encodes into its bytes (or the other way around), use <a href="https://defuse.ca/online-x86-assembler.htm">this site</a> to encode and decode x86 instructions as you like. I use it often for CTFs since its so easy to use.</p>
+<p>If you are curious about how an instruction encodes into its bytes (or the other way around), use <a href="https://defuse.ca/online-x86-assembler.htm">this site</a> to encode and decode x86 instructions as you like. I use it often for CTFs since it's so easy to use.</p>
 <p>Now back to our earlier discussion, the instruction pointer. Execution of instructions follows the <a href="https://en.wikipedia.org/wiki/Instruction_cycle">fetch-and-execute</a> cycle:</p>
 <ol>
 <li>Get the instruction at the address of the ip</li>
@@ -208,7 +208,7 @@ mov rax, rbx     // move the temp back into x
 <li>Repeat </li>
 </ol>
 <p>So if in our previous example we are about to execute <code>mov [rbp-0x8], 0x0</code>, that means that <code>rip = 0x1131</code>. This also means that <code>[0x1131]</code> is the bytes of the instruction <code>mov [rbp-0x8], 0x0</code>.</p>
-<p>The last thing to know about <code>rip</code>, and <code>ip</code> in genral, is that you are not allowed to modify this register yourself. Obviously you just having instructions in memory modifies <code>rip</code>, but you are not allowed to do things like:</p>
+<p>The last thing to know about <code>rip</code>, and <code>ip</code> in general, is that you are not allowed to modify this register yourself. Obviously you just having instructions in memory modifies <code>rip</code>, but you are not allowed to do things like:</p>
 <pre><code>mov rip, 0x1138
 </code></pre>
 <p>That is an illegal instruction.</p>
@@ -247,9 +247,9 @@ mov rax, rbx     // move the temp back into x
 </tbody></table>
 <p>You don't know what the stack is yet, but we will get to it in the <a href="./asm_memory.html">asm-memory</a> section.</p>
 <hr />
-<p>There is actually one more set of instructions we need to cover, and thats <em>control flow operations</em>, or operations that change the execution of the program (alter ip). They are so important that they get their own header.</p>
+<p>There is actually one more set of instructions we need to cover, and that's <em>control flow operations</em>, or operations that change the execution of the program (alter ip). They are so important that they get their own header.</p>
 <h2 id="control-flow-instructions"><a class="header" href="#control-flow-instructions">Control Flow Instructions</a></h2>
-<p>You understand how to do things linearlly, but thats boring. You don't always want to do things so linearly. You often want conditions! Something like:</p>
+<p>You understand how to do things linearly, but that's boring. You don't always want to do things so linearly. You often want conditions! Something like:</p>
 <pre><code class="language-python">if(x is even):
     y = x + 1
 else:
