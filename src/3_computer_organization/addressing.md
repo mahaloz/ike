@@ -69,7 +69,7 @@ Minecraft will of course take up a large portion of space:
 *----*----*----*----* 0xFFFFFFFFFFFFFFFF
 ```
 
-Notice that Minecraft neither starts at the beginning nor at the end of memory. Any program can be loaded at any random place in memory. In addition, other magical things happen to actually allow you to break up a program into multiple places, called [Virtual Addressing](https://whatis.techtarget.com/definition/virtual-address). For now, consider things to be linear and continous.
+Notice that Minecraft neither starts at the beginning nor at the end of memory. Any program can be loaded at any random place in memory. In addition, other magical things happen to actually allow you to break up a program into multiple places, called [Virtual Addressing](https://whatis.techtarget.com/definition/virtual-address). For now, consider things to be linear and continuous.
 
 The OS does not know the exact location of the Minecraft Quit Button code. Instead, it only knows an **offset** from `minecraft_start`. Something like:
 ```

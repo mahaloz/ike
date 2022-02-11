@@ -1,13 +1,13 @@
 # Control Structures
 
 ## Introduction
-Control structures are a pattern of assembly code that create some kind of more abstract flow controlling thing. As an example, the `if` statement we used earlier is a control structure. Control structures are used to make our code do interesting and complext things like make decisions in a loop, conditional do stuff, and easily make code reusable and understandable. 
+Control structures are patterns of assembly code that create some kind of more abstract flow controlling thing. As an example, the `if` statement we used earlier is a control structure. Control structures are used to make our code do interesting and complex things like make decisions in a loop, conditional do stuff, and easily make code reusable and understandable. 
 
 The first up of these control structures is one that makes code easy to reuse: functions!
 
 ## Functions
 
-A function is a peice of code that you can reuse more than once that can take some arguments and return some values. It's essentially just like a normal math funciton. Take for instance the classic `f` in math:
+A function is a piece of code that you can reuse more than once that can take some arguments and return some values. It's essentially just like a normal math function. Take for instance the classic `f` in math:
 ```
 f(x) = y
 ```
@@ -59,7 +59,7 @@ call sum4
 // some code after...
 ```
 
-Cool right? No we can easily reuse `sum4` as many times as we like. Just as a referesher, every function ends with a `ret` so that you can reliably use `call` on it as in the example above. 
+Cool right? Note we can easily reuse `sum4` as many times as we like. Just as a refresher, every function ends with a `ret` so that you can reliably use `call` on it as in the example above. 
 
 ### Functions and the Stack
 It's important to know that functions often use stacks to save arguments right at the beginning of the function. This is called the [function prolouge](https://en.wikipedia.org/wiki/Function_prologue_and_epilogue). The reason we save things on the stack is because we might need to reuse the original argument registers:
@@ -102,7 +102,7 @@ This is very easy to do with pops and pushes, but is often not exactly correct. 
 114f:       mov    [rbp-0x8], eax
 ```
 
-This code is a very accurate representation of what you will see in the real world. We use the special register rbp to save the original place the stack was at the start of the function. `bp` in rbp stands for Base Pointer. Its the base pointer of the stack, or where it was before calling this function. 
+This code is a very accurate representation of what you will see in the real world. We use the special register rbp to save the original place the stack was at the start of the function. `bp` in rbp stands for Base Pointer. It's the base pointer of the stack, or where it was before calling this function. 
 
 To explain the above code more:
 1. the current base pointer is saved (to be popped at the end by a leave; ret;)

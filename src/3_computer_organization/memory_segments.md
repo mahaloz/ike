@@ -7,7 +7,7 @@ In the last section, you learned that programs exist in memory. What you may not
 sleep 5 & cat "/proc/$!/maps"
 ```
 
-This will run the `sleep` command (which sleeps for 5 seconds), and while it is running use the `pmap` command to print out the memory map of the process (which is the running memory instance of sleep). If you end up not being able to run this line, install pmap with `sudo apt-get install pmap -y`. Here is what the result should look similar too on your system:
+This will run the `sleep` command (which sleeps for 5 seconds), and while it is running use the `pmap` command to print out the memory map of the process (which is the running memory instance of sleep). If you end up not being able to run this line, install pmap with `sudo apt-get install pmap -y`. Here is what the result should look similar to on your system:
 
 ```
 [1] 243862
@@ -37,11 +37,11 @@ This will run the `sleep` command (which sleeps for 5 seconds), and while it is 
 ffffffffff600000-ffffffffff601000 --xp 00000000 00:00 0                  [vsyscall]
 ```
 
-Its a lot of stuff, so let's break it down. The first column is the start address to end address of that memory region. The second column is the permissions. The fifth column is the size of that mapped data (as it stands right now). The sixth column is the name of that mapping, which is not required. 
+It's a lot of stuff, so let's break it down. The first column is the start address to end address of that memory region. The second column is the permissions. The fifth column is the size of that mapped data (as it stands right now). The sixth column is the name of that mapping, which is not required. 
 
 > Note: it is common in computer science that if something does not have a name it is called "anonymous." Sometimes that name will be shorted to just "anon." 
 
-I won't talk about the other columns because they arn't important for our example. 
+I won't talk about the other columns because they aren't important for our example. 
 
 ## Important Maps
 Using the output from the command above, we can make a little reduced table of the output:
@@ -74,7 +74,7 @@ There are also more mappings in the program for other things, but you will notic
 ## Heap
 The Heap is a section of memory in every process (the stuff mapped with the program) that is dedicated to being a large writeable space. You might be asking yourself: "Why does this need to exist? Why can't we just write everything in the writeable section of the program?" Let's continue to use Minecraft as our running example to answer this question. 
 
-In Minecraft, as you roam around the world you may notice things coming in and out of view. The map, with all its AI and moving objects, is a large peice of data that is changing in memory all the time as you move. The amount that will be loaded in memory at any given time is compltley unknown. You could, for instance, walk into a peice of the map where you built a 10000 chicken prision. That many chickens would absolutley destroy the program's memory if it could not _expand_. You could also turn up or down the redner distance (the view distance), which would increase or decrease the amount of the map loaded at a given time.
+In Minecraft, as you roam around the world you may notice things coming in and out of view. The map, with all its AI and moving objects, is a large piece of data that is changing in memory all the time as you move. The amount that will be loaded in memory at any given time is completely unknown. You could, for instance, walk into a piece of the map where you built a 10000 chicken prison. That many chickens would absolutely destroy the program's memory if it could not _expand_. You could also turn up or down the render distance (the view distance), which would increase or decrease the amount of the map loaded at a given time.
 
 ![](./render_distance.png)
 
@@ -89,7 +89,7 @@ Something that changes that frequently in Minecraft, but is pretty small, is the
 
 ![](./minecraft_chat.png)
 
-The chat constantly gets new letters that exist, then don't exist. For the chat history, we save that in the Heap. But for a single sentence you are about to send to the chat, we put in the Stack. It changes fast and needs that speed so players to get angry at their respective toasters. 
+The chat constantly gets new letters that exist, then don't exist. For the chat history, we save that in the Heap. But for a single sentence you are about to send to the chat, we put in the Stack. It changes fast and needs that speed for players to get angry at their respective toasters. 
 
 
 ## Conclusion
@@ -101,7 +101,7 @@ There is a pattern among the usage of these writeable sections in memory:
 | Heap                    | X            | X             |                    |
 | Stack                   | X            |               | X                  |
 
-You use a programs writeable space when its small and does not change much. Heap when its large. Stack when its small and rapidly changing. 
+You use a program's writeable space when it's small and does not change much. Heap when it's large. Stack when it's small and rapidly changing. 
 
 With everything you know now, this image of a processes memory should make sense:
 ```
@@ -124,4 +124,4 @@ With everything you know now, this image of a processes memory should make sense
 *----*----*----*----*----| 0xFFFFFFFFFFFFFFFF
 ```
 
-When `Minecraft` is running, it's program memory stays stationary. The Heap that it uses to store large changing things grows up (in addressing space) towards the Stack. The Stack that it uses to store small changing things grows down (in the addressing space) towards the Heap. All the other things you can see stored in memory in the initial maps we got are other programs that assist the main program while it runs. This can be things like external libraries (code others have written that you reuse).
+When `Minecraft` is running, its program memory stays stationary. The Heap that it uses to store large changing things grows up (in addressing space) towards the Stack. The Stack that it uses to store small changing things grows down (in the addressing space) towards the Heap. All the other things you can see stored in memory in the initial maps we got are other programs that assist the main program while it runs. This can be things like external libraries (code others have written that you reuse).

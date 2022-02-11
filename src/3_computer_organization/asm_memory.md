@@ -4,7 +4,7 @@
 You've already learned about [memory](./memory.md), how you can access it with addresses, and how programs often live in memory with other memory segments like the Heap and Stack. Surprise, surprise, the programs we can write with instructions live in memory as well. With our new knowledge of instructions, you can use this memory to store things that may be very large or of an unknown length. 
 
 ## Memory and Lists
-Using instructions like `mov` you can access the data at some memory location. Say another part of the program provided you the memory address to a writeable place in memory. You could write to it like so:
+Using instructions like `mov` you can access the data at some memory location. Say another part of the program provided you with the memory address to a writeable place in memory. You could write to it like so:
 ```c
 // rax = memory addr
 
@@ -60,7 +60,7 @@ Pancake Stack:
 |=========================|
 ```
 
-You can't just access pancake 3, that would destroy the stack (and make your mom mad). You need to access pancake 1 first, then 2, then 3. When you access the pacake on the top, we call it a `pop`. Yes you literally `pop` the pancake into your mouth. We represent that with the instruction:
+You can't just access pancake 3, that would destroy the stack (and make your mom mad). You need to access pancake 1 first, then 2, then 3. When you access the pancake on the top, we call it a `pop`. Yes, you literally `pop` the pancake into your mouth. We represent that with the instruction:
 ```c
 pop mouth
 ```
