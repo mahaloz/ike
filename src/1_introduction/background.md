@@ -27,11 +27,11 @@ As I briefly mentioned [above](#the-education-gap), there exist many places to s
 
 **Nightmare Method**:
 
-![](./nightmare-method.jpeg)
+![](./nightmare-method.png)
 
 **'Ike Method**:
 
 
-![](./ike-method.jpeg)
+![](./ike-method.png)
 
 The subtle difference here is that I believe the underlying security concept should be educated and learned about through explicit material first, then it should be reinforced with scripting and systems skills. This is not to say I don't like the Nightmare method, I love it, but others need a different one. This book is that different method. 
