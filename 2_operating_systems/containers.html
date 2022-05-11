@@ -1,0 +1,320 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Containers - &#x27;Ike</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../1_introduction/introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../1_introduction/background.html"><strong aria-hidden="true">1.1.</strong> Background</a></li><li class="chapter-item expanded "><a href="../1_introduction/inspiration.html"><strong aria-hidden="true">1.2.</strong> Inspiration</a></li><li class="chapter-item expanded "><a href="../1_introduction/overview.html"><strong aria-hidden="true">1.3.</strong> Overview & Schedule</a></li></ol></li><li class="chapter-item expanded "><a href="../2_operating_systems/operating_systems.html"><strong aria-hidden="true">2.</strong> Operating Systems</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../2_operating_systems/introduction.html"><strong aria-hidden="true">2.1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../2_operating_systems/virtualization.html"><strong aria-hidden="true">2.2.</strong> Virtualization</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../2_operating_systems/virtual_machines.html"><strong aria-hidden="true">2.2.1.</strong> Virtual Machines</a></li><li class="chapter-item expanded "><a href="../2_operating_systems/containers.html" class="active"><strong aria-hidden="true">2.2.2.</strong> Containers</a></li></ol></li><li class="chapter-item expanded "><a href="../2_operating_systems/linux_os.html"><strong aria-hidden="true">2.3.</strong> Linux OS</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../2_operating_systems/terminal.html"><strong aria-hidden="true">2.3.1.</strong> The Terminal</a></li><li class="chapter-item expanded "><a href="../2_operating_systems/permissions.html"><strong aria-hidden="true">2.3.2.</strong> Permissions</a></li><li class="chapter-item expanded "><a href="../2_operating_systems/hacker_practice.html"><strong aria-hidden="true">2.3.3.</strong> Hacker Practice</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../3_computer_organization/computer_org.html"><strong aria-hidden="true">3.</strong> Computer Organization</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../3_computer_organization/introduction.html"><strong aria-hidden="true">3.1.</strong> Introduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../3_computer_organization/math_and_counting.html"><strong aria-hidden="true">3.1.1.</strong> Math & Counting</a></li><li class="chapter-item expanded "><a href="../3_computer_organization/bits_and_logic.html"><strong aria-hidden="true">3.1.2.</strong> Bits & Logic</a></li></ol></li><li class="chapter-item expanded "><a href="../3_computer_organization/memory.html"><strong aria-hidden="true">3.2.</strong> Memory</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../3_computer_organization/programs_in_mem.html"><strong aria-hidden="true">3.2.1.</strong> Programs in Memory</a></li><li class="chapter-item expanded "><a href="../3_computer_organization/addressing.html"><strong aria-hidden="true">3.2.2.</strong> Addressing</a></li><li class="chapter-item expanded "><a href="../3_computer_organization/memory_segments.html"><strong aria-hidden="true">3.2.3.</strong> Memory Segments</a></li></ol></li><li class="chapter-item expanded "><a href="../3_computer_organization/assembly.html"><strong aria-hidden="true">3.3.</strong> Assembly</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../3_computer_organization/registers.html"><strong aria-hidden="true">3.3.1.</strong> Registers</a></li><li class="chapter-item expanded "><a href="../3_computer_organization/instructions.html"><strong aria-hidden="true">3.3.2.</strong> Instructions</a></li><li class="chapter-item expanded "><a href="../3_computer_organization/asm_memory.html"><strong aria-hidden="true">3.3.3.</strong> ASM Memory</a></li><li class="chapter-item expanded "><a href="../3_computer_organization/control_structures.html"><strong aria-hidden="true">3.3.4.</strong> Control Structures</a></li><li class="chapter-item expanded "><a href="../3_computer_organization/hacker_practice.html"><strong aria-hidden="true">3.3.5.</strong> Hacker Practice</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../4_programming_languages/programming_languages.html"><strong aria-hidden="true">4.</strong> Programming Languages</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../4_programming_languages/introduction.html"><strong aria-hidden="true">4.1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../4_programming_languages/c.html"><strong aria-hidden="true">4.2.</strong> C</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../4_programming_languages/write_c.html"><strong aria-hidden="true">4.2.1.</strong> Writing Code</a></li><li class="chapter-item expanded "><a href="../4_programming_languages/compilation.html"><strong aria-hidden="true">4.2.2.</strong> Compilation & Execution</a></li><li class="chapter-item expanded "><a href="../4_programming_languages/debugging_c.html"><strong aria-hidden="true">4.2.3.</strong> Debugging</a></li></ol></li><li class="chapter-item expanded "><a href="../4_programming_languages/python.html"><strong aria-hidden="true">4.3.</strong> Python</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../4_programming_languages/write_py.html"><strong aria-hidden="true">4.3.1.</strong> Writing Code</a></li><li class="chapter-item expanded "><a href="../4_programming_languages/interp.html"><strong aria-hidden="true">4.3.2.</strong> Interpretation & Execution</a></li><li class="chapter-item expanded "><a href="../4_programming_languages/debugging_py.html"><strong aria-hidden="true">4.3.3.</strong> Debugging</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../5_processes/proc_and_debug.html"><strong aria-hidden="true">5.</strong> Processes and Debugging</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../5_processes/introduction.html"><strong aria-hidden="true">5.1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../5_processes/executable_types.html"><strong aria-hidden="true">5.2.</strong> Executable Types</a></li><li class="chapter-item expanded "><a href="../5_processes/gdb.html"><strong aria-hidden="true">5.3.</strong> Using GDB</a></li><li class="chapter-item expanded "><a href="../5_processes/interaction.html"><strong aria-hidden="true">5.4.</strong> Interacting with Python</a></li></ol></li><li class="chapter-item expanded "><a href="../6_security/security.html"><strong aria-hidden="true">6.</strong> Security Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../6_security/cia.html"><strong aria-hidden="true">6.1.</strong> CIA</a></li><li class="chapter-item expanded "><a href="../6_security/enc_and_hash.html"><strong aria-hidden="true">6.2.</strong> Encryption & Hashing</a></li><li class="chapter-item expanded "><a href="../6_security/bruteforcing.html"><strong aria-hidden="true">6.3.</strong> Bruteforcing</a></li><li class="chapter-item expanded "><a href="../6_security/dos.html"><strong aria-hidden="true">6.4.</strong> DOSing</a></li><li class="chapter-item expanded "><a href="../6_security/io.html"><strong aria-hidden="true">6.5.</strong> I/O Vectors</a></li></ol></li><li class="chapter-item expanded "><a href="../whats_next.html"><strong aria-hidden="true">7.</strong> What's Next</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">&#x27;Ike</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="containers"><a class="header" href="#containers">Containers</a></h1>
+<p>Containers are another level of virtualization that allows for isolated spaces in the kernel
+to be created and destroyed without affecting each other. </p>
+<h2 id="what-is-a-container"><a class="header" href="#what-is-a-container">What is a container?</a></h2>
+<p>To get more specific, read what Docker has to say on what a Container is: <a href="https://www.docker.com/resources/what-container">here</a>.
+Now you may be wondering, how does this differ from a VM? As an end-user, there is no difference. But as 
+far as technicals go, Microsoft's diagram is a good comparison:</p>
+<p><strong>VMs vs Containers</strong>
+<img src="./ms_container_v_vm.png" alt="" /></p>
+<p>In simple terms, a VM is much more heavy since we need to initialize an entirely new kernel for each VM we make.
+In a container, we share the already existent kernel and, using some technical tricks, create isolated sections
+of the kernel that we then use to create containers (which act as VMs). </p>
+<p><strong>TL;DR</strong>: container light, VM heavy.</p>
+<h3 id="why-use-a-container"><a class="header" href="#why-use-a-container">Why use a container?</a></h3>
+<p>You may be asking yourself, &quot;why use a container?&quot; We already are in a VM, so as far as affecting our host machine goes, we are
+already in the clear. Containers become the most useful when trying to run applications that have dependencies that
+we might not have access to in our current version of the VM. For instance, wanting to run an <code>Ubuntu 18.04</code> application
+while in <code>Ubuntu 20.04</code>. You can either pray to the computer gods and hope your dependences still work in the new version,
+or you can use a docker container that creates an <code>Ubuntu 18.04</code> environment in it to run. The latter is easier. In addition,
+containers are not persistent, meaning that when you are done running the container, everything you created inside of it is
+destroyed. </p>
+<h2 id="docker-the-modern-container"><a class="header" href="#docker-the-modern-container">Docker: the modern container</a></h2>
+<p>Now that you know what a container is, it's time we set you up to be able to use containers. There are many implementations
+of containers, but the one we will use is <a href="https://www.docker.com/why-docker">Docker</a>. Docker is very mainstream and 
+has a lot of use across the computer science industry. Take for instance <a href="https://wordpress.com/">Wordpress</a>, which you
+have likely heard of or used. It's a platform for building websites for free with a GUI. It also has a lot of 
+dependencies and things you need to set up before using it. Wordpress uses Docker, and has made a docker container
+that does it all for you. Check it out: <a href="https://hub.docker.com/_/wordpress">here</a>. Essentially you can run an entire
+wordpress hosting software with a database all with this simple command in a terminal:</p>
+<pre><code class="language-docker">docker run wordpress
+</code></pre>
+<p>Which is a great segway into installing Docker, since it requires use of the <code>command line</code>.</p>
+<h2 id="setting-up-docker"><a class="header" href="#setting-up-docker">Setting up docker</a></h2>
+<p>We will now install <code>Docker</code> on your <code>Ubuntu VM</code>, so from now on all instructions are pertaining to being inside
+you VM. First login to the VM, then open up the terminal. You can do this by either searching applications or 
+simple right-clicking the desktop and clicking <code>&quot;Open terminal&quot;</code>. This is where the fun begins. Pro-tip,
+you can click the copy button in the top left of the code snippets to copy and paste to your terminal.</p>
+<p>It's alright if you don't understand all the commands in this section, we will cover using the terminal later.</p>
+<p>First, we need to update the list of installable applications. Run:</p>
+<pre><code class="language-bash">sudo apt-get update
+</code></pre>
+<p>After that, we need to install the dependencies of docker:</p>
+<pre><code class="language-bash">sudo apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg-agent \
+    software-properties-common
+</code></pre>
+<p>Next, let's add dockers GPG key so we can get their software:</p>
+<pre><code class="language-bash">curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+</code></pre>
+<p>Add the repository:</p>
+<pre><code class="language-bash">sudo add-apt-repository \
+   &quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable&quot;
+</code></pre>
+<p>Finally, update once more and install:</p>
+<pre><code class="language-bash">sudo apt-get update
+</code></pre>
+<pre><code class="language-bash">sudo apt-get install docker-ce docker-ce-cli containerd.io
+</code></pre>
+<p>Congratulations, you just installed your first command line tool! And quite a powerful one.
+Let's verify it works.</p>
+<h2 id="using-docker"><a class="header" href="#using-docker">Using docker</a></h2>
+<h3 id="verification"><a class="header" href="#verification">Verification</a></h3>
+<p>To verify you actualy have docker running, simply run:</p>
+<pre><code class="language-bash">sudo docker run hello-world
+</code></pre>
+<p>The output should look something like:</p>
+<pre><code>Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the &quot;hello-world&quot; image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+</code></pre>
+<h3 id="having-some-fun"><a class="header" href="#having-some-fun">Having some fun</a></h3>
+<p>To make things a little more interesting, let's launch an older Ubuntu version <strong>inside</strong> your
+current Ubuntu version. Virtualception. Let's first see what version we are on in our machine:</p>
+<pre><code class="language-bash">grep '^VERSION' /etc/os-release
+</code></pre>
+<p>I'm on <code>Ubuntu 18.04</code>, so my command output this:</p>
+<pre><code class="language-bash">VERSION=&quot;18.04.5 LTS (Bionic Beaver)&quot;
+VERSION_ID=&quot;18.04&quot;
+VERSION_CODENAME=bionic
+</code></pre>
+<p>You may be on <code>20.04</code> so it will look slightly different. Take a note of the version you are on. </p>
+<p>Now let's start an <code>Ubuntu 16.04</code> machine. Run:</p>
+<pre><code class="language-bash">docker run -it ubuntu:16.04
+</code></pre>
+<p>Since it's the first run it will take a few minutes for it to pull down the Ubuntu image data. 
+Once it's done, you should see a waiting prompt that looks like:</p>
+<pre><code class="language-bash">root@cadd99990677:/#
+</code></pre>
+<p>You have now opened a terminal in a virtual Ubuntu. Congratz. Run the same command from earlier in this prompt:</p>
+<pre><code class="language-bash">grep '^VERSION' /etc/os-release
+</code></pre>
+<p>The output should be:</p>
+<pre><code class="language-bash">VERSION=&quot;16.04.7 LTS (Xenial Xerus)&quot;
+VERSION_ID=&quot;16.04&quot;
+VERSION_CODENAME=xenial
+</code></pre>
+<p>Pretty cool right? We are inside a virtual machine in a virtual machine (technically a container, but you get the point).
+Now type:</p>
+<pre><code class="language-bash">exit
+</code></pre>
+<p>and hit enter. You will be back to your normal terminal. Amazing! </p>
+<p>We will use Docker often. If you are excited about this, you can check out this tutorial: <a href="https://docs.docker.com/get-started/02_our_app/">here</a>,
+though it is not mandatory. Now it's time to learn how to use <code>Bash</code>, the terminal you typed on earlier. </p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../2_operating_systems/virtual_machines.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../2_operating_systems/linux_os.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../2_operating_systems/virtual_machines.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../2_operating_systems/linux_os.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>
