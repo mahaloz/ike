@@ -4,7 +4,7 @@
 
 For `'ike` we developed a module to teach and test x86 with the intention of serving it to people who have never programmed before. The hacker practice for this chapter will involve you solving all the challenges on `EmbryoASM`, which will cover every subsection of Assembly in this chapter and test your knowledge of logic, memory, and how an architecture works. 
 
-For now, we have `EmbryoASM` deployed on `pwn.college` as the `Assembly Refresher` module. To play the levels, first register an account on [dojo.pwn.college](https://dojo.pwn.college/register). After that, skip all other modules and go right to [ASM](https://dojo.pwn.college/challenges/asm).
+For now, we have `EmbryoASM` deployed on `pwn.college` as the `Assembly Refresher` module. To play the levels, first register an account on [dojo.pwn.college](https://dojo.pwn.college/register). After that, skip all other modules and go right to [ASM Crash Course](https://dojo.pwn.college/fundamentals/assembly-crash-course).
 
 ## How to use pwn.college
 
