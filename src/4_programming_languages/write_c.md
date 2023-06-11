@@ -63,8 +63,7 @@ Before the line: `" All of your Plugins must be added before the following line`
 Add the following:
 
 ```
-Plugin 'valloric/youcompleteme'
-Plugin 'VundleVim/Vundle.vim'
+Plugin 'Valloric/YouCompleteMe'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'itchyny/lightline.vim'
