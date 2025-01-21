@@ -158,7 +158,7 @@ Now, recall that bits can also be represented as hex! This means we can do logic
 x = 0x13 (00010011) 
 y = 0x32 (00110010)
 
-(x & y) == 0x33 (00110011)
+(x & y) == 0x12 (00110010)
 ```
 
 This entire time we have been using **bytes**, but to keep with the earlier theme, why don't we assume that we can represent things in 64bits. For conciseness, we don't write leading 0's in a hex number:
