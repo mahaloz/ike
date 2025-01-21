@@ -23,7 +23,7 @@ There is an extremely high probability that you are reading this text on an Inte
 
 It's time we dive into x86_64, which we will shorthand to _x86_ from now. All the subsections in this section should be read in an _overview_ manner. I wrote these modules to assist and act as a reference for the challenges associated with this section. 
 
-The challenges you will complete as part of this section are the EmbryoASM challenges hosted on pwn.college. Myself and @redgate wrote these challenges to teach you assembly rather than just test your skill. You will find the challenges on the [dojo](https://dojo.pwn.college/challenges/asm). Start them after reading the sections below. 
+The challenges you will complete as part of this section are the EmbryoASM challenges hosted on pwn.college. Myself and @redgate wrote these challenges to teach you assembly rather than just test your skill. You will find the challenges on the [dojo](https://pwn.college/computing-101/assembly-crash-course/). Start them after reading the sections below. 
 
 
 ## Quick Reference Links
@@ -35,4 +35,4 @@ The challenges you will complete as part of this section are the EmbryoASM chall
     - [Calling Convention](https://chromium.googlesource.com/chromiumos/docs/+/master/constants/syscalls.md)
 
 - Challenges
-    - [EmbryoASM](https://dojo.pwn.college/challenges/asm)
+    - [EmbryoASM](https://pwn.college/computing-101/assembly-crash-course/)
