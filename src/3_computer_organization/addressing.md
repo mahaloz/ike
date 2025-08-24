@@ -34,7 +34,10 @@ Anyway, we will assume you are on a 64bit computer. That means the starting addr
 *----*----*----*----* 0xFFFFFFFFFFFFFFFF
 ```
 
-At each address is an 8 byte slot for data. This means we could store 8 bytes nearly 2**(64) times. That is wayyyyyyyyy more RAM than you have in your computer, but it is nice to know that our current architecture could support even a huge amount of RAM. 
+At each address is exactly 1 byte of data. 
+However, to make make things more concise, we often like to talk about address in terms of **8 bytes** (4 on 32bit machines).
+As such, we usually say each address points to an 8-byte slot of data (the 8 bytes following that exact address).
+This means one referenced address could store 2**(64) combinations of things.
 
 ## Reading & Writing Data
 
