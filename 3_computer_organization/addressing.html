@@ -182,7 +182,10 @@
 |                   |
 *----*----*----*----* 0xFFFFFFFFFFFFFFFF
 </code></pre>
-<p>At each address is an 8 byte slot for data. This means we could store 8 bytes nearly 2**(64) times. That is wayyyyyyyyy more RAM than you have in your computer, but it is nice to know that our current architecture could support even a huge amount of RAM.</p>
+<p>At each address is exactly 1 byte of data.
+However, to make make things more concise, we often like to talk about address in terms of <strong>8 bytes</strong> (4 on 32bit machines).
+As such, we usually say each address points to an 8-byte slot of data (the 8 bytes following that exact address).
+This means one referenced address could store 2**(64) combinations of things.</p>
 <h2 id="reading--writing-data"><a class="header" href="#reading--writing-data">Reading &amp; Writing Data</a></h2>
 <p>To simplify things, lets define two functions:</p>
 <pre><code class="language-python">read(address) -&gt; outputs 8 bytes of data
