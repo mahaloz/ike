@@ -95,7 +95,7 @@ The chat constantly gets new letters that exist, then don't exist. For the chat 
 ## Conclusion
 There is a pattern among the usage of these writeable sections in memory:
 
-| Name                    | Data changes | Date is Large | Data changes Often |
+| Name                    | Data changes | Data is Large | Data changes Often |
 |-------------------------|--------------|---------------|--------------------|
 | Writeable program space | X            |               |                    |
 | Heap                    | X            | X             |                    |
